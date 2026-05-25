@@ -1,81 +1,286 @@
-* {
+/* ============================================================
+   ROOF REPORT GENERATOR — DESIGN SYSTEM
+   ============================================================ */
+
+/* === CSS Variables === */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+    --primary-border: #bfdbfe;
+    --navy: #0f172a;
+    --navy-mid: #1e293b;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --border: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --bg: #f0f4f8;
+    --bg-subtle: #f8fafc;
+    --white: #ffffff;
+    --success: #059669;
+    --success-light: #d1fae5;
+    --success-border: #6ee7b7;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --warning-border: #fcd34d;
+    --danger: #ef4444;
+    --danger-light: #fee2e2;
+    --danger-border: #fca5a5;
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 14px;
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+    --shadow: 0 4px 8px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 8px 20px rgba(0,0,0,0.09), 0 3px 6px rgba(0,0,0,0.05);
+}
+
+/* === Reset & Base === */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
+    color: var(--text);
+    background: var(--bg);
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 940px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 28px 20px 48px;
 }
 
+/* ============================================================
+   HEADER
+   ============================================================ */
 header {
-    text-align: center;
-    background: linear-gradient(135deg, #2c3e50, #3498db);
+    background: var(--navy);
     color: white;
-    padding: 30px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px 44px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+    position: relative;
 }
 
 header p {
-    font-size: 1.2em;
-    opacity: 0.9;
+    font-size: 0.92em;
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+    position: relative;
 }
 
+/* ============================================================
+   SHARED CARD BASE — applies to both eps-section and professional-card
+   ============================================================ */
+.professional-card,
+.eps-section {
+    background: var(--white);
+    margin-bottom: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+/* ============================================================
+   MAIN CONFIG CARD — Roof Details (eps-section, not section-card)
+   ============================================================ */
+.eps-section:not(.section-card) .eps-section-header {
+    background: var(--navy-mid);
+    color: white;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-bottom: none;
+}
+
+.eps-section:not(.section-card) .eps-section-header .eps-icon path {
+    fill: rgba(255,255,255,0.7);
+}
+
+.eps-section:not(.section-card) .eps-section-inputs {
+    padding: 24px;
+}
+
+.eps-section:not(.section-card) .eps-section-description {
+    display: none;
+}
+
+/* ============================================================
+   SECTION CARDS — Unified look for eps-section.section-card
+   AND professional-card.section-card
+   ============================================================ */
+
+/* eps-section.section-card — Section 1: Sheet/Tile Condition */
+.eps-section.section-card .eps-section-header {
+    background: var(--bg-subtle);
+    color: var(--text);
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.eps-section.section-card .eps-section-header .eps-icon {
+    display: none;
+}
+
+.eps-section.section-card .eps-section-description {
+    display: none;
+}
+
+.eps-section.section-card .eps-section-inputs {
+    padding: 24px;
+}
+
+.eps-section.section-card .eps-section-inputs > label:first-child {
+    display: none;
+}
+
+/* professional-card.section-card — Sections 2-8 */
+.professional-card.section-card .card-header {
+    background: var(--bg-subtle);
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.professional-card.section-card .card-header h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+    letter-spacing: -0.01em;
+}
+
+/* Disabled section cards */
+.section-card[data-disabled="true"] {
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.section-card[data-disabled="true"] .eps-section-header,
+.section-card[data-disabled="true"] .card-header {
+    background: #f1f5f9;
+}
+
+/* ============================================================
+   CARD CONTENT AREAS
+   ============================================================ */
+.card-content {
+    padding: 24px;
+}
+
+/* ============================================================
+   NON-SECTION PROFESSIONAL CARDS (Additional Items, etc.)
+   ============================================================ */
+.professional-card:not(.section-card) .card-header {
+    background: var(--navy-mid);
+    color: white;
+    padding: 18px 24px;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.professional-card:not(.section-card) .card-header h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.01em;
+}
+
+/* ============================================================
+   SECTION NUMBER BADGE — injected via CSS counter
+   ============================================================ */
+/* We'll use the existing span text or h3 text — no counter needed since text already has numbers */
+
+/* ============================================================
+   FORM LAYOUT
+   ============================================================ */
 .form-section {
-    background: white;
-    margin-bottom: 25px;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #3498db;
+    background: var(--white);
+    margin-bottom: 20px;
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
 }
 
 .form-section h2 {
-    color: #2c3e50;
+    color: var(--text);
     margin-bottom: 20px;
-    font-size: 1.5em;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ecf0f1;
-}
-
-.form-section h3 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.2em;
-    padding: 8px 0;
-    border-bottom: 1px solid #ecf0f1;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-left: 3px solid #3498db;
+    gap: 18px;
+    margin-bottom: 18px;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
 }
 
 .form-row .form-group {
@@ -86,262 +291,691 @@ header p {
     grid-template-columns: 1fr;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #2c3e50;
+/* ============================================================
+   EPS GRID
+   ============================================================ */
+.eps-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
+/* ============================================================
+   FORM CONTROLS — Labels
+   ============================================================ */
+.form-group label,
+.eps-section .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   FORM CONTROLS — Inputs, Selects, Textareas
+   ============================================================ */
 .form-group input,
 .form-group select,
-.form-group textarea {
+.form-group textarea,
+.eps-section .form-group input,
+.eps-section .form-group select,
+.eps-section .form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    appearance: auto;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-light);
 }
 
 .form-group input:focus,
 .form-group select:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.eps-section .form-group input:focus,
+.eps-section .form-group select:focus,
+.eps-section .form-group textarea:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 
+.form-group textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* File inputs */
+.form-group input[type="file"],
+.eps-section .form-group input[type="file"] {
+    padding: 8px 10px;
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-subtle);
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.form-group input[type="file"]:hover,
+.eps-section .form-group input[type="file"]:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+/* ============================================================
+   SIDE-BY-SIDE LAYOUT (used in section cards)
+   ============================================================ */
+.side-by-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.side-by-side .form-group {
+    background: var(--bg-subtle);
+    padding: 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 0;
+}
+
+.side-by-side .form-group label {
+    color: var(--text-muted);
+}
+
+.side-by-side .form-group select[multiple] {
+    min-height: 100px;
+    background: var(--white);
+}
+
+.side-by-side .form-group small {
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* ============================================================
+   PROFESSIONAL CARD — form group overrides
+   ============================================================ */
+.professional-card .form-row {
+    background: none;
+    padding: 0;
+    margin-bottom: 16px;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+.professional-card .form-row:not(.side-by-side) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.professional-card .form-group {
+    background: var(--bg-subtle);
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+}
+
+.professional-card .form-group label {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.professional-card .form-group input,
+.professional-card .form-group select,
+.professional-card .form-group textarea {
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    font-size: 14px;
+    padding: 9px 12px;
+}
+
+.professional-card .form-group input:focus,
+.professional-card .form-group select:focus,
+.professional-card .form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+/* ============================================================
+   RADIO & CHECKBOX GROUPS
+   ============================================================ */
 .radio-group,
 .checkbox-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 10px;
+    margin-top: 8px;
 }
 
 .radio-group label,
 .checkbox-group label {
     display: flex;
     align-items: center;
-    font-weight: normal;
+    font-weight: 500;
+    font-size: 14px;
     cursor: pointer;
-    padding: 8px 12px;
-    background: #f8f9fa;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    padding: 8px 14px;
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    transition: all 0.15s ease;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text);
 }
 
 .radio-group label:hover,
 .checkbox-group label:hover {
-    background: #e9ecef;
+    background: var(--primary-light);
+    border-color: var(--primary-border);
 }
 
 .radio-group input,
 .checkbox-group input {
     width: auto;
     margin-right: 8px;
+    accent-color: var(--primary);
 }
 
-.form-actions {
-    text-align: center;
-    padding: 30px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .btn-primary,
 .btn-secondary {
-    padding: 15px 30px;
-    margin: 0 10px;
+    padding: 11px 28px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
     cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    transition: all 0.15s ease;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: var(--primary);
     color: white;
+    box-shadow: 0 1px 3px rgba(37,99,235,0.3);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #2980b9, #21618c);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: var(--primary-dark);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
 }
 
 .btn-secondary {
-    background: #95a5a6;
-    color: white;
+    background: var(--white);
+    color: var(--text);
+    border: 1.5px solid var(--border);
 }
 
 .btn-secondary:hover {
-    background: #7f8c8d;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: var(--bg-subtle);
+    border-color: var(--border-hover);
+    transform: translateY(-1px);
 }
 
-.report-output {
-    background: white;
-    margin-top: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+.btn-secondary:active {
+    transform: translateY(0);
 }
 
-.report-header {
-    background: linear-gradient(135deg, #27ae60, #2ecc71);
-    color: white;
-    padding: 25px;
-    display: flex;
-    justify-content: space-between;
+/* Save Section button */
+.eps-save-btn {
+    background: var(--white);
+    color: var(--primary);
+    border: 1.5px solid var(--primary-border);
+    padding: 9px 20px;
+    margin: 0 24px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
     align-items: center;
+    gap: 8px;
+    transition: all 0.15s ease;
+    letter-spacing: 0.02em;
+}
+
+.eps-save-btn:hover {
+    background: var(--primary-light);
+    border-color: var(--primary);
+}
+
+.eps-save-btn svg path {
+    fill: var(--primary);
+}
+
+/* ============================================================
+   SECTION HEADER CONTROLS
+   ============================================================ */
+.applicable-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 8px;
+}
+
+.applicable-toggle label {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    gap: 6px;
+}
+
+.applicable-toggle input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--primary);
+    margin-right: 0;
+}
+
+.remove-section-btn {
+    background: transparent;
+    color: var(--text-light);
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.remove-section-btn:hover {
+    background: var(--danger-light);
+    border-color: var(--danger-border);
+    color: var(--danger);
+}
+
+/* ============================================================
+   CONCERNS CONTAINER
+   ============================================================ */
+.concerns-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding: 8px;
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.concern-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.concern-item > label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--text);
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    transition: background 0.15s ease, border-color 0.15s ease;
+    border: 1.5px solid var(--border);
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.4;
+}
+
+.concern-item > label:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-border);
+}
+
+/* The checkbox inside the trigger label */
+.concern-item > label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--primary);
+    flex-shrink: 0;
+}
+
+/* Concern detail panels — no left indent, full width, blue accent */
+.concern-details {
+    margin-top: 6px;
+    padding: 16px 18px;
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-border);
+    border-left: 3px solid var(--primary);
+    box-shadow: 0 1px 4px rgba(37,99,235,0.06);
+}
+
+.concern-details .field-group {
+    margin-bottom: 12px;
+}
+
+.concern-details .field-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Field labels inside detail panels — scoped tightly to avoid bleeding into checkbox/radio labels */
+.concern-details .field-group > label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Restore normal styling for checkbox-wrapper and radio labels inside detail panels */
+.concern-details .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.concern-details .checkbox-wrapper:hover {
+    border-color: var(--primary-border);
+    background: var(--primary-light);
+}
+
+.concern-details .checkbox-wrapper input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.concern-details .checkbox-wrapper label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: 0;
+    cursor: pointer;
+    margin: 0;
+    display: inline;
+}
+
+.concern-details .yesno-group {
+    display: flex;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
-.report-header h2 {
+.concern-details .radio-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.concern-details .radio-label:hover {
+    border-color: var(--primary-border);
+    background: var(--primary-light);
+}
+
+.concern-details .radio-label input[type="radio"] {
+    width: 15px;
+    height: 15px;
     margin: 0;
-    font-size: 1.8em;
+    cursor: pointer;
+    accent-color: var(--primary);
 }
 
-.report-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.report-actions button {
-    padding: 10px 20px;
+.concern-details input[type="text"],
+.concern-details input[type="number"],
+.concern-details textarea,
+.concern-details select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
     font-size: 14px;
+    background: var(--white);
+    color: var(--text);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.report-content {
-    padding: 30px;
-    line-height: 1.8;
+.concern-details input[type="text"]:focus,
+.concern-details input[type="number"]:focus,
+.concern-details textarea:focus,
+.concern-details select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 
-.report-section {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ecf0f1;
+.concern-details input[type="file"] {
+    width: 100%;
+    padding: 7px 10px;
+    font-size: 13px;
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-subtle);
+    cursor: pointer;
+    color: var(--text-muted);
 }
 
-.report-section:last-child {
-    border-bottom: none;
+.concern-details input[type="file"]:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
 }
 
-.report-section h3 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.3em;
-    padding: 10px;
-    background: #f8f9fa;
-    border-left: 4px solid #3498db;
+/* Concerns textbox */
+.concerns-textbox {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 14px;
+    background: var(--white);
+    resize: vertical;
+    min-height: 80px;
+    color: var(--text);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.report-section p {
-    margin-bottom: 10px;
-    text-align: justify;
+.concerns-textbox::placeholder {
+    color: var(--text-light);
 }
 
-.condition-good {
-    color: #27ae60;
-    font-weight: bold;
+.concerns-textbox:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 
-.condition-average {
-    color: #f39c12;
-    font-weight: bold;
+/* ============================================================
+   CONCERN SECTION (legacy)
+   ============================================================ */
+.concern-section {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px;
+    margin-bottom: 16px;
 }
 
-.condition-poor {
-    color: #e74c3c;
-    font-weight: bold;
+.concern-section h4 {
+    color: var(--text);
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+    background: var(--white);
+    border-left: 3px solid var(--danger);
+    border-radius: var(--radius-sm);
 }
 
-.pricing-section {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
+.concern-description {
+    background: var(--warning-light);
+    border: 1px solid var(--warning-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--warning);
+    line-height: 1.5;
 }
 
-.pricing-section h4 {
-    color: #2c3e50;
-    margin-bottom: 10px;
+.concern-content {
+    background: var(--white);
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
 }
 
-.pricing-item {
+/* ============================================================
+   FORM ACTIONS
+   ============================================================ */
+.form-actions {
+    text-align: center;
+    padding: 32px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
     display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #ddd;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
 }
 
-.pricing-item:last-child {
-    border-bottom: none;
-    font-weight: bold;
-    background: #e8f5e8;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 3px;
-}
-
-/* Additional Roofing Items Styles */
+/* ============================================================
+   ADDITIONAL ITEMS
+   ============================================================ */
 .additional-items-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+}
+
+.additional-item-card {
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px;
+    margin-bottom: 12px;
+    position: relative;
 }
 
 .additional-item {
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
-    padding: 15px;
-    background: #f8f9fa;
-    transition: all 0.3s ease;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    background: var(--bg-subtle);
+    transition: all 0.15s ease;
 }
 
 .additional-item:hover {
-    border-color: #3498db;
-    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+    border-color: var(--primary-border);
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
 }
 
 .item-checkbox {
     display: flex;
     align-items: center;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
-    font-size: 16px;
+    color: var(--text);
     margin-bottom: 0;
+    text-transform: none;
+    letter-spacing: 0;
 }
 
 .item-checkbox input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
     cursor: pointer;
+    accent-color: var(--primary);
 }
 
 .item-name {
-    color: #2c3e50;
+    color: var(--text);
 }
 
 .item-details {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #dee2e6;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
 }
 
 .item-inputs {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    gap: 15px;
+    gap: 14px;
     align-items: start;
 }
 
@@ -351,18 +985,30 @@ header p {
 }
 
 .input-group label {
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 5px;
-    color: #495057;
+    color: var(--text-muted);
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .input-group input,
 .input-group textarea {
-    padding: 8px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+    padding: 8px 11px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
     font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 
 .input-group textarea {
@@ -371,856 +1017,514 @@ header p {
 }
 
 .input-group input[type="file"] {
-    padding: 6px;
-    border: 2px dashed #ced4da;
-    background: white;
+    padding: 6px 8px;
+    border: 1.5px dashed var(--border);
+    background: var(--bg-subtle);
     cursor: pointer;
+    font-size: 13px;
+    color: var(--text-muted);
 }
 
 .input-group input[type="file"]:hover {
-    border-color: #3498db;
-    background: #f8f9fa;
-}
-
-/* Responsive adjustments for additional items */
-@media (max-width: 768px) {
-    .item-inputs {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    
-    .additional-item {
-        padding: 12px;
-    }
-}
-
-/* Specific Concerns Styles */
-.concern-section {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.concern-section h4 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.1em;
-    padding: 10px;
-    background: #e9ecef;
-    border-left: 4px solid #dc3545;
-    border-radius: 4px;
-}
-
-.concern-description {
-    background: #fff3cd;
-    border: 1px solid #ffeaa7;
-    border-radius: 4px;
-    padding: 12px;
-    margin-bottom: 20px;
-    font-style: italic;
-    color: #856404;
-    line-height: 1.5;
-}
-
-.concern-content {
-    background: white;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid #e9ecef;
-}
-
-#specificConcerns {
-    background: white;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
-    width: 100%;
-    min-height: 150px;
-}
-
-#specificConcerns:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
-}
-
-#specificConcerns option {
-    padding: 8px;
-    margin: 2px 0;
-    border-radius: 3px;
-}
-
-#specificConcerns option:hover {
-    background: #f8f9fa;
-}
-
-#specificConcerns option:checked {
-    background: #3498db;
-    color: white;
-}
-
-/* File input styling for concerns */
-.concern-section input[type="file"] {
-    padding: 8px 12px;
-    border: 2px dashed #ced4da;
-    border-radius: 6px;
-    background: white;
-    cursor: pointer;
-    width: 100%;
-    transition: all 0.3s ease;
-}
-
-.concern-section input[type="file"]:hover {
-    border-color: #dc3545;
-    background: #fff5f5;
-}
-
-.concern-section input[type="file"]:focus {
-    border-color: #dc3545;
-    outline: none;
-    box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
-}
-
-/* Alert styling for asbestos message */
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
-
-.alert-warning {
-    color: #8a6d3b;
-    background-color: #fcf8e3;
-    border-color: #faebcc;
-}
-
-.alert h4 {
-    margin-top: 0;
-    color: #8a6d3b;
-    font-weight: bold;
-}
-
-.alert p {
-    margin-bottom: 0;
-}
-
-/* Responsive adjustments for concern sections */
-@media (max-width: 768px) {
-    .concern-section {
-        padding: 15px;
-        margin-bottom: 15px;
-    }
-    
-    .concern-section h4 {
-        font-size: 1em;
-        padding: 8px;
-    }
-    
-    .concern-content {
-        padding: 12px;
-    }
-    
-    #specificConcerns {
-        min-height: 120px;
-        font-size: 14px;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-    
-    header h1 {
-        font-size: 2em;
-    }
-    
-    .form-section {
-        padding: 20px 15px;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 15px;
-    }
-    
-    .radio-group,
-    .checkbox-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .report-header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-    
-    .report-actions {
-        justify-content: center;
-    }
-    
-    .form-actions {
-        padding: 20px 10px;
-    }
-    
-    .btn-primary,
-    .btn-secondary {
-        padding: 12px 20px;
-        margin: 5px;
-        font-size: 14px;
-    }
-}
-
-/* EPS Section Styling */
-.eps-section {
-    background: white;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e6ed;
-    overflow: hidden;
-}
-
-.eps-section-header {
-    background: #2196F3;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.eps-icon {
-    flex-shrink: 0;
-}
-
-.eps-section-description {
-    padding: 15px 20px;
-    background: #f8f9fa;
-    border-bottom: 1px solid #e0e6ed;
-}
-
-.eps-section-description label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: #6c757d;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.eps-section-description p {
-    margin: 0;
-    font-size: 14px;
-    color: #495057;
-}
-
-.eps-section-inputs {
-    padding: 20px;
-}
-
-.eps-section-inputs > label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: #6c757d;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.eps-grid-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.eps-save-btn {
-    background: #2196F3;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 20px 20px 20px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-}
-
-.eps-save-btn:hover {
-    background: #1976D2;
-    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
-}
-
-.eps-save-btn svg {
-    flex-shrink: 0;
-}
-
-/* EPS Form Group Styling */
-.eps-section .form-group {
-    background: white;
-    padding: 0;
-    border-radius: 4px;
-    border: none;
-    margin-bottom: 0;
-}
-
-.eps-section .form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    color: #495057;
-    margin-bottom: 8px;
-}
-
-.eps-section .form-group input,
-.eps-section .form-group select,
-.eps-section .form-group textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-    background: white;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.eps-section .form-group input:focus,
-.eps-section .form-group select:focus,
-.eps-section .form-group textarea:focus {
-    outline: none;
-    border-color: #2196F3;
-    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
-}
-
-.eps-section .form-group input[type="file"] {
-    padding: 8px;
-    border: 2px dashed #ced4da;
-    cursor: pointer;
-}
-
-.eps-section .form-group input[type="file"]:hover {
-    border-color: #2196F3;
-    background: #f8f9fa;
-}
-
-/* Professional Card Styling */
-.professional-card {
-    background: white;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e6ed;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.professional-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-.professional-card h3 {
-    color: #2c3e50;
-    margin: 0;
-    font-size: 1.3em;
-    font-weight: 600;
-    padding: 0;
-    border: none;
-}
-
-/* Style for non-section card headers (like Property Information, Roof Type Selection) */
-.professional-card:not(.section-card) h3 {
-    color: #2c3e50;
-    font-size: 1.4em;
-    font-weight: 700;
-    margin-bottom: 0;
-}
-
-.professional-card:not(.section-card) .card-header {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
-    border-bottom: 2px solid #1a252f;
-}
-
-.professional-card:not(.section-card) .card-header h3 {
-    color: white;
-}
-
-.card-header {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 20px 25px;
-    border-bottom: 2px solid #dee2e6;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
-
-.card-content {
-    padding: 25px;
-}
-
-.section-card .card-header {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
-    border-bottom: 2px solid #2471a3;
-}
-
-.section-card .card-header h3 {
-    color: white;
-}
-
-.remove-section-btn {
-    background: rgba(231, 76, 60, 0.9);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    margin-left: 15px;
-}
-
-.remove-section-btn:hover {
-    background: #c0392b;
-    transform: scale(1.1);
-    box-shadow: 0 2px 8px rgba(192, 57, 43, 0.4);
-}
-
-.applicable-toggle {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-}
-
-.applicable-toggle label {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    margin: 0;
-}
-
-.applicable-toggle input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin-right: 8px;
-    cursor: pointer;
-    accent-color: white;
-}
-
-.side-by-side {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    align-items: start;
-}
-
-.side-by-side .form-group {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
-    margin-bottom: 0;
-}
-
-.side-by-side .form-group label {
-    color: #495057;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.side-by-side .form-group select[multiple] {
-    min-height: 100px;
-    background: white;
-}
-
-.side-by-side .form-group small {
-    color: #6c757d;
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-}
-
-/* Enhanced form styling within cards */
-.professional-card .form-row {
-    background: none;
-    padding: 0;
-    margin-bottom: 20px;
-    box-shadow: none;
-    border: none;
-    border-radius: 0;
-}
-
-.professional-card .form-row:not(.side-by-side) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.professional-card .form-group {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
-    margin-bottom: 15px;
-}
-
-.professional-card .form-group label {
-    color: #495057;
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.professional-card .form-group input,
-.professional-card .form-group select,
-.professional-card .form-group textarea {
-    border: 2px solid #e9ecef;
-    background: white;
-    font-size: 15px;
-    padding: 10px 12px;
-}
-
-.professional-card .form-group input:focus,
-.professional-card .form-group select:focus,
-.professional-card .form-group textarea:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-}
-
-/* Section visibility controls */
-.section-card[data-disabled="true"] {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-.section-card[data-disabled="true"] .card-header {
-    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
-}
-
-/* Concerns container styling */
-.concerns-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 15px;
-    padding: 15px;
-    background: #ffffff;
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
-}
-
-.concern-item {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-}
-
-.concern-item > label {
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    padding: 12px;
-    font-weight: 500;
-    font-size: 15px;
-    cursor: pointer;
-    color: #2c3e50;
-    background: #f8f9fa;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    border: 1px solid #dee2e6;
-}
-
-.concern-item > label:hover {
-    background: #e9ecef;
-    border-color: #3498db;
-}
-
-.concern-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    min-width: 18px;
-    margin-right: 10px;
-    margin-top: 2px;
-    cursor: pointer;
-    accent-color: #3498db;
-}
-
-.concern-item input[type="checkbox"]:checked + span {
-    color: #3498db;
-}
-
-/* Concern details container */
-.concern-details {
-    margin-left: 28px;
-    margin-top: 12px;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    border: 2px solid #3498db;
-    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
-}
-
-.concern-details > div {
-    margin-bottom: 15px;
-}
-
-.concern-details > div:last-child {
-    margin-bottom: 0;
-}
-
-.concern-details label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #2c3e50;
-}
-
-.concern-details input[type="text"],
-.concern-details input[type="number"],
-.concern-details textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 14px;
-    background: #ffffff;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.concern-details input[type="text"]:focus,
-.concern-details input[type="number"]:focus,
-.concern-details textarea:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-}
-
-.concern-details input[type="file"] {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    background: #ffffff;
-    cursor: pointer;
-}
-
-.concern-details input[type="file"]:hover {
-    border-color: #3498db;
-}
-
-.concerns-textbox {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e9ecef;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 14px;
-    background: white;
-    resize: vertical;
-    min-height: 80px;
-}
-
-.concerns-textbox:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-}
-
-/* Additional item styling */
-.additional-item-card {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 15px;
-    position: relative;
+    border-color: var(--primary);
+    background: var(--primary-light);
 }
 
 .remove-additional-item {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #dc3545;
-    color: white;
-    border: none;
+    background: transparent;
+    color: var(--text-light);
+    border: 1.5px solid var(--border);
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 26px;
     font-size: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.15s ease;
 }
 
 .remove-additional-item:hover {
-    background: #c82333;
+    background: var(--danger-light);
+    border-color: var(--danger-border);
+    color: var(--danger);
 }
 
-/* Button styling for add item */
 #addAdditionalItem {
-    padding: 8px 16px;
-    font-size: 14px;
-    margin-left: auto;
+    font-size: 13px;
 }
 
-/* Removed sections list styling */
+/* ============================================================
+   REMOVED SECTIONS / RESTORE
+   ============================================================ */
 .removed-sections-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .restore-section-btn {
-    background: linear-gradient(135deg, #27ae60, #2ecc71);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
+    background: var(--white);
+    color: var(--success);
+    border: 1.5px solid var(--success-border);
+    padding: 11px 18px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.3s ease;
+    font-family: inherit;
+    transition: all 0.15s ease;
     text-align: left;
 }
 
 .restore-section-btn:hover {
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    background: var(--success-light);
+    border-color: var(--success);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+    box-shadow: 0 3px 10px rgba(5,150,105,0.15);
 }
 
 .restore-section-btn:active {
     transform: translateY(0);
 }
 
-/* Sections header responsive */
-@media (max-width: 768px) {
-    .sections-header {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-    
-    .sections-header h2 {
-        font-size: 1.2em;
-    }
+/* ============================================================
+   CONDITION INDICATORS
+   ============================================================ */
+.condition-good {
+    color: var(--success);
+    font-weight: 700;
 }
 
-/* EPS Responsive */
+.condition-average {
+    color: var(--warning);
+    font-weight: 700;
+}
+
+.condition-poor {
+    color: var(--danger);
+    font-weight: 700;
+}
+
+/* ============================================================
+   REPORT OUTPUT
+   ============================================================ */
+.report-output {
+    background: var(--white);
+    margin-top: 28px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.report-header {
+    background: var(--navy-mid);
+    color: white;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.report-header h2 {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.report-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.report-actions button {
+    padding: 9px 20px;
+    font-size: 13px;
+}
+
+.report-content {
+    padding: 36px;
+    line-height: 1.8;
+}
+
+.report-section {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.report-section:last-child {
+    border-bottom: none;
+}
+
+.report-section h3 {
+    color: var(--text);
+    margin-bottom: 14px;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 10px 14px;
+    background: var(--bg-subtle);
+    border-left: 3px solid var(--primary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.report-section p {
+    margin-bottom: 10px;
+    text-align: justify;
+    color: var(--text);
+    font-size: 14px;
+}
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.pricing-section {
+    background: var(--bg-subtle);
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    margin-top: 18px;
+    border: 1px solid var(--border);
+}
+
+.pricing-section h4 {
+    color: var(--text);
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pricing-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.pricing-item:last-child {
+    border-bottom: none;
+    font-weight: 700;
+    background: var(--success-light);
+    margin-top: 8px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   ALERT
+   ============================================================ */
+.alert {
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+}
+
+.alert-warning {
+    color: #92400e;
+    background-color: var(--warning-light);
+    border-color: var(--warning-border);
+}
+
+.alert h4 {
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.alert p {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+/* ============================================================
+   SPECIFIC CONCERN DETAILS (EPS sections)
+   ============================================================ */
+#specificConcerns {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    min-height: 150px;
+    font-family: inherit;
+}
+
+#specificConcerns:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+#specificConcerns option {
+    padding: 8px;
+    border-radius: 3px;
+}
+
+#specificConcerns option:checked {
+    background: var(--primary);
+    color: white;
+}
+
+/* ============================================================
+   NEW FIELD TYPES — checkbox, yesno, flashing
+   ============================================================ */
+.field-group {
+    margin-bottom: 14px;
+}
+
+.field-group > label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.checkbox-wrapper:hover {
+    border-color: var(--primary-border);
+    background: var(--primary-light);
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    accent-color: var(--primary);
+}
+
+.checkbox-wrapper label {
+    cursor: pointer;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.yesno-group {
+    display: flex;
+    gap: 12px;
+    padding: 4px 0;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 16px;
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    transition: all 0.15s ease;
+}
+
+.radio-label:hover {
+    border-color: var(--primary-border);
+    background: var(--primary-light);
+}
+
+.radio-label input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.flashing-sub-fields {
+    margin-top: 12px;
+    padding: 16px;
+    background: var(--primary-light);
+    border-left: 3px solid var(--primary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* ============================================================
+   EPS SECTION INPUTS — custom label override for roof details
+   ============================================================ */
+.eps-section-inputs .form-group label,
+.eps-section:not(.section-card) .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   SECTIONS HEADER (removed sections bar)
+   ============================================================ */
+.sections-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.sections-header h2 {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
+    .container {
+        padding: 16px 14px 36px;
+    }
+
+    header {
+        padding: 28px 24px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
     .eps-grid-2col {
         grid-template-columns: 1fr;
         gap: 12px;
     }
 
-    .eps-section-header {
-        padding: 12px 15px;
-        font-size: 14px;
+    .form-row,
+    .side-by-side {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
-    .eps-section-inputs {
-        padding: 15px;
-    }
-
-    .eps-save-btn {
-        margin: 0 15px 15px 15px;
-        font-size: 13px;
-        padding: 8px 16px;
-    }
-}
-
-/* Responsive adjustments for professional cards */
-@media (max-width: 768px) {
-    .card-header {
-        padding: 15px 20px;
-        flex-wrap: wrap;
-        gap: 10px;
+    .professional-card .form-row:not(.side-by-side) {
+        grid-template-columns: 1fr;
     }
 
     .card-content {
-        padding: 20px;
+        padding: 18px;
     }
 
-    .side-by-side {
+    .eps-section.section-card .eps-section-inputs,
+    .eps-section:not(.section-card) .eps-section-inputs {
+        padding: 18px;
+    }
+
+    .item-inputs {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 10px;
     }
 
-    .remove-section-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 16px;
-        margin-left: 10px;
+    .form-actions {
+        flex-direction: column;
+        padding: 24px 18px;
     }
 
-    .applicable-toggle {
-        margin-right: 10px;
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
     }
 
-    .professional-card h3 {
-        font-size: 1.1em;
+    .report-header {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+        padding: 22px 20px;
+    }
+
+    .report-actions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .report-content {
+        padding: 24px 20px;
+    }
+
+    .eps-section.section-card .eps-section-header,
+    .professional-card.section-card .card-header {
+        padding: 14px 18px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .yesno-group {
+        flex-wrap: wrap;
+    }
+
+    .sections-header {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
     }
 }
 
+/* ============================================================
+   PRINT
+   ============================================================ */
 @media print {
     body {
         background: white;
+        font-size: 13px;
     }
-    
+
     .container {
         max-width: none;
         margin: 0;
         padding: 0;
     }
-    
+
     header,
     .form-actions,
     .report-actions,
     form {
         display: none;
     }
-    
+
     .report-output {
         box-shadow: none;
         margin: 0;
+        border: none;
     }
-    
+
     .report-header {
-        background: #333 !important;
+        background: var(--navy-mid) !important;
         color: white !important;
         -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .report-section h3 {
+        background: #f1f5f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 }
