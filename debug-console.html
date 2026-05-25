@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Console</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        .log { padding: 5px; border-bottom: 1px solid #ddd; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Form Debug Console</h1>
+    <button onclick="testFlow()">Test Form Flow</button>
+    <div id="logs"></div>
+    
+    <script src="script.js"></script>
+    <script>
+        const logsDiv = document.getElementById('logs');
+        
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `log ${type}`;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logsDiv.appendChild(div);
+        }
+        
+        function testFlow() {
+            logsDiv.innerHTML = '';
+            log('Starting test flow...');
+            
+            // Check if roofData exists
+            if (typeof roofData !== 'undefined') {
+                log('✓ roofData is defined');
+            } else {
+                log('✗ roofData is NOT defined', 'error');
+                return;
+            }
+            
+            // Check profiled-metal data
+            const profiledMetal = roofData['profiled-metal'];
+            if (profiledMetal) {
+                log('✓ profiled-metal data exists');
+            } else {
+                log('✗ profiled-metal data NOT found', 'error');
+                return;
+            }
+            
+            // Check corrugated-metal subtype
+            const corrugatedMetal = profiledMetal.subTypes['corrugated-metal'];
+            if (corrugatedMetal) {
+                log('✓ corrugated-metal subtype exists');
+            } else {
+                log('✗ corrugated-metal subtype NOT found', 'error');
+                return;
+            }
+            
+            // Check sections
+            const sections = corrugatedMetal.sections;
+            log(`Found ${Object.keys(sections).length} sections`);
+            
+            // Check each section for specific concerns
+            Object.keys(sections).forEach(sectionKey => {
+                const section = sections[sectionKey];
+                const concernCount = section.specificConcerns ? Object.keys(section.specificConcerns).length : 0;
+                
+                if (concernCount > 0) {
+                    log(`✓ ${section.title}: ${concernCount} concerns`);
+                } else {
+                    log(`✗ ${section.title}: NO concerns`, 'error');
+                }
+            });
+            
+            // Test populateAllSectionDropdowns function
+            if (typeof populateAllSectionDropdowns === 'function') {
+                log('✓ populateAllSectionDropdowns function exists');
+            } else {
+                log('✗ populateAllSectionDropdowns NOT defined', 'error');
+            }
+            
+            // Test populateSpecificConcernsSection function
+            if (typeof populateSpecificConcernsSection === 'function') {
+                log('✓ populateSpecificConcernsSection function exists');
+            } else {
+                log('✗ populateSpecificConcernsSection NOT defined', 'error');
+            }
+            
+            log('Test complete!');
+        }
+        
+        // Auto-run on load
+        window.addEventListener('load', () => {
+            setTimeout(testFlow, 500);
+        });
+    </script>
+</body>
+</html>

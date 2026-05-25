@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Specific Concerns</title>
+</head>
+<body>
+    <h1>Testing Specific Concerns Data</h1>
+    <div id="output"></div>
+    <script src="script.js"></script>
+    <script>
+        // Test if data exists
+        document.addEventListener('DOMContentLoaded', function() {
+            const output = document.getElementById('output');
+            
+            // Check profiled-metal -> corrugated-metal
+            const roofType = roofData['profiled-metal'];
+            const subType = roofType.subTypes['corrugated-metal'];
+            const sections = subType.sections;
+            
+            let html = '<h2>Profiled Metal -> Corrugated Metal Sections:</h2>';
+            
+            Object.keys(sections).forEach(sectionKey => {
+                const section = sections[sectionKey];
+                html += `<h3>${section.title}</h3>`;
+                
+                if (section.specificConcerns) {
+                    html += '<h4>Specific Concerns:</h4><ul>';
+                    Object.keys(section.specificConcerns).forEach(concernKey => {
+                        const concern = section.specificConcerns[concernKey];
+                        html += `<li>${concern.title}</li>`;
+                    });
+                    html += '</ul>';
+                } else {
+                    html += '<p style="color: red;">No specific concerns defined!</p>';
+                }
+            });
+            
+            output.innerHTML = html;
+        });
+    </script>
+</body>
+</html>

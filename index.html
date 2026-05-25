@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roof Report Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Professional Roof Report Generator</h1>
+            <p>Generate comprehensive roof inspection reports</p>
+        </header>
+
+        <form id="roofReportForm">
+            <!-- Data Section: Roof Details -->
+            <div class="eps-section">
+                <div class="eps-section-header">
+                    <svg class="eps-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M12,3C7.58,3 4,4.79 4,7V17C4,19.21 7.59,21 12,21C16.41,21 20,19.21 20,17V7C20,4.79 16.42,3 12,3M18,17C18,17.5 15.87,19 12,19C8.13,19 6,17.5 6,17V14.77C7.61,15.55 9.72,16 12,16C14.28,16 16.39,15.55 18,14.77V17M18,12.45C16.7,13.4 14.42,14 12,14C9.58,14 7.3,13.4 6,12.45V9.64C7.47,10.47 9.61,11 12,11C14.39,11 16.53,10.47 18,9.64V12.45M12,9C8.13,9 6,7.5 6,7C6,6.5 8.13,5 12,5C15.87,5 18,6.5 18,7C18,7.5 15.87,9 12,9Z" />
+                    </svg>
+                    <span>Data Section: Roof Details</span>
+                </div>
+                <div class="eps-section-description">
+                    <label>Section Description</label>
+                    <p>Complete the main details of the roof.</p>
+                </div>
+                <div class="eps-section-inputs">
+                    <label>Section Inputs</label>
+                    <div class="eps-grid-2col">
+                        <div class="form-group">
+                            <label for="roofType">Roof Type</label>
+                            <select id="roofType" name="roofType" required>
+                                <option value="">Select roof type...</option>
+                                <option value="profiled-metal">Profiled Metal</option>
+                                <option value="compressed-metal-tile">Compressed Metal Tile</option>
+                                <option value="concrete-tile">Concrete Tile</option>
+                                <option value="clay-tile">Clay Tile</option>
+                                <option value="asbestos">Asbestos</option>
+                                <option value="flat-roof">Flat Roof</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="geometry">Roof Geometry</label>
+                            <input type="text" id="geometry" name="geometry" placeholder="e.g. Gable to Gable roof" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="levels">Levels</label>
+                            <select id="levels" name="levels" required>
+                                <option value="">Select levels...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="overallCondition">Overall Condition of Roof</label>
+                            <select id="overallCondition" name="overallCondition" required>
+                                <option value="">Select condition...</option>
+                                <option value="good">Good</option>
+                                <option value="fair">Fair</option>
+                                <option value="average">Average</option>
+                                <option value="poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="roofPitch">Roof Pitch</label>
+                            <select id="roofPitch" name="roofPitch" required>
+                                <option value="">Select pitch...</option>
+                                <option value="flat">Flat</option>
+                                <option value="slightly-inclined">Slightly Inclined</option>
+                                <option value="heavily-inclined">Heavily Inclined</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="siteAccess">Site Access</label>
+                            <select id="siteAccess" name="siteAccess" required>
+                                <option value="">Select access...</option>
+                                <option value="flat-site">Flat Site</option>
+                                <option value="steep-site">Steep Site</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="subTypeGroup" style="display: none;">
+                            <label for="subType">Tile Type</label>
+                            <select id="subType" name="subType">
+                                <option value="">N/A</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ridgeType">Ridge Type</label>
+                            <select id="ridgeType" name="ridgeType">
+                                <option value="">Select ridge type...</option>
+                                <option value="standard">Standard</option>
+                                <option value="ventilated">Ventilated</option>
+                                <option value="dry-ridge">Dry Ridge</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="spoutingTypeMain">Spouting Type</label>
+                            <select id="spoutingTypeMain" name="spoutingTypeMain">
+                                <option value="">Select spouting type...</option>
+                                <option value="pvc">PVC</option>
+                                <option value="metal">Metal</option>
+                                <option value="internal">Internal Gutter</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nailType">Nail Type</label>
+                            <select id="nailType" name="nailType">
+                                <option value="">Select nail type...</option>
+                                <option value="lead-nail-head">Lead Nail Head</option>
+                                <option value="screw">Screw</option>
+                                <option value="swivel-nail">Swivel Nail</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="healthSafety">Health and Safety/Access Requirements</label>
+                            <select id="healthSafety" name="healthSafety">
+                                <option value="">Select requirement...</option>
+                                <option value="1-person-harness">1 Person Harness Use</option>
+                                <option value="2-person-harness">2 Person Harness Use</option>
+                                <option value="fixed-scaffold-metered">Fixed Scaffold Meterd</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="healthSafetyOtherGroup" style="display: none;">
+                            <label for="healthSafetyOther">Please specify:</label>
+                            <input type="text" id="healthSafetyOther" name="healthSafetyOther" placeholder="Enter other requirement...">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Additional Images</label>
+                        <input type="file" id="additionalImages" name="additionalImages" accept="image/*" multiple>
+                    </div>
+                </div>
+                <button type="button" class="eps-save-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="currentColor" d="M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3M19,19H5V5H16.17L19,7.83V19M12,12C10.34,12 9,13.34 9,15C9,16.66 10.34,18 12,18C13.66,18 15,16.66 15,15C15,13.34 13.66,12 12,12M6,6H15V10H6V6Z" />
+                    </svg>
+                    Save Section
+                </button>
+            </div>
+
+            <!-- Asbestos Special Message -->
+            <div id="asbestosMessage" style="display: none;">
+                <div class="alert alert-warning">
+                    <h4>Quote For Replacement</h4>
+                    <p>Asbestos roofing requires professional assessment and replacement. Please contact us for a replacement quote.</p>
+                </div>
+            </div>
+
+            <!-- All Roof Sections - Show based on roof type -->
+            <div id="roofSectionsContainer" style="display: none;">
+
+                <!-- Section 1: Sheet/Tile Condition -->
+                <div class="eps-section section-card" id="section-sheet-condition">
+                    <div class="eps-section-header">
+                        <svg class="eps-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M12,3C7.58,3 4,4.79 4,7V17C4,19.21 7.59,21 12,21C16.41,21 20,19.21 20,17V7C20,4.79 16.42,3 12,3M18,17C18,17.5 15.87,19 12,19C8.13,19 6,17.5 6,17V14.77C7.61,15.55 9.72,16 12,16C14.28,16 16.39,15.55 18,14.77V17M18,12.45C16.7,13.4 14.42,14 12,14C9.58,14 7.3,13.4 6,12.45V9.64C7.47,10.47 9.61,11 12,11C14.39,11 16.53,10.47 18,9.64V12.45M12,9C8.13,9 6,7.5 6,7C6,6.5 8.13,5 12,5C15.87,5 18,6.5 18,7C18,7.5 15.87,9 12,9Z" />
+                        </svg>
+                        <span>Data Section: Sheet/Tile Condition</span>
+                    </div>
+                    <div class="eps-section-description">
+                        <label>Section Description</label>
+                        <p>Assess the overall condition of the roof sheeting or tiles.</p>
+                    </div>
+                    <div class="eps-section-inputs">
+                        <label>Section Inputs</label>
+                        <div class="eps-grid-2col">
+                            <div class="form-group">
+                                <label for="sheetCondition">Overall Condition</label>
+                                <select id="sheetCondition" name="sheetCondition">
+                                    <option value="">Select condition...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sheetConditionPhoto">Photo</label>
+                                <input type="file" id="sheetConditionPhoto" name="sheetConditionPhoto" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label for="sheetSpecificConcerns">Specific Concerns</label>
+                            <div id="sheetSpecificConcerns" class="concerns-container">
+                                <!-- Concerns will be populated by JavaScript -->
+                            </div>
+                            <textarea name="sheetSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
+                        </div>
+                        <div id="sheetConcernDetails"></div>
+                    </div>
+                    <button type="button" class="eps-save-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor" d="M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3M19,19H5V5H16.17L19,7.83V19M12,12C10.34,12 9,13.34 9,15C9,16.66 10.34,18 12,18C13.66,18 15,16.66 15,15C15,13.34 13.66,12 12,12M6,6H15V10H6V6Z" />
+                        </svg>
+                        Save Section
+                    </button>
+                </div>
+
+                <!-- Section 2: Hip and Ridging Condition -->
+                <div class="professional-card section-card" id="section-hip-ridging">
+                    <div class="card-header">
+                        <h3>2. Hip and Ridging Condition</h3>
+                        <div class="applicable-toggle">
+                            <label>
+                                <input type="checkbox" id="hipRidgingApplicable" name="hipRidgingApplicable" checked>
+                                Applicable
+                            </label>
+                        </div>
+                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-row side-by-side">
+                            <div class="form-group">
+                                <label for="hipRidgingCondition">Overall Condition:</label>
+                                <select id="hipRidgingCondition" name="hipRidgingCondition">
+                                    <option value="">Select condition...</option>
+                                </select>
+                                <label for="hipRidgingConditionPhoto">Photo:</label>
+                                <input type="file" id="hipRidgingConditionPhoto" name="hipRidgingConditionPhoto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="hipRidgingSpecificConcerns">Specific Concerns:</label>
+                                <div id="hipRidgingSpecificConcerns" class="concerns-container">
+                                    <!-- Concerns will be populated by JavaScript -->
+                                </div>
+                                <textarea name="hipRidgingSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div id="hipRidgingConcernDetails"></div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Gable Ends/Barge Capping (Tile Only) -->
+                <div class="professional-card section-card" id="section-gable-barge" style="display: none;">
+                    <div class="card-header">
+                        <h3>3. Gable Ends and/or Barge Capping</h3>
+                        <div class="applicable-toggle">
+                            <label>
+                                <input type="checkbox" id="gableBargeApplicable" name="gableBargeApplicable" checked>
+                                Applicable
+                            </label>
+                        </div>
+                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="gableBargeType">End Type:</label>
+                                <select id="gableBargeType" name="gableBargeType">
+                                    <option value="">Select end type...</option>
+                                    <option value="gable-end">Gable end</option>
+                                    <option value="barge-end">Barge end</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row side-by-side">
+                            <div class="form-group">
+                                <label for="gableBargeCondition">Overall Condition:</label>
+                                <select id="gableBargeCondition" name="gableBargeCondition">
+                                    <option value="">Select condition...</option>
+                                </select>
+                                <label for="gableBargeConditionPhoto">Photo:</label>
+                                <input type="file" id="gableBargeConditionPhoto" name="gableBargeConditionPhoto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="gableBargeSpecificConcerns">Specific Concerns:</label>
+                                <div id="gableBargeSpecificConcerns" class="concerns-container">
+                                    <!-- Concerns will be populated by JavaScript -->
+                                </div>
+                                <textarea name="gableBargeSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div id="gableBargeConcernDetails"></div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Roof Fixings Condition -->
+                <div class="professional-card section-card" id="section-roof-fixings">
+                    <div class="card-header">
+                        <h3>4. Roof Fixings Condition</h3>
+                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fixingType">Fixing Type:</label>
+                                <select id="fixingType" name="fixingType">
+                                    <option value="">Select fixing type...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row side-by-side">
+                            <div class="form-group">
+                                <label for="roofFixingsCondition">Overall Condition:</label>
+                                <select id="roofFixingsCondition" name="roofFixingsCondition">
+                                    <option value="">Select condition...</option>
+                                </select>
+                                <label for="roofFixingsConditionPhoto">Photo:</label>
+                                <input type="file" id="roofFixingsConditionPhoto" name="roofFixingsConditionPhoto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="roofFixingsSpecificConcerns">Specific Concerns:</label>
+                                <div id="roofFixingsSpecificConcerns" class="concerns-container">
+                                    <!-- Concerns will be populated by JavaScript -->
+                                </div>
+                                <textarea name="roofFixingsSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div id="roofFixingsConcernDetails"></div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Valleys Condition -->
+                <div class="professional-card section-card" id="section-valleys">
+                    <div class="card-header">
+                        <h3>5. Valley/s Condition</h3>
+                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="valleyCount">Number of Valleys:</label>
+                                <input type="number" id="valleyCount" name="valleyCount" min="0" max="20">
+                            </div>
+                        </div>
+                        <div class="form-row side-by-side">
+                            <div class="form-group">
+                                <label for="valleysCondition">Overall Condition:</label>
+                                <select id="valleysCondition" name="valleysCondition">
+                                    <option value="">Select condition...</option>
+                                </select>
+                                <label for="valleysConditionPhoto">Photo:</label>
+                                <input type="file" id="valleysConditionPhoto" name="valleysConditionPhoto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="valleysSpecificConcerns">Specific Concerns:</label>
+                                <div id="valleysSpecificConcerns" class="concerns-container">
+                                    <!-- Concerns will be populated by JavaScript -->
+                                </div>
+                                <textarea name="valleysSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div id="valleysConcernDetails"></div>
+                    </div>
+                </div>
+
+                <!-- Section 6: Penetration Flashing Condition -->
+                <div class="professional-card section-card" id="section-penetration-flashing">
+                    <div class="card-header">
+                        <h3>6. Penetration Flashing/s Condition</h3>
+                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-row side-by-side">
+                            <div class="form-group">
+                                <label for="penetrationFlashingCondition">Overall Condition:</label>
+                                <select id="penetrationFlashingCondition" name="penetrationFlashingCondition">
+                                    <option value="">Select condition...</option>
+                                </select>
+                                <label for="penetrationFlashingConditionPhoto">Photo:</label>
+                                <input type="file" id="penetrationFlashingConditionPhoto" name="penetrationFlashingConditionPhoto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="penetrationFlashingSpecificConcerns">Specific Concerns:</label>
+                                <div id="penetrationFlashingSpecificConcerns" class="concerns-container">
+                                    <!-- Concerns will be populated by JavaScript -->
+                                </div>
+                                <textarea name="penetrationFlashingSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div id="penetrationFlashingConcernDetails"></div>
+                    </div>
+                </div>
+
+                <!-- Section 7: Aerials/Antennas -->
+                <div class="professional-card section-card" id="section-aerials-antennas">
+                    <div class="card-header">
+                        <h3>7. Aerials/Antennas Above Roofing</h3>
+                        <div class="applicable-toggle">
+                            <label>
+                                <input type="checkbox" id="aerialsApplicable" name="aerialsApplicable" checked>
+                                Applicable
+                            </label>
+                        </div>
+                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-row side-by-side">
+                            <div class="form-group">
+                                <label for="aerialsCondition">Overall Condition:</label>
+                                <select id="aerialsCondition" name="aerialsCondition">
+                                    <option value="">Select condition...</option>
+                                </select>
+                                <label for="aerialsConditionPhoto">Photo:</label>
+                                <input type="file" id="aerialsConditionPhoto" name="aerialsConditionPhoto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="aerialsSpecificConcerns">Specific Concerns:</label>
+                                <div id="aerialsSpecificConcerns" class="concerns-container">
+                                    <!-- Concerns will be populated by JavaScript -->
+                                </div>
+                                <textarea name="aerialsSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div id="aerialsConcernDetails"></div>
+                    </div>
+                </div>
+
+                <!-- Section 8: Spouting & Downpipe Condition -->
+                <div class="professional-card section-card" id="section-spouting-downpipe">
+                    <div class="card-header">
+                        <h3>8. Spouting & Downpipe Condition</h3>
+                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
+                    </div>
+                    <div class="card-content">
+                        <!-- Spouting Type Section -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="spoutingType">Spouting Type:</label>
+                                <select id="spoutingType" name="spoutingType">
+                                    <option value="">Select spouting type...</option>
+                                    <!-- Options will be populated by JavaScript based on roof type -->
+                                </select>
+                            </div>
+                            <div class="form-group" id="spoutingSubTypeGroup" style="display: none;">
+                                <label for="spoutingSubType">Spouting Sub Type:</label>
+                                <select id="spoutingSubType" name="spoutingSubType">
+                                    <option value="">Select sub type...</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Downpipe Type Section -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="downpipeType">Downpipe Type:</label>
+                                <select id="downpipeType" name="downpipeType">
+                                    <option value="">Select downpipe type...</option>
+                                    <option value="pvc">PVC</option>
+                                    <option value="metal">Metal</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="downpipeSubTypeGroup" style="display: none;">
+                                <label for="downpipeSubType">Downpipe Sub Type:</label>
+                                <select id="downpipeSubType" name="downpipeSubType">
+                                    <option value="">Select sub type...</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Bracket Type Section -->
+                        <div class="form-row" id="bracketTypeRow" style="display: none;">
+                            <div class="form-group" id="spoutingBracketGroup" style="display: none;">
+                                <label for="spoutingBracketType">Spouting Bracket Type:</label>
+                                <select id="spoutingBracketType" name="spoutingBracketType">
+                                    <option value="">Select bracket type...</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="downpipeBracketGroup" style="display: none;">
+                                <label for="downpipeBracketType">Downpipe Bracket Type:</label>
+                                <select id="downpipeBracketType" name="downpipeBracketType">
+                                    <option value="">Select bracket type...</option>
+                                    <option value="flush-type">Flush Type</option>
+                                    <option value="adjustable-type">Adjustable Type</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Overall Condition and Specific Concerns -->
+                        <div class="form-row side-by-side">
+                            <div class="form-group">
+                                <label for="spoutingCondition">Overall Condition:</label>
+                                <select id="spoutingCondition" name="spoutingCondition">
+                                    <option value="">Select condition...</option>
+                                </select>
+                                <label for="spoutingConditionPhoto">Photo:</label>
+                                <input type="file" id="spoutingConditionPhoto" name="spoutingConditionPhoto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="spoutingSpecificConcerns">Specific Concerns:</label>
+                                <div id="spoutingSpecificConcerns" class="concerns-container">
+                                    <!-- Concerns will be populated by JavaScript -->
+                                </div>
+                                <textarea name="spoutingSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div id="spoutingConcernDetails"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Roofing Items -->
+            <div class="professional-card">
+                <div class="card-header">
+                    <h3>Additional Roofing Items</h3>
+                    <button type="button" id="addAdditionalItem" class="btn-secondary">Add Item</button>
+                </div>
+                <div class="card-content">
+                    <div id="additionalItemsContainer">
+                        <!-- Additional items will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Generate Report</button>
+                <button type="button" id="clearForm" class="btn-secondary">Clear Form</button>
+            </div>
+        </form>
+
+        <!-- Report Display Area -->
+        <div id="reportOutput" class="report-output" style="display: none;">
+            <div class="report-header">
+                <h2>Professional Roof Inspection Report</h2>
+                <div class="report-actions">
+                    <button id="printReport" class="btn-primary">Print Report</button>
+                    <button id="exportPDF" class="btn-secondary">Export PDF</button>
+                </div>
+            </div>
+            <div id="reportContent" class="report-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

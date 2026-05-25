@@ -1,0 +1,733 @@
+﻿2Profiled Metal
+
+
+1)Sheet condition 
+Overall condition blurbs (allow only one selection)
+
+
+Good (like new) - Roof sheeting appears to be in a good condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.                
+        Satisfactory - Roof sheeting appears to be in a satisfactory condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.                
+        Average (moss present) - The roof sheeting condition appears to be in an average condition with visible moss & mold present. Moss and mold grows on your roof especially in places that get a lot of shade and moisture, this can cause damage to your iron or coloursteel roof. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained. 
+        Average (paint fading) - The roof sheeting appears to be in an average condition with paint fade being apparent throughout. Our technician has determined that the roof sheeting is still in a remedial state. Please advise if you would like to pursue a recommendation for this repair.
+        Average (rust present under 60% non structural) - The roof sheeting appears to be an average condition with signs of surface rust present throughout your roofing.  Our technician has determined that the roof sheeting is still in a remedial state. Please advise if you would like to pursue a recommendation for this repair.
+        
+Average combination- The roof sheeting appears to be in an average condition with moss and mold present and the roofs protection coating failing. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained.  Please advise if you would like to pursue a recommendation for this repair. 
+Poor (rust present over 60%) - We have identified large amounts of rust across the majority of the roof sheeting. This rust has been classed as destructive/structural rust and requires urgent remediation. It is likely this rust is causing water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas to attempt to make the building envelope water tight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+                                                
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor (Irreparable damage/structural integrity) - We have identified large amounts of damage across the roof sheeting. Our technician has determined this damage is affecting the roofings structural integrity and requires urgent remediation. It is likely this damage is either causing or about to start causing water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas in an attempt to make the building envelope watertight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+
+
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Specific Concerns isolated  ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Rust holes present (Photo/s) - We have identified a specific area of concern for rust damage on your roof sheeting. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.  
+(comment/s) 
+(Insert amount of replacement sheets) 
+((insert length of sheets ))
+Roof material needed e.g. how many sheets/flashings/measurements etc. 
+* Does roof material needs to be replaced -> Measurements -> Color options
+        Scratches/dents/dings worth notifying (Photo/s)- We have identified scratches/dents/damage that have come to the attention of our technician. Please advise if you would like to pursue a recommendation for this repair. 
+(Insert amount of replacement sheets) 
+((insert length of sheets ))
+Material need replacements flow 
+Damaged sheet  - We have identified damaged roof sheeting that have come to the attention of our technician.  We recommend a repair to be carried out for this concern Please advise if you would like to pursue a recommendation for this repair. 
+(Insert amount of replacement sheets) 
+((insert length of sheets ))
+Material need replacements flow 
+(Photo/s) (multiple new) (amount + length)  
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+        Loose sheeting loose/missing (Photo/s) - We have identified loose/missing sheeting that have come to the attention of our technician.  We recommend a repair to be carried out for this concern Please advise if you would like to pursue a recommendation for this repair. 
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+Possible Design Issue - 
+* Photos, Comments          
+Group: Rust  + Damaged /Dented SHeet
+        : Rust + Dmg/Dented Flashing
+        : Rust + Dmg/Dented Fixing
+                - Photos, Comments, no. affected fixings 
+
+
+2) Hip and ridging condition
+        Overall condition blurbs (Single selection) 
+        Good - Roof ridging appears to be in a good condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.                
+        Satisfactory - Roof ridging appears to be in a satisfactory condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.                
+        Average (moss present) - The roof ridging condition appears to be in an average condition with visible moss & mold present. Moss and mold grows on your roof especially in places that get a lot of shade and moisture, this can cause damage to your iron or coloursteel roof. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained. 
+        Average (paint fading) - The roof ridging appears to be in an average condition with paint fade being apparent throughout
+        
+Average combination- The roof sheeting appears to be in an average condition with moss and mold present and the roofs protection coating failing. 
+
+
+Poor (rust present over 60%) - We have identified large amounts of rust across the ridgeline. This rust has been classed as destructive/structural rust and requires urgent remediation. It is likely this rust is causing water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas to attempt to make the building envelope water tight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+                                                
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor (Irreparable damage/structural integrity) - We have identified that there is large amounts of damage across the roofline. Our technician has determined this damage is affecting the roofings structural integrity and requires urgent remediation. It is likely this damage is causing or about to cause water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas in an attempt to make the building envelope watertight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+
+
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Specific Concerns isolated  ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Rust holes present (Photo/s) - We have identified a specific area of concern for rust damage on your roof ridging. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.  
+        Scratches/dents/dings worth notifying (Photo/s) - We have identified scratches/dents/damage that have come to the attention of our technician. Please advise if you would like to pursue a recommendation for this repair. 
+        Loose ridging loose/missing (Photo/s) - We have identified loose/missing ridging/fixings that have come to the attention of our technician.  We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair. 
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+3)Roof fixings condition
+Fixing type        (select one)
+        Lead nail heads - Lead nail heads were used in the past for the fast and reliable fitting of iron roofing.These are an old style method of fixing metal roofs and no longer are in use and goes against today's current code of practice (v24 .09). We recommend replacement with certified roof tek screw fasteners.
+        Concealed Fasteners - Your roofing type does not have roof fixings visible to our technician. This is due to the roof fastening being concealed under the roofing. 
+        Tek screw Fasteners - Tek screw Fasteners - Overall condition
+Cyclone nailheads - Cyclone nailheads - Overall condition
+Overall condition (technician to add photos) (select one)
+        Good (like new) -  Roof fasteners appear to be in a good condition. There are no obvious signs of wear and tear, and/or damage to the roof fasteners to be of concern.
+Good - Roof fasteners appear to be of average condition.  There are no obvious signs of wear and tear, and/or damage to the roof fasteners to be of concern. 
+Average - Roof fasteners appear to be of average condition. There are no significant signs of damage or deterioration. Paint fade applicable.
+Poor (Rust) - Roof fasteners are in poor condition and have rust present. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair. (Photo) (Photo)
+Poor (loose/missing) - Roof fasteners are in poor condition and are loose.missing in ares. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Washers damaged/missing isolated (Photo/s)- We have identified a specific area of concern for missing/ damaged washers on your roof fixings. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair
+        Loose screws/nails isolated (Photo/s) - We have identified a specific area of concern for missing/ damaged roof fixings on your roof. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair
+        Rivet fixings (Photo/s) - We have identified a specific area of concern for missing/ damaged roof rivet fixings on your roof. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair
+        Additional “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+4)Valley/s Condition
+Number of valleys (user Insert number)
+Overall condition
+        Good (like new) -  Roof valleys appear to be in a good condition. There are no obvious signs of wear and tear, and/or damage, or debris in the roof valleys to be of concern.
+Good - Roof valleys appear to be of average condition.  There are no obvious signs of wear and tear, debris, and/or damage to the roof valleys to be of concern. 
+Average - Roof valleys appear to be of average condition. There are no significant signs of damage or deterioration minor debris present. Recommend clearing all debris for adequate water flow.
+Poor (Rust) - Roof valleys are in poor condition and have rust present. We recommend a repair to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Poor (Full of debris) - Roof valleys are in poor condition and are blocked causing inadequate water flow. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+5) Penetration flashing/s condition
+        Overall condition  (Photo/s)
+        Good (like new) -  Roof penetrations appear to be in a good condition. There are no obvious signs of wear and tear, and/or damage.
+Good - Roof penetrations appear to be of average condition.  There are no obvious signs of wear and tear, debris, and/or damage to the roof penetrations to be of concern. 
+Average - Roof penetrations appear to be in average condition. There are no significant signs of damage or deterioration. Sealant appears to be in a stable condition.
+Poor (poor Seal) - Roof penetrations are in poor condition and have deterioration present. We recommend a repair to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Poor (Full of debris) - Roof penetrations are installed incorrectly and are disrupting water flow. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Rubber boot perished/ cracking -Rubber boot/dektite flashing deteriorating. We recommend replacement of this replaceable part (Photo)
+        Penetration flashing loose- Penetration flashing loose/damaged. We recommend replacement or repair. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        Penetration flashing missing/damaged- Penetration flashing loose/damaged. We recommend replacement or repair. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+6)Aerials/ antennas above roofing
+Applicable ? N  - N/a
+        Y - Overall condition   
+        Good - Roof antennas/aerials appear to be of good condition.  There are no obvious signs of wear and tear,  and/or damage to the roof aerials to be of concern. 
+Average - Roof antennas/aerials appear to be in average condition. There are no significant signs of damage or deterioration. Sealant appears to be in a stable condition.
+Poor (Loose) - Roof antennas/aerials are in a poor condition and loose/missing. We recommend a repair to be carried out for this concern as further damage to the roofing/building is possible. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        
+
+
+7) Spouting & Downpipe condition
+Spouting type (Multi Select)
+PVC - Marley Stormcloud profile, Marley Classic profile
+Metal - Quad metal gutter, Half round metal gutter, Box metal gutter
+        
+
+
+Internal gutter
+PVC internal
+        gutters metal internal
+                
+
+
+Downpipe type (multi select)
+PVC - 65mm, 80mm, 100mm, 
+Square, Rectangle, other
+
+
+Metal - 80mm, Square, Rectangle, other
+Specific Concerns: Comments/ Photos/ Full Replacement  
+
+
+
+
+                
+PVC / Facia internal gutters plastic internal
+Overall condition  (Photo/s)
+Good like new - The roofings spouting system appears to be in good condition. There are no signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                
+        Satisfactory - The roofings spouting system appears to be in a satisfactory condition. There are no obvious signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                        
+        Average (debris present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there is minor debris present. We recommend having this debris cleared to keep the alignment of spouting in it’s correct position. 
+        Average (holding water) - The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water. We recommend having this remedied to keep the alignment of spouting in its correct position and prevent future misalignment. Please advise if you would like to pursue a quote with this.
+        
+Average combination debris and holding water- The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water with debris present. We recommend having this remedied to keep the alignment of spouting in its correct position and prevent future misalignment. Please advise if you would like to pursue a quote with this.
+
+
+
+
+Poor replacement- damaged/brittle// missing spouting - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts vital to your rainwater system. We recommend having this replaced to ensure the roofings rainwater system is working efficiently and draining water away from your property as per its design.
+                                                
+We recommend replacing the rainwater system as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor repairable condition - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts. Our technician has determined the spouting system is still in a repairable state. We recommend having this repaired to ensure the roofing rainwater system is working efficiently and draining water away from your property as per its design and not causing stressors to other parts of the roofing system. Please advise if you would like to pursue a quote with this.
+
+
+Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+
+
+        Poor (heavy debris present) -The roofings spouting system appears to be in a poor condition. There are obvious signs of heavy debris present. We are unsure of the condition of the spouting under the debris present.We recommend having this debris cleared to keep the alignment of spouting in it’s correct position and to further investigate the condition of the spouting.
+
+
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Light debris present Isolated - Our technician has found light debris found in a particular area. We recommend having this debris cleared to keep the alignment of spouting in its correct position.   (Photo)
+        Isolated Area leaking - Our technician has found a leak in the guttering within a  particular area. We recommend having this area repaired to ensure the roof rainwater collection is running efficiently and effectively.  (Photo)
+        Brackets missing/loose/unevenly spaced- Our technician has found brackets holding the guttering system to be either unevenly spaced/loose or missing. This can cause the guttering to be prone to warping, water holding and stress on areas of facias. We recommend having this area repaired to ensure the roof rainwater collection is running efficiently and effectively (Photo)
+Optional extra“(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+Metal/  Fascia internal gutters metal internal
+Overall condition  (Photo/s)
+Good like new - The roofings spouting system appears to be in a good condition. There are no signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                
+        Satisfactory - The roofings spouting system appears to be in a satisfactory condition. There are no obvious signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                        
+        Average (debris present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there is minor debris present. We recommend having this debris cleared to keep the alignment of spouting in it’s correct position. 
+        Average (minor rust present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are early signs of rust present. Rust oxidation will progressively get worse as time moves forward. Please advise if you would like to pursue a quote.
+        Average (holding water) - The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water. We recommend having this remedied to keep the alignment of spouting in its correct position. Please advise if you would like to pursue a quote with this.
+        
+Average combination debris and holding water- The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water and debris present. We recommend having this remedied to keep the alignment of spouting in its correct position. Please advise if you would like to pursue a quote with this.
+
+
+
+
+Poor replacement- damaged,heavy rust, missing spouting - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged/missing/rust present to vital parts of your roofing rainwater system. We recommend having this replaced to ensure the roofings rainwater system is working efficiently and draining water away from your property as per its design.
+                                                
+We recommend replacing the rainwater system as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor repairable condition - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts. Our technician has determined the spouting system is still in a repairable state. We recommend having this repaired to ensure the roofing rainwater system is working efficiently and draining water away from your property as per its design and not causing stressors to other parts of the roofing system. Please advise if you would like to pursue a quote with this.
+
+
+Please note for remedial maintenance work a warranty does not apply. If you want a price for repairs / replacement please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+
+
+        Poor (heavy debris present) -The roofings spouting system appears to be in a poor condition. There are obvious signs of heavy debris present. We are unsure of the condition of the spouting under the debris present.We highly recommend having this debris cleared to keep the alignment of spouting in it’s correct position and to further investigate the condition of the spouting.(Photo)(Photo)(Photo)
+
+
+8)Additional roofing items (Multi Select) (optional)
+        Solar Heating  Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Solar power   Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Walking bridge/s  Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Air conditioning units  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+        Monkey toes  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+        Ventilated ridging  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+        Ventilation units Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+Other  - “Other” (user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+(^^editable predefined text)
+
+
+
+
+formula
+ 
+SR= Sheet replacement / cost per m2 = 10 ?
+Number of sheets = a (from 2, 3 user input)
+Length of sheets = f
+Roof Pitch /10 = b (from landing page)
+Levels = d (from landing page)
+C =  (b + 10) x ( a x f )
+E = d/10
+C x (1+e) = $
+        
+FBP 1= Full re-bed and point  20pc ? 
+        Number of sheets = a (from 1 user input)
+Roof Pitch /10 = b(from landing page)
+Levels = d (from landing page)
+                 (b + 12) x a = c
+d/10=e
+        C x (1+e) =
+
+
+PRP = Partial re point 45pc ?
+        Number of caps = a (from 2, 3 user input)
+Roof Pitch /10 = b (from landing page)
+Levels = d (from landing page)
+                 (b + 12) x a = c
+d/10=e
+        C x (1+e) =
+
+
+TR = Tile replacement If a < 5 = 45? per tile = m
+                         If a > 5 = 30? per tile =n
+        Number of tiles = a  (from 1 user input)
+        Roof Pitch /10 = b (from landing page)
+Levels = d (from landing page)
+        (b + (either m or n)) x a = c
+d/10=e
+        C x (1+e) =
+________________
+
+
+Compressed Metal Tile:
+Compressed metal tile
+1)Metal tile condition 
+Overall condition blurbs (allow only one selection)
+
+
+Good - The roofing metal tile used appears to be in a good condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.                
+        Satisfactory - The roofing metal tile used appears to be in a satisfactory condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.                
+        Average (moss present) - The roofing metal tile condition appears to be in an average condition with visible moss & mold present. Moss and mold grows on your roof especially in places that get a lot of shade and moisture, this can cause damage to your iron or coloursteel roof. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained. 
+        Average (paint fading) - The roofing metal tile appears to be in an average condition with paint fade being apparent throughout. Our technician has determined that the roof sheeting is still in a remedial state. Please advise if you would like to pursue a recommendation for this repair.
+        Average (rust present under 60% non structural) - The roofing metal tile appears to be an average condition with signs of surface rust present throughout your roofing.  Our technician has determined that the roof sheeting is still in a remedial state. Please advise if you would like to pursue a recommendation for this repair.
+        
+Average combination- The roofing metal tile appears to be in an average condition with moss and mold present and the roofs protection coating failing. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained.  Please advise if you would like to pursue a recommendation for this repair. 
+Poor (rust present over 60%) - We have identified large amounts of rust across the majority of the roof metal tiling. This rust has been classed as destructive/structural rust and requires urgent remediation. It is likely this rust is causing water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas to attempt to make the building envelope water tight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+                                                
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor (Irreparable damage/structural integrity) - We have identified large amounts of damage across the roof metal tiling. Our technician has determined this damage is affecting the roofings structural integrity and requires urgent remediation. It is likely this damage is either causing or about to start causing water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas in an attempt to make the building envelope watertight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+
+
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Specific Concerns isolated  ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Rust holes present (Photo/s) - We have identified a specific area of concern for rust damage on your roof metal tiling. This is a potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.  
+        Scratches/dents/dings worth notifying (Photo/s)- We have identified scratches/dents/damage that have come to the attention of our technician. Please advise if you would like to pursue a recommendation for this repair. 
+Damaged sheet  - We have identified damaged metal tiling that have come to the attention of our technician.  We recommend a repair to be carried out for this concern Please advise if you would like to pursue a recommendation for this repair. 
+(Photo/s) (multiple new) (amount + length)  
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+        Loose sheeting loose/missing (Photo/s) - We have identified loose/missing roof metal tiling that have come to the attention of our technician.  We recommend a repair to be carried out for this concern Please advise if you would like to pursue a recommendation for this repair. 
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+2) Hip and ridging condition
+        Applicable Y / N? 
+        No = N/A
+Yes 
+        Overall condition blurbs (Single selection) 
+        Good - Roof ridging appears to be in a good condition throughout the roof line. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.                
+        Satisfactory - Roof ridging appears to be in a satisfactory condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.                
+        Average (moss present) - The roof ridging condition appears to be in an average condition with visible moss & mold present. Moss and mold grows on your roof especially in places that get a lot of shade and moisture, this can cause damage to your iron or coloursteel roof. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained. 
+        Average (paint fading) - The roof ridging appears to be in an average condition with paint fade being apparent throughout
+        
+Average combination- The roof sheeting appears to be in an average condition with moss and mold present and the roofs protection coating failing. 
+
+
+Poor (rust present over 60%) - We have identified large amounts of rust across the ridgeline. This rust has been classed as destructive/structural rust and requires urgent remediation. It is likely this rust is causing water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas to attempt to make the building envelope water tight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+                                                
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor (Irreparable damage/structural integrity) - We have identified that there is large amounts of damage across the roofline. Our technician has determined this damage is affecting the roofings structural integrity and requires urgent remediation. It is likely this damage is causing or about to cause water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas in an attempt to make the building envelope watertight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+
+
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Specific Concerns isolated  ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Rust holes present (Photo/s)  - We have identified a specific area of concern for rust damage on your roof ridging. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.  (comments)
+        Scratches/dents/dings worth notifying (Photo/s) - We have identified scratches/dents/damage that have come to the attention of our technician. Please advise if you would like to pursue a recommendation for this repair. 
+(comments)
+        Loose ridging loose/missing (Photo/s) - We have identified loose/missing ridging/fixings that have come to the attention of our technician.  We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair. 
+(comments)
+
+
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+                        
+3)Roof fixings condition
+Fixing type        (select one)
+        Clout nails - Old style clout nails
+        Shank nails - Shank nails 
+        
+Overall condition (technician to add photos) (select one)
+        Good (like new) -  Roof fasteners appear to be in a good condition. There are no obvious signs of wear and tear, and/or damage to the roof fasteners to be of concern.
+Good - Roof fasteners appear to be of average condition.  There are no obvious signs of wear and tear, and/or damage to the roof fasteners to be of concern. 
+Average - Roof fasteners appear to be of average condition. There are no significant signs of damage or deterioration.
+Poor (Rust) - Roof fasteners are in poor condition and have rust present. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair. (Photo) (Photo)
+Poor (loose/missing) - Roof fasteners are in poor condition and are loose.missing in ares. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Washers damaged/missing isolated (Photo/s)- We have identified a specific area of concern for missing/ damaged washers on your roof fixings. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair
+        Loose screws/nails isolated (Photo/s) - We have identified a specific area of concern for missing/ damaged roof fixings on your roof. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair
+        Rivet fixings (Photo/s) - We have identified a specific area of concern for missing/ damaged roof rivet fixings on your roof. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair
+        Additional “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+4)Valley/s Condition
+Number of valleys (user Insert number)
+Overall condition
+        Good (like new) -  Roof valleys appear to be in a good condition. There are no obvious signs of wear and tear, and/or damage, or debris in the roof valleys to be of concern.
+Good - Roof valleys appear to be of average condition.  There are no obvious signs of wear and tear, debris, and/or damage to the roof valleys to be of concern. 
+Average - Roof valleys appear to be of average condition. There are no significant signs of damage or deterioration minor debris present. Recommend clearing all debris for adequate water flow.
+Poor (Rust) - Roof valleys are in poor condition and have rust present. We recommend a repair to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Poor (Full of debris) - Roof valleys are in poor condition and are blocked causing inadequate water flow. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+5) Penetration flashing/s condition
+        Overall condition  (Photo/s)
+        Good (like new) -  Roof penetrations appear to be in a good condition. There are no obvious signs of wear and tear, and/or damage.
+Good - Roof penetrations appear to be of average condition.  There are no obvious signs of wear and tear, debris, and/or damage to the roof penetrations to be of concern. 
+Average - Roof penetrations appear to be in average condition. There are no significant signs of damage or deterioration. Sealant appears to be in a stable condition.
+Poor (poor Seal) - Roof penetrations are in poor condition and have deterioration present. We recommend a repair to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Poor (Full of debris) - Roof penetrations are installed incorrectly and are disrupting water flow. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Rubber boot perished/ cracking -Rubber boot/dektite flashing deteriorating. We recommend replacement of this replaceable part (Photo)
+        Penetration flashing loose- Penetration flashing loose/damaged. We recommend replacement or repair. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        Penetration flashing missing/damaged- Penetration flashing loose/damaged. We recommend replacement or repair. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+6)Aerials/ antennas above roofing
+Applicable ? N  - N/a
+        Y - Overall condition   
+        Good - Roof antennas/aerials appear to be of good condition.  There are no obvious signs of wear and tear,  and/or damage to the roof aerials to be of concern. 
+Average - Roof antennas/aerials appear to be in average condition. There are no significant signs of damage or deterioration. Sealant appears to be in a stable condition.
+Poor (Loose) - Roof antennas/aerials are in a poor condition and loose/missing. We recommend a repair to be carried out for this concern as further damage to the roofing/building is possible. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        
+
+
+7) Spouting & Downpipe condition
+Spouting type (Multi Select)
+PVC - Marley Stormcloud profile, Marley Classic profile
+        
+Metal - Quad metal gutter, Half round metal gutter, Box metal gutter
+
+
+Facia internal gutter plastic internal
+        Taylor fascia/Plastic internal gutter, Taylor fascia/Metal internal gutter
+Facia internal gutters metal internal
+         Taylor fascia/Metal internal gutter
+
+
+
+
+
+
+Downpipe type (multi select)
+PVC - 65mm, 80mm, 100mm, Square, Rectangle, other
+        Bracket type - Flush type, adjustable type
+Metal - 80mm, Square, Rectangle, other
+        Bracket type - Flush type, adjustable type
+                
+PVC / Facia internal gutters plastic internal
+Overall condition  (Photo/s)
+Good like new - The roofings spouting system appears to be in good condition. There are no signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                
+        Satisfactory - The roofings spouting system appears to be in a satisfactory condition. There are no obvious signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                        
+        Average (debris present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there is minor debris present. We recommend having this debris cleared to keep the alignment of spouting in it’s correct position. 
+        Average (holding water) - The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water. We recommend having this remedied to keep the alignment of spouting in its correct position and prevent future misalignment. Please advise if you would like to pursue a quote with this.
+        
+Average combination debris and holding water- The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water with debris present. We recommend having this remedied to keep the alignment of spouting in its correct position and prevent future misalignment. Please advise if you would like to pursue a quote with this.
+
+
+
+
+Poor replacement- damaged/brittle// missing spouting - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts vital to your rainwater system. We recommend having this replaced to ensure the roofings rainwater system is working efficiently and draining water away from your property as per its design.
+                                                
+We recommend replacing the rainwater system as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor repairable condition - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts. Our technician has determined the spouting system is still in a repairable state. We recommend having this repaired to ensure the roofing rainwater system is working efficiently and draining water away from your property as per its design and not causing stressors to other parts of the roofing system. Please advise if you would like to pursue a quote with this.
+
+
+Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+
+
+        Poor (heavy debris present) -The roofings spouting system appears to be in a poor condition. There are obvious signs of heavy debris present. We are unsure of the condition of the spouting under the debris present.We recommend having this debris cleared to keep the alignment of spouting in it’s correct position and to further investigate the condition of the spouting.
+
+
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Light debris present Isolated - Our technician has found light debris found in a particular area. We recommend having this debris cleared to keep the alignment of spouting in its correct position.   (Photo)
+        Isolated Area leaking - Our technician has found a leak in the guttering within a  particular area. We recommend having this area repaired to ensure the roof rainwater collection is running efficiently and effectively.  (Photo)
+        Brackets missing/loose/unevenly spaced- Our technician has found brackets holding the guttering system to be either unevenly spaced/loose or missing. This can cause the guttering to be prone to warping, water holding and stress on areas of facias. We recommend having this area repaired to ensure the roof rainwater collection is running efficiently and effectively (Photo)
+Optional extra“(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+Metal/  Fascia internal gutters metal internal
+Overall condition  (Photo/s)
+Good like new - The roofings spouting system appears to be in a good condition. There are no signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                
+        Satisfactory - The roofings spouting system appears to be in a satisfactory condition. There are no obvious signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                        
+        Average (debris present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there is minor debris present. We recommend having this debris cleared to keep the alignment of spouting in it’s correct position. 
+        Average (minor rust present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are early signs of rust present. Rust oxidation will progressively get worse as time moves forward. Please advise if you would like to pursue a quote.
+        Average (holding water) - The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water. We recommend having this remedied to keep the alignment of spouting in its correct position. Please advise if you would like to pursue a quote with this.
+        
+Average combination debris and holding water- The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water and debris present. We recommend having this remedied to keep the alignment of spouting in its correct position. Please advise if you would like to pursue a quote with this.
+
+
+
+
+Poor replacement- damaged,heavy rust, missing spouting - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged/missing/rust present to vital parts of your roofing rainwater system. We recommend having this replaced to ensure the roofings rainwater system is working efficiently and draining water away from your property as per its design.
+                                                
+We recommend replacing the rainwater system as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor repairable condition - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts. Our technician has determined the spouting system is still in a repairable state. We recommend having this repaired to ensure the roofing rainwater system is working efficiently and draining water away from your property as per its design and not causing stressors to other parts of the roofing system. Please advise if you would like to pursue a quote with this.
+
+
+Please note for remedial maintenance work a warranty does not apply. If you want a price for repairs / replacement please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+
+
+        Poor (heavy debris present) -The roofings spouting system appears to be in a poor condition. There are obvious signs of heavy debris present. We are unsure of the condition of the spouting under the debris present.We highly recommend having this debris cleared to keep the alignment of spouting in it’s correct position and to further investigate the condition of the spouting.(Photo)(Photo)(Photo)
+
+
+8)Additional roofing items (Multi Select) (optional)
+        Solar Heating  Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Solar power   Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Walking bridge/s  Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Air conditioning units  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+        Monkey toes  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+        Ventilated ridging  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+        Ventilation units Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+Other  - “Other” (user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+
+
+
+
+
+
+________________
+
+
+Tile
+Compressed metal tile
+1)Roof tile condition 
+Overall condition blurbs (allow only one selection)
+
+
+Good - The roofing tile used appears to be in a good condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof tiling to be of concern.                
+        Satisfactory - The roofing tile used appears to be in a satisfactory condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof tiling to be of concern.                
+        Average (moss present) - The roofing tile condition appears to be in an average condition with visible moss & mold present. Moss and mold grows on your roof especially in places that get a lot of shade and moisture, this can cause damage to your iron or coloursteel roof. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained. 
+        Average (paint fading) - The roofing tile appears to be in an average condition with paint fade being apparent throughout. Our technician has determined that the roof tiling is still in a remedial state. Please advise if you would like to pursue a recommendation for this repair.
+        Average (hairline fractures, corner chipping non structural) - The roofing tile appears to be an average condition with signs of hairline fractures and corner chipping.  Our technician has determined that the roof tiling is still in a remedial state. Please advise if you would like to pursue a recommendation for this repair.
+        
+Average combination- The roofing tile appears to be in an average condition with moss and mold present and the roof's protection coating failing. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained.  Please advise if you would like to pursue a recommendation for this repair. 
+Poor (Heavy moss present) - The roofing tile condition appears to be in a poor condition with visible heavy moss & mold present. Moss and mold on your concrete roof is commonly an underestimated concern. Moss and mold grows on your roof especially in places that get a lot of shade and
+moisture, this will be causing your tiles to become porous & weak. We advise roof moss removal treatments and follow ups every 2 years to ensure your roof condition is well maintained. 
+                                
+Poor (Multiple damaged tiles/ old tiling) - We have identified multiple damaged/beyond use tiles across the majority of the roof tiling. This damage has been classed as destructive to the building and requires urgent remediation. It is likely the damaged tiling is causing water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas to attempt to make the building envelope water tight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+                                                
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor (Irreparable damage/structural integrity) - We have identified large amounts of damage across the roof tiling. Our technician has determined this damage is affecting the roofings structural integrity and requires urgent remediation. It is likely this damage is either causing or about to start causing water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas in an attempt to make the building envelope watertight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+
+
+We recommend replacing the roofing as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Specific Concerns isolated  ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Damaged roof tiles (Photo/s) - We have identified a specific area/s of concern for damaged tiles on your roof tiling. This is a potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.  TR (Insert amount of damaged tiles) 
+        missing /slipped tiles (Photo/s)- We have identified slipped/missing tiles that have come to the attention of our technician. Please advise if you would like to pursue a recommendation for this repair.  TR (Insert amount of damaged tiles) 
+Moss and mold isolated (Photo/s) - We have identified area/s with moss and mold present.  Moss and mold on your concrete roof is commonly an underestimated concern. Moss and mold grows on your roof especially in places that get a lot of shade and
+moisture, this will be causing your tiles to become porous & weak. We advise roof moss removal treatments and follow ups every 2 years to ensure your roof condition is well maintained. 
+Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+
+
+
+
+
+
+2) Hip and ridging condition 
+        Applicable Y / N? 
+        No = N/A
+Yes =
+        Overall condition blurbs (Single selection) (Photo)
+        Good - Roof ridging appears to be in a good condition throughout the roof line. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof tiling to be of concern.                
+        Satisfactory - Roof ridging appears to be in a satisfactory condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof tiling to be of concern.                
+        Average (moss present) - The roof ridging condition appears to be in an average condition with visible moss & mold present. Moss and mold grows on your roof especially in places that get a lot of shade and moisture, this can cause damage to your tiled roof. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained. 
+        Average (minor cracking in mortar) - The roof ridging appears to be in an average condition with minor cracking visible in the mortar seating the ridge capping.                            We recommend getting a full flexi point RE-POINT. This will help restore the life back into your concrete roof ridgelines, hips and barge capping (if applicable) and assure you of your roofline capping being secured like new again. 
+(Insert amount of caps on roofline FRP1
+        
+Average (cracking and moss present combination)- The roof ridging appears to be in an average condition with moss and mold present and the minor cracking visible in the mortar seating the ridge capping. We recommend getting a full flexi point RE-POINT. This will help restore the life back into your concrete roof ridgelines, hips and barge capping (if applicable) and assure you of your roofline capping being secured like new again. We also recommend a moss and mold treatment.
+(Insert amount of caps affected) FRP1 
+
+
+Poor (mortar loose/missing) - We have identified large amounts of mortar loose/missing across the ridgeline. This has been classed as destructive to the structural integrity of the roofing and requires urgent remediation. It is likely this ridging is causing water ingress into your property and/or possibility of further destruction to the roofing. As a cost effective solution we can apply temporary repairs to major areas to attempt to make the building envelope water tight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.  (Photo)(Photo)(Photo)(comments)
+We recommend getting a re-bed and point. This is because we have identified the concrete mortar to be damaged in a way we can not repair with just a stand alone flexipoint repoint. This will assure you of a long lasting fixture for your roof ridge lining. This process consists of removing the previous concrete under your current roof caps, and bedding your caps on new concrete to replenish the condition of your roof. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)(comments)
+(Insert amount of caps affected)  FBP 1
+Poor (ridge caps missing, loose, damaged) - We have identified that there is large amounts of damage across the roof ridge line. Our technician has determined this damage is affecting the roofings structural integrity and requires urgent remediation. It is likely this damage is causing or about to cause water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas in an attempt to make the building envelope watertight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+
+
+We recommend replacing the ridge capping as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a reroof please advise and we can arrange a quote. (Photo)(Photo)(Photo) (comments)
+(Insert amount of caps affected)  FBP 1
+Specific Concerns isolated  ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Missing mortar (isolated)(Photo/s)  - We have identified a specific area of concern for missing/damaged mortar. We recommend getting a partial flexi point RE-POINT. This will help restore the life back into your concrete roof ridgelines, hips and barge capping (if applicable) and assure you of your roofline capping being secured like new again                 
+(comments)
+(Insert amount of caps affected)  PRP
+        Damaged ridge capping  (Photo/s) - We have identified damaged ridge capping that have come to the attention of our technician. We recommend having these replaced as soon possible as it is possible this tile/s are causing water intrusion. Please advise if you would like to pursue a recommendation for this repair. 
+(comments) PBP (Insert amount of damaged caps) 
+
+
+
+
+        Loose ridging loose/missing (isolated)(Photo/s) - We have identified loose/missing ridging that have come to the attention of our technician.  We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair. 
+(comments)(Insert amount of caps affected)  PRP
+
+
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+                        
+3)Gable ends and/or barge capping
+Applicable Y/N
+        No= N/A
+        Yes
+End type        (select one)
+        Gable end - Gable end
+        Barge end - Barge end
+        
+Overall condition (technician to add photos) (select one)
+Good - Roof barge/gable end appears to be in a good condition throughout the roof line. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof ends to be of concern.                
+        Satisfactory - Roof ridging appears to be in a satisfactory condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof tiling to be of concern.                
+        Average (moss present) - Roof barge/gable end condition appears to be in an average condition with visible moss & mold present. Moss and mold grows on your roof especially in places that get a lot of shade and moisture, this can cause damage to your tiled roof. We advise roof moss removal treatments and follow ups every year to ensure your roof condition is well maintained. 
+        Average (minor cracking in mortar) - Roof barge/gable end appears to be in an average condition with minor cracking visible in the mortar seating the roof barge/gable end .          We recommend getting a full flexi point RE-POINT. This will help restore the life back into your concrete roof ridgelines, hips and barge capping (if applicable) and assure you of your roofline capping being secured like new again. 
+        
+Average (cracking and moss present combination)- Roof barge/gable end appears to be in an average condition with moss and mold present and the minor cracking visible in the mortar seating the roof barge/gable end . We recommend getting a full flexi point RE-POINT. This will help restore the life back into your concrete roof ridgelines, hips and barge capping (if applicable) and assure you of your roofline capping being secured like new again. We also recommend a moss and mold treatment.
+
+
+Poor (mortar loose/missing) - We have identified large amounts of mortar loose/missing across the barge/gable ends. This has been classed as destructive to the structural integrity of the roofing and requires urgent remediation. It is likely this is causing water ingress into your property and/or possibility of further destruction to the roofing. As a cost effective solution we can apply temporary repairs to major areas to attempt to make the building envelope water tight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.  (Photo)(Photo)(Photo)(comments)
+We recommend getting a re-bed and point. This is because we have identified the concrete mortar to be damaged in a way we can not repair with just a stand alone flexipoint repoint. This will assure you of a long lasting fixture for your roof ridge lining. This process consists of removing the previous concrete under your current roof caps, and bedding your caps on new concrete to replenish the condition of your roof. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)(comments)
+Poor (ridge caps missing, loose, damaged)FRP1 - We have identified that there is large amounts of damage across the roof ends. Our technician has determined this damage is affecting the roofings structural integrity and requires urgent remediation. It is likely this damage is causing or about to cause water ingress into your property. As a cost effective solution we can apply temporary repairs to major areas in an attempt to make the building envelope watertight. We do not recommend and we cannot guarantee the longevity and effectiveness of these repairs.
+        Additional “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+4)Valley/s Condition
+Applicable?Y/N
+No = N/A
+Yes
+Number of valleys (user Insert number)
+Overall condition
+        Good (like new) -  Roof valleys appear to be in a good condition. There are no obvious signs of wear and tear, and/or damage, or debris in the roof valleys to be of concern.
+Good - Roof valleys appear to be of average condition.  There are no obvious signs of wear and tear, debris, and/or damage to the roof valleys to be of concern. 
+Average - Roof valleys appear to be of average condition. There are no significant signs of damage or deterioration minor debris present. Recommend clearing all debris for adequate water flow.
+Average (valley tiles slipped) - Roof valley tiles appear to have slipped and are causing disruption to the roof valley system. We recommend having this attended to right away as this can cause water to back up and enter the building
+Poor (Rust) - Roof valleys are in poor condition and have rust present. We recommend a repair to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Poor (Full of debris) - Roof valleys are in poor condition and are blocked causing inadequate water flow. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+5) Penetration flashing/s condition
+        Overall condition  (Photo/s)
+        Good (like new) -  Roof penetrations appear to be in a good condition. There are no obvious signs of wear and tear, and/or damage.
+Good - Roof penetrations appear to be of average condition.  There are no obvious signs of wear and tear, debris, and/or damage to the roof penetrations to be of concern. 
+Average - Roof penetrations appear to be in average condition. There are no significant signs of damage or deterioration. Sealant appears to be in a stable condition.
+Poor (poor Seal) - Roof penetrations are in poor condition and have deterioration present. We recommend a repair to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Poor (Full of debris) - Roof penetrations are installed incorrectly and are disrupting water flow. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)(Photo)
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Rubber boot perished/ cracking -Rubber boot/dektite flashing deteriorating. We recommend replacement of this replaceable part (Photo) 
+        Penetration flashing loose- Penetration flashing loose/damaged. We recommend replacement or repair. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        Penetration flashing missing/damaged- Penetration flashing loose/damaged. We recommend replacement or repair. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        Optional extra “(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+6)Aerials/ antennas above roofing
+Applicable ? N  - N/a
+        Y - Overall condition   
+        Good - Roof antennas/aerials appear to be of good condition.  There are no obvious signs of wear and tear,  and/or damage to the roof aerials to be of concern. 
+Average - Roof antennas/aerials appear to be in average condition. There are no significant signs of damage or deterioration. Sealant appears to be in a stable condition.
+Poor (Loose) - Roof antennas/aerials are in a poor condition and loose/missing. We recommend a repair to be carried out for this concern as further damage to the roofing/building is possible. Please advise if you would like to pursue a recommendation for this repair.  (Photo)
+        
+
+
+7) Spouting & Downpipe condition
+Spouting type (Multi Select)
+PVC - Marley Stormcloud profile, Marley Classic profile
+        Bracket type - External brackets, internal brackets
+Metal - Quad metal gutter, Half round metal gutter, Box metal gutter
+        Bracket type - External brackets, internal brackets, Toe brackets
+Asbestos- Contains asbestos. Please enquire for a replacement
+  Facia internal gutter plastic internal
+        Taylor fascia/Plastic internal gutter, Taylor fascia/Metal internal gutter
+Facia internal gutters metal internal
+         Taylor fascia/Metal internal gutter
+
+
+
+
+
+
+Downpipe type (multi select)
+PVC - 65mm, 80mm, 100mm, Square, Rectangle, other
+        Bracket type - Flush type, adjustable type
+Metal - 80mm, Square, Rectangle, other
+        Bracket type - Flush type, adjustable type
+                
+PVC / Facia internal gutters plastic internal
+Overall condition  (Photo/s)
+Good like new - The roofings spouting system appears to be in good condition. There are no signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                
+        Satisfactory - The roofings spouting system appears to be in a satisfactory condition. There are no obvious signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                        
+        Average (debris present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there is minor debris present. We recommend having this debris cleared to keep the alignment of spouting in it’s correct position.
+ 
+        Average (holding water) - The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water. We recommend having this remedied to keep the alignment of spouting in its correct position and prevent future misalignment. Please advise if you would like to pursue a quote with this.
+        
+Average combination debris and holding water- The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water with debris present. We recommend having this remedied to keep the alignment of spouting in its correct position and prevent future misalignment. Please advise if you would like to pursue a quote with this.
+
+
+
+
+Poor replacement- damaged/brittle// missing spouting - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts vital to your rainwater system. We recommend having this replaced to ensure the roofings rainwater system is working efficiently and draining water away from your property as per its design.
+                                                
+We recommend replacing the rainwater system as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor repairable condition - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts. Our technician has determined the spouting system is still in a repairable state. We recommend having this repaired to ensure the roofing rainwater system is working efficiently and draining water away from your property as per its design and not causing stressors to other parts of the roofing system. Please advise if you would like to pursue a quote with this.
+
+
+Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+
+
+        Poor (heavy debris present) -The roofings spouting system appears to be in a poor condition. There are obvious signs of heavy debris present. We are unsure of the condition of the spouting under the debris present.We recommend having this debris cleared to keep the alignment of spouting in it’s correct position and to further investigate the condition of the spouting.
+
+
+Specific concerns isolated ( allow multiple selection) (add photo/s per concern selection) (allow technician to input number of concerns per concern)
+        Light debris present Isolated - Our technician has found light debris found in a particular area. We recommend having this debris cleared to keep the alignment of spouting in its correct position.   (Photo)
+        Isolated Area leaking - Our technician has found a leak in the guttering within a  particular area. We recommend having this area repaired to ensure the roof rainwater collection is running efficiently and effectively.  (Photo)
+        Brackets missing/loose/unevenly spaced- Our technician has found brackets holding the guttering system to be either unevenly spaced/loose or missing. This can cause the guttering to be prone to warping, water holding and stress on areas of facias. We recommend having this area repaired to ensure the roof rainwater collection is running efficiently and effectively (Photo)
+Optional extra“(user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+Metal/  Fascia internal gutters metal internal
+Overall condition  (Photo/s)
+Good like new - The roofings spouting system appears to be in a good condition. There are no signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                
+        Satisfactory - The roofings spouting system appears to be in a satisfactory condition. There are no obvious signs of wear and tear, debris present, and/or damage to the spouting system to be of concern.                        
+        Average (debris present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there is minor debris present. We recommend having this debris cleared to keep the alignment of spouting in it’s correct position. 
+        Average (minor rust present) -The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are early signs of rust present. Rust oxidation will progressively get worse as time moves forward. Please advise if you would like to pursue a quote.
+        Average (holding water) - The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water. We recommend having this remedied to keep the alignment of spouting in its correct position. Please advise if you would like to pursue a quote with this.
+        
+Average combination debris and holding water- The roofings spouting system appears to be in an average condition. There are no obvious signs of damage or leaks, but there are areas of the spouting system holding water and debris present. We recommend having this remedied to keep the alignment of spouting in its correct position. Please advise if you would like to pursue a quote with this.
+
+
+
+
+Poor replacement- damaged,heavy rust, missing spouting - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged/missing/rust present to vital parts of your roofing rainwater system. We recommend having this replaced to ensure the roofings rainwater system is working efficiently and draining water away from your property as per its design.
+                                                
+We recommend replacing the rainwater system as a long-term solution. Please note for remedial maintenance work a warranty does not apply. If you want a price for a replacement roof please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+Poor repairable condition - The roofings spouting system appears to be in a poor condition. There are obvious signs of damaged and/or missing parts. Our technician has determined the spouting system is still in a repairable state. We recommend having this repaired to ensure the roofing rainwater system is working efficiently and draining water away from your property as per its design and not causing stressors to other parts of the roofing system. Please advise if you would like to pursue a quote with this.
+
+
+Please note for remedial maintenance work a warranty does not apply. If you want a price for repairs / replacement please advise and we can arrange a quote. (Photo)(Photo)(Photo)
+
+
+        Poor (heavy debris present) -The roofings spouting system appears to be in a poor condition. There are obvious signs of heavy debris present. We are unsure of the condition of the spouting under the debris present.We highly recommend having this debris cleared to keep the alignment of spouting in it’s correct position and to further investigate the condition of the spouting.(Photo)(Photo)(Photo)
+
+
+8)Additional roofing items (Multi Select) (optional)
+        Solar Heating  Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Solar power   Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Walking bridge/s  Comments/ explanation   “(user input subject)” (Photo)(amount 1-100)
+        Air conditioning units  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+        Monkey toes  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+        Ventilated ridging  Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)        
+        Ventilation units Comments/ explanation   “(user input subject)”(Photo)(amount 1-100)
+Other  - “Other” (user input subject)”  Comments/ explanation   “(user input subject)” (Photo)
+
+
+
+
+formula
+ 
+FRP1 = Full repoint   18 per cap ?
+Number of caps = a (from 2, 3 user input)
+Roof Pitch /10 = b (from landing page)
+Levels = d (from landing page)
+            (b + 12) x a = c
+d/10=e
+        C x (1+e) = 
+        
+FBP 1= Full re-bed and point  20pc ? 
+        Number of caps = a (from 2, 3 user input)
+Roof Pitch /10 = b(from landing page)
+Levels = d (from landing page)
+                 (b + 20) x a = c
+d/10=e
+        C x (1+e) =
+
+
+PRP = Partial re point 45pc ?
+        Number of caps = a (from 2, 3 user input)
+Roof Pitch /10 = b (from landing page)
+Levels = d (from landing page)
+                 (b + 45) x a = c
+d/10=e
+        C x (1+e) =
+PBP = Partial bed and point cap replacement  55pc ?
+        Number of caps = a (from 2, 3 user input)
+Roof Pitch /10 = b (from landing page)
+Levels = d (from landing page)
+                 (b + 55) x a = c
+d/10=e
+        C x (1+e) =
+
+
+TR = Tile replacement If a < 5 = 45? per tile = m
+                         If a > 5 = 30? per tile =n
+        Number of tiles = a  (from 1 user input)
+        Roof Pitch /10 = b (from landing page)
+Levels = d (from landing page)
+        (b + (either m or n)) x a = c
+d/10=e
+        C x (1+e) =
