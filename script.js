@@ -6,6 +6,19 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeRoofReportApp();
 });
 
+// Health and Safety/Access Requirements — appended to every Specific Concern's fields (moved off the
+// single top-level Roof Details field so each concern can carry its own access requirement).
+const HEALTH_SAFETY_FIELDS = [
+    { name: 'healthSafety', type: 'select', label: 'Health and Safety/Access Requirements', options: [
+        { value: '1-person-harness', label: '1 Person Harness Use' },
+        { value: '2-person-harness', label: '2 Person Harness Use' },
+        { value: 'fixed-scaffold-metered', label: 'Fixed Scaffold Meterd' },
+        { value: 'portable-scaffold', label: 'Portable Scaffold' },
+        { value: 'other', label: 'Other' }
+    ]},
+    { name: 'healthSafetyOther', type: 'text', label: 'Please specify', dependsOn: 'healthSafety', showWhen: 'other' }
+];
+
 // Comprehensive roof data structure with 6 roof types, their sub-types, and complete section data from txt file
 const roofData = {
     'profiled-metal': {
@@ -60,7 +73,8 @@ const roofData = {
                                     { name: 'sheetCount', type: 'number', label: 'Number of replacement sheets' },
                                     { name: 'sheetLength', type: 'number', label: 'Length of sheets (m)', step: 0.1 },
                                     { name: 'patching', type: 'checkbox', label: 'Apply patch as cost-effective solution' },
-                                    { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' }
+                                    { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'scratches-dents': {
@@ -68,8 +82,10 @@ const roofData = {
                                 description: 'We have identified scratches/dents/damage that have come to the attention of our technician. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
                                     { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
                                     { name: 'sheetCount', type: 'number', label: 'Number of replacement sheets' },
-                                    { name: 'sheetLength', type: 'number', label: 'Length of sheets (m)', step: 0.1 }
+                                    { name: 'sheetLength', type: 'number', label: 'Length of sheets (m)', step: 0.1 },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'damaged-sheet': {
@@ -77,10 +93,12 @@ const roofData = {
                                 description: 'We have identified damaged roof sheeting that have come to the attention of our technician. We recommend a repair to be carried out for this concern Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
                                     { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
                                     { name: 'sheetCount', type: 'number', label: 'Number of replacement sheets' },
                                     { name: 'sheetLength', type: 'number', label: 'Length of sheets (m)', step: 0.1 },
                                     { name: 'patching', type: 'checkbox', label: 'Apply patch as cost-effective solution' },
-                                    { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' }
+                                    { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'screws-fixings-missing': {
@@ -89,7 +107,9 @@ const roofData = {
                                 fields: [
                                     { name: 'nailType', type: 'select', label: 'Type of Fixing', options: ['Screw', 'Lead Nail Head', 'Swivel Nail'] },
                                     { name: 'nailCount', type: 'number', label: 'No. of Fixings to Replace' },
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'optional-extra': {
@@ -98,7 +118,8 @@ const roofData = {
                                 fields: [
                                     { name: 'subject', type: 'text', label: 'Subject', required: true },
                                     { name: 'comments', type: 'textarea', label: 'Comments/explanation', required: true },
-                                    { name: 'photo', type: 'file', label: 'Photo' }
+                                    { name: 'photo', type: 'file', label: 'Photo' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'design-issue': {
@@ -106,7 +127,8 @@ const roofData = {
                                 description: 'A design issue has been identified on the roof.',
                                 fields: [
                                     { name: 'description', type: 'textarea', label: 'Description' },
-                                    { name: 'photos', type: 'file', label: 'Photos', multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'damaged-flashing': {
@@ -121,7 +143,8 @@ const roofData = {
                                         { value: 'drip-edge', label: 'Drip Edge Flashing' },
                                         { value: 'tray-penetration', label: 'Tray / Penetration Flashing' },
                                         { value: 'other', label: 'Other' }
-                                    ]}
+                                    ]},
+                                    ...HEALTH_SAFETY_FIELDS
                                 ],
                                 flashingFields: {
                                     'valley': [
@@ -181,7 +204,8 @@ const roofData = {
                                 description: 'Moss and mold has been identified on the roof surface.',
                                 fields: [
                                     { name: 'description', type: 'textarea', label: 'Description' },
-                                    { name: 'photos', type: 'file', label: 'Photos', multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'gutters-full': {
@@ -189,28 +213,16 @@ const roofData = {
                                 description: 'Gutters have been found to be full during inspection.',
                                 fields: [
                                     { name: 'guttersFull', type: 'yesno', label: 'Gutters Full?' },
-                                    { name: 'photos', type: 'file', label: 'Photos', multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'butynol-damage': {
                                 title: 'Butynol Damage',
                                 description: 'Butynol damage has been identified.',
                                 fields: [
-                                    { name: 'description', type: 'textarea', label: 'Description' }
-                                ]
-                            },
-                            'damaged-spouting': {
-                                title: 'Damaged Spouting',
-                                description: 'Damaged spouting has been identified during inspection.',
-                                fields: [
-                                    { name: 'issuesFound', type: 'textarea', label: 'Issues Found' },
-                                    { name: 'componentsNeeded', type: 'textarea', label: 'Components Needed to Remedy Issue' },
-                                    { name: 'fullReplace', type: 'yesno', label: 'Full Replacement Needed?' },
-                                    { name: 'linearMeterage', type: 'number', label: 'Linear Meterage', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'downpipeQty', type: 'number', label: 'Downpipes to Replace (Quantity)', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'spoutingProfile', type: 'text', label: 'Profile of Spouting', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'colour', type: 'text', label: 'Colour', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'accessMethod', type: 'select', label: 'Access Method', options: ['Fixed Scaffolding', 'Portable Scaffolding', 'Ladder Use'], dependsOn: 'fullReplace', showWhen: 'yes' }
+                                    { name: 'description', type: 'textarea', label: 'Description' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             }
                         }
@@ -252,21 +264,24 @@ const roofData = {
                                 title: 'Rust holes present',
                                 description: 'We have identified a specific area of concern for rust damage on your roof ridging. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'scratches-dents': {
                                 title: 'Scratches/dents/dings worth notifying',
                                 description: 'We have identified scratches/dents/damage that have come to the attention of our technician. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'loose-ridging': {
                                 title: 'Loose ridging loose/missing',
                                 description: 'We have identified loose/missing ridging/fixings that have come to the attention of our technician. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'optional-extra': {
@@ -323,21 +338,24 @@ const roofData = {
                                 title: 'Washers damaged/missing isolated',
                                 description: 'We have identified a specific area of concern for missing/ damaged washers on your roof fixings. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'loose-screws-nails': {
                                 title: 'Loose screws/nails isolated',
                                 description: 'We have identified a specific area of concern for missing/ damaged roof fixings on your roof. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'rivet-fixings': {
                                 title: 'Rivet fixings',
                                 description: 'We have identified a specific area of concern for missing/ damaged roof rivet fixings on your roof. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'additional': {
@@ -419,21 +437,24 @@ const roofData = {
                                 title: 'Rubber boot perished/ cracking',
                                 description: 'Rubber boot/dektite flashing deteriorating. We recommend replacement of this replaceable part',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'penetration-flashing-loose': {
                                 title: 'Penetration flashing loose',
                                 description: 'Penetration flashing loose/damaged. We recommend replacement or repair. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'penetration-flashing-missing': {
                                 title: 'Penetration flashing missing/damaged',
                                 description: 'Penetration flashing loose/damaged. We recommend replacement or repair. We recommend urgent remedial works to be carried out for this concern as water ingress is likely to enter the property. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' }
                                 ]
                             },
                             'optional-extra': {
@@ -467,34 +488,7 @@ const roofData = {
                     }
                 }
             },
-            'trapezio-metal': {
-                name: 'Trapezio Metal Roofing (5rib)',
-                sections: {
-                    // Same structure as corrugated-metal but can have different specific details
-                    'sheet-condition': {
-                        title: 'Sheet condition',
-                        overallConditions: {
-                            'good-like-new': {
-                                title: 'Good (like new)',
-                                description: 'Roof sheeting appears to be in a good condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.'
-                            },
-                            'satisfactory': {
-                                title: 'Satisfactory',
-                                description: 'Roof sheeting appears to be in a satisfactory condition. There are no obvious signs of wear and tear, moss and mold, and/or damage to the roof sheeting to be of concern.'
-                            }
-                        },
-                        specificConcerns: {
-                            'rust-holes': {
-                                title: 'Rust holes present',
-                                description: 'We have identified a specific area of concern for rust damage on your roof sheeting. Potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
-                                fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
-                                ]
-                            }
-                        }
-                    }
-                }
-            },
+            'trapezio-metal': { name: 'Trapezio Metal Roofing (5rib)', sections: {} },
             'tray-euro': { name: 'Tray (Euro Style)', sections: {} },
             'multi-rib': { name: 'Multi Rib', sections: {} },
             'commercial': { name: 'Commercial', sections: {} },
@@ -548,7 +542,13 @@ const roofData = {
                                 title: 'Rust Damage',
                                 description: 'We have identified a specific area of concern for rust damage on your roof metal tiling. This is a potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    { name: 'tileCount', type: 'number', label: 'Number of replacement tiles' },
+                                    { name: 'tileLength', type: 'number', label: 'Length of tiles (m)', step: 0.1 },
+                                    { name: 'patching', type: 'checkbox', label: 'Apply patch as cost-effective solution' },
+                                    { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'dented-sheet-tile': {
@@ -559,7 +559,8 @@ const roofData = {
                                     { name: 'replacement', type: 'yesno', label: 'Replacement Needed?' },
                                     { name: 'howMany', type: 'number', label: 'How Many to Replace', dependsOn: 'replacement', showWhen: 'yes' },
                                     { name: 'description', type: 'textarea', label: 'Description' },
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'chipped-coat': {
@@ -572,7 +573,8 @@ const roofData = {
                                         { value: 'high', label: 'High (Majority)' }
                                     ]},
                                     { name: 'description', type: 'textarea', label: 'Description' },
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'damaged-sheet': {
@@ -580,8 +582,10 @@ const roofData = {
                                 description: 'We have identified damaged metal tiling that have come to the attention of our technician. We recommend a repair to be carried out for this concern Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
                                     { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
                                     { name: 'amount', type: 'number', label: 'Amount' },
-                                    { name: 'length', type: 'number', label: 'Length', step: 0.1 }
+                                    { name: 'length', type: 'number', label: 'Length', step: 0.1 },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'loose-sheeting': {
@@ -590,7 +594,102 @@ const roofData = {
                                 fields: [
                                     { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
                                     { name: 'subject', type: 'text', label: 'Optional extra subject' },
-                                    { name: 'comments', type: 'textarea', label: 'Comments/explanation' }
+                                    { name: 'comments', type: 'textarea', label: 'Comments/explanation' },
+                                    ...HEALTH_SAFETY_FIELDS
+                                ]
+                            },
+                            'gutters-full': {
+                                title: 'Gutters Full',
+                                description: 'Gutters have been found to be full during inspection.',
+                                fields: [
+                                    { name: 'guttersFull', type: 'yesno', label: 'Gutters Full?' },
+                                    { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                    ...HEALTH_SAFETY_FIELDS
+                                ]
+                            },
+                            'moss-issue': {
+                                title: 'Moss Issue',
+                                description: 'Moss and mold has been identified on the roof surface.',
+                                fields: [
+                                    { name: 'description', type: 'textarea', label: 'Description' },
+                                    { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                    ...HEALTH_SAFETY_FIELDS
+                                ]
+                            },
+                            'damaged-flashing': {
+                                title: 'Damaged Flashing / Lifting Flashing',
+                                description: 'We have identified damaged or lifting flashing. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
+                                fields: [
+                                    { name: 'flashingType', type: 'flashing-select', label: 'Flashing Type', options: [
+                                        { value: 'valley', label: 'Valley' },
+                                        { value: 'barge', label: 'Barge' },
+                                        { value: 'apron', label: 'Apron' },
+                                        { value: 'ridge', label: 'Ridge' },
+                                        { value: 'drip-edge', label: 'Drip Edge Flashing' },
+                                        { value: 'tray-penetration', label: 'Tray / Penetration Flashing' },
+                                        { value: 'other', label: 'Other' }
+                                    ]},
+                                    ...HEALTH_SAFETY_FIELDS
+                                ],
+                                flashingFields: {
+                                    'valley': [
+                                        { name: 'issueDescription', type: 'textarea', label: 'Issues Description' },
+                                        { name: 'howMany', type: 'number', label: 'How Many to Replace' },
+                                        { name: 'measurements', type: 'text', label: 'Valley Measurements' },
+                                        { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                        { name: 'patching', type: 'checkbox', label: 'Apply patch as cost-effective solution' },
+                                        { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' }
+                                    ],
+                                    'barge': [
+                                        { name: 'issueDescription', type: 'textarea', label: 'Issues Description' },
+                                        { name: 'howMany', type: 'number', label: 'How Many to Replace' },
+                                        { name: 'measurements', type: 'text', label: 'Barge Measurements' },
+                                        { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                        { name: 'patching', type: 'checkbox', label: 'Apply patch as cost-effective solution' },
+                                        { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' }
+                                    ],
+                                    'apron': [
+                                        { name: 'issueDescription', type: 'textarea', label: 'Issues Description' },
+                                        { name: 'howMany', type: 'number', label: 'How Many to Replace' },
+                                        { name: 'measurements', type: 'text', label: 'Apron Measurements' },
+                                        { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                        { name: 'patching', type: 'checkbox', label: 'Apply patch as cost-effective solution' },
+                                        { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' }
+                                    ],
+                                    'ridge': [
+                                        { name: 'issueDescription', type: 'textarea', label: 'Issues Description' },
+                                        { name: 'howMany', type: 'number', label: 'How Many to Replace' },
+                                        { name: 'measurements', type: 'text', label: 'Ridge Measurements' },
+                                        { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                        { name: 'patching', type: 'checkbox', label: 'Apply patch as cost-effective solution' },
+                                        { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' }
+                                    ],
+                                    'drip-edge': [
+                                        { name: 'issueDescription', type: 'textarea', label: 'Issues Description' },
+                                        { name: 'howMany', type: 'number', label: 'How Many to Replace' },
+                                        { name: 'measurements', type: 'text', label: 'Measurements' },
+                                        { name: 'photos', type: 'file', label: 'Photos', multiple: true }
+                                    ],
+                                    'tray-penetration': [
+                                        { name: 'issueDescription', type: 'textarea', label: 'Issues Description' },
+                                        { name: 'howMany', type: 'number', label: 'How Many to Replace' },
+                                        { name: 'measurements', type: 'text', label: 'Measurements' },
+                                        { name: 'photos', type: 'file', label: 'Photos', multiple: true },
+                                        { name: 'patching', type: 'checkbox', label: 'Apply patch as cost-effective solution' },
+                                        { name: 'patchingOutcome', type: 'yesno', label: 'Will cost-effective method achieve desired outcome for owner?', dependsOn: 'patching' }
+                                    ],
+                                    'other': [
+                                        { name: 'description', type: 'textarea', label: 'Description' },
+                                        { name: 'photos', type: 'file', label: 'Photos', multiple: true }
+                                    ]
+                                }
+                            },
+                            'butynol-damage': {
+                                title: 'Butynol Damage',
+                                description: 'Butynol damage has been identified.',
+                                fields: [
+                                    { name: 'description', type: 'textarea', label: 'Description' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'optional-extra': {
@@ -599,21 +698,8 @@ const roofData = {
                                 fields: [
                                     { name: 'subject', type: 'text', label: 'Subject', required: true },
                                     { name: 'comments', type: 'textarea', label: 'Comments/explanation', required: true },
-                                    { name: 'photo', type: 'file', label: 'Photo' }
-                                ]
-                            },
-                            'damaged-spouting': {
-                                title: 'Damaged Spouting',
-                                description: 'Damaged spouting has been identified during inspection.',
-                                fields: [
-                                    { name: 'issuesFound', type: 'textarea', label: 'Issues Found' },
-                                    { name: 'componentsNeeded', type: 'textarea', label: 'Components Needed to Remedy Issue' },
-                                    { name: 'fullReplace', type: 'yesno', label: 'Full Replacement Needed?' },
-                                    { name: 'linearMeterage', type: 'number', label: 'Linear Meterage', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'downpipeQty', type: 'number', label: 'Downpipes to Replace (Quantity)', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'spoutingProfile', type: 'text', label: 'Profile of Spouting', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'colour', type: 'text', label: 'Colour', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'accessMethod', type: 'select', label: 'Access Method', options: ['Fixed Scaffolding', 'Portable Scaffolding', 'Ladder Use'], dependsOn: 'fullReplace', showWhen: 'yes' }
+                                    { name: 'photo', type: 'file', label: 'Photo' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             }
                         }
@@ -706,11 +792,13 @@ const roofData = {
                         },
                         specificConcerns: {
                             'damaged-tiles': {
-                                title: 'Damaged roof tiles',
-                                description: 'We have identified a specific area/s of concern for damaged tiles on your roof tiling. This is a potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
+                                title: 'Broken Ridge/Barge Caps',
+                                description: 'We have identified a specific area/s of concern for broken ridge/barge caps on your roof tiling. This is a potential water entry point. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
                                     { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
-                                    { name: 'tileCount', type: 'number', label: 'Number of damaged tiles' }
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    { name: 'tileCount', type: 'number', label: 'Number of broken ridge/barge caps' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'missing-slipped-tiles': {
@@ -718,14 +806,71 @@ const roofData = {
                                 description: 'We have identified slipped/missing tiles that have come to the attention of our technician. Please advise if you would like to pursue a recommendation for this repair.',
                                 fields: [
                                     { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
-                                    { name: 'tileCount', type: 'number', label: 'Number of missing/slipped tiles' }
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    { name: 'tileCount', type: 'number', label: 'Number of missing/slipped tiles' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'moss-isolated': {
                                 title: 'Moss and mold isolated',
                                 description: 'We have identified area/s with moss and mold present. Moss and mold on your concrete roof is commonly an underestimated concern. Moss and mold grows on your roof especially in places that get a lot of shade and moisture, this will be causing your tiles to become porous & weak. We advise roof moss removal treatments and follow ups every 2 years to ensure your roof condition is well maintained.',
                                 fields: [
-                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true }
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    ...HEALTH_SAFETY_FIELDS
+                                ]
+                            },
+                            'chipped-tiles': {
+                                title: 'Chipped tiles',
+                                description: 'We have identified chipped tiles on your roof tiling. This is a cosmetic concern which can become a water entry point if left untreated. Please advise if you would like to pursue a recommendation for this repair.',
+                                fields: [
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    { name: 'totalCount', type: 'number', label: 'Total number of chipped tiles' },
+                                    { name: 'underCapsCount', type: 'number', label: 'Number of chipped tiles under roofing caps' },
+                                    ...HEALTH_SAFETY_FIELDS
+                                ]
+                            },
+                            'porous-tiles': {
+                                title: 'Porous tiles',
+                                description: 'We have identified porous tiles on your roof tiling. Porous tiles have lost their protective coating and are absorbing moisture, which will accelerate further deterioration. Please advise if you would like to pursue a recommendation for this repair.',
+                                fields: [
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    { name: 'totalCount', type: 'number', label: 'Total number of porous tiles' },
+                                    { name: 'underCapsCount', type: 'number', label: 'Number of porous tiles under roofing caps' },
+                                    ...HEALTH_SAFETY_FIELDS
+                                ]
+                            },
+                            'cracked-broken-tiles': {
+                                title: 'Cracked/broken tiles',
+                                description: 'We have identified cracked/broken tiles on your roof tiling. This is a potential water entry point and requires urgent remediation. Please advise if you would like to pursue a recommendation for this repair.',
+                                fields: [
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    { name: 'totalCount', type: 'number', label: 'Total number of cracked/broken tiles' },
+                                    { name: 'underCapsCount', type: 'number', label: 'Number of cracked/broken tiles under roofing caps' },
+                                    ...HEALTH_SAFETY_FIELDS
+                                ]
+                            },
+                            'repointing-caps': {
+                                title: 'Repointing cracked or Damaged',
+                                description: 'We have identified cracked or damaged pointing on the roofing caps. We recommend a repoint to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
+                                fields: [
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    { name: 'capsOnRoofLineCount', type: 'number', label: 'No. of caps on roof line' },
+                                    ...HEALTH_SAFETY_FIELDS
+                                ]
+                            },
+                            'rebed-caps': {
+                                title: 'Rebed Caps',
+                                description: 'We have identified roofing caps that have come loose from their bedding. We recommend a rebed to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
+                                fields: [
+                                    { name: 'photos', type: 'file', label: 'Photos', required: true, multiple: true },
+                                    { name: 'comments', type: 'textarea', label: 'Comments' },
+                                    { name: 'capsNeedingRebedCount', type: 'number', label: 'No. of caps needing to be rebedded' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             },
                             'optional-extra': {
@@ -734,21 +879,8 @@ const roofData = {
                                 fields: [
                                     { name: 'subject', type: 'text', label: 'Subject', required: true },
                                     { name: 'comments', type: 'textarea', label: 'Comments/explanation', required: true },
-                                    { name: 'photo', type: 'file', label: 'Photo' }
-                                ]
-                            },
-                            'damaged-spouting': {
-                                title: 'Damaged Spouting',
-                                description: 'Damaged spouting has been identified during inspection.',
-                                fields: [
-                                    { name: 'issuesFound', type: 'textarea', label: 'Issues Found' },
-                                    { name: 'componentsNeeded', type: 'textarea', label: 'Components Needed to Remedy Issue' },
-                                    { name: 'fullReplace', type: 'yesno', label: 'Full Replacement Needed?' },
-                                    { name: 'linearMeterage', type: 'number', label: 'Linear Meterage', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'downpipeQty', type: 'number', label: 'Downpipes to Replace (Quantity)', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'spoutingProfile', type: 'text', label: 'Profile of Spouting', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'colour', type: 'text', label: 'Colour', dependsOn: 'fullReplace', showWhen: 'yes' },
-                                    { name: 'accessMethod', type: 'select', label: 'Access Method', options: ['Fixed Scaffolding', 'Portable Scaffolding', 'Ladder Use'], dependsOn: 'fullReplace', showWhen: 'yes' }
+                                    { name: 'photo', type: 'file', label: 'Photo' },
+                                    ...HEALTH_SAFETY_FIELDS
                                 ]
                             }
                         }
@@ -1650,146 +1782,6 @@ function getConditionClass(condition) {
     return '';
 }
 
-// Generate report using exact text from txt file
-function generateReport(formData) {
-    let reportHTML = '<div class="report-date">Report Generated: ' + new Date().toLocaleDateString() + '</div>';
-    
-    // Property Information
-    reportHTML += `
-        <div class="report-section">
-            <h3>Property Information</h3>
-            <p><strong>Roof Pitch:</strong> ${formData.get('roofPitch')}°</p>
-            <p><strong>Number of Levels:</strong> ${formData.get('levels')}</p>
-        </div>
-    `;
-    
-    // 1. Roof Type and Condition
-    const roofType = formData.get('roofType');
-    const subType = formData.get('subType');
-    const section = formData.get('section');
-    const overallCondition = formData.get('overallCondition');
-    const geometry = formData.get('geometry');
-    
-    if (roofType && roofData[roofType]) {
-        reportHTML += `
-            <div class="report-section">
-                <h3>1. ${roofData[roofType].name}</h3>
-                <p><strong>Roof Geometry:</strong> ${geometry ? geometry.replace('-', ' ').toUpperCase() : 'Not specified'}</p>
-        `;
-        
-        if (roofType === 'asbestos') {
-            reportHTML += `
-                <h4>Assessment</h4>
-                <p><strong>Recommendation:</strong> <span class="condition-poor">Quote For Replacement</span></p>
-                <p>Asbestos roofing requires professional assessment and replacement. Please contact us for a replacement quote.</p>
-            `;
-        } else if (subType && section && overallCondition && 
-                   roofData[roofType].subTypes[subType] && 
-                   roofData[roofType].subTypes[subType].sections[section] && 
-                   roofData[roofType].subTypes[subType].sections[section].overallConditions[overallCondition]) {
-            
-            const subTypeData = roofData[roofType].subTypes[subType];
-            const sectionData = subTypeData.sections[section];
-            const conditionData = sectionData.overallConditions[overallCondition];
-            
-            reportHTML += `
-                <p><strong>Sub Type:</strong> ${subTypeData.name}</p>
-                <h4>${sectionData.title}</h4>
-                <p><strong>Overall Condition:</strong> <span class="${getConditionClass(overallCondition)}">${conditionData.title}</span></p>
-                <p>${conditionData.description}</p>
-            `;
-        }
-        
-        reportHTML += '</div>';
-        
-        // 2. Specific Concerns (if any selected) - using exact text from txt file
-        const specificConcerns = formData.getAll('specificConcerns');
-        if (specificConcerns.length > 0 && subType && section && 
-            roofData[roofType].subTypes[subType] && 
-            roofData[roofType].subTypes[subType].sections[section]) {
-            reportHTML += `
-                <div class="report-section">
-                    <h3>2. Specific Concerns Isolated</h3>
-            `;
-            
-            const sectionData = roofData[roofType].subTypes[subType].sections[section];
-            specificConcerns.forEach(concernKey => {
-                if (sectionData.specificConcerns && sectionData.specificConcerns[concernKey]) {
-                    const concern = sectionData.specificConcerns[concernKey];
-                    reportHTML += `
-                        <div class="concern-report">
-                            <h4>${concern.title}</h4>
-                            <p>${concern.description}</p>
-                        </div>
-                    `;
-                }
-            });
-            
-            reportHTML += '</div>';
-        }
-    }
-    
-    // 3. Additional Roofing Items
-    const additionalItems = formData.getAll('additionalItems');
-    if (additionalItems.length > 0) {
-        reportHTML += `
-            <div class="report-section">
-                <h3>3. Additional Roofing Items</h3>
-        `;
-        
-        additionalItems.forEach(item => {
-            const itemName = item.replace('-', ' ').toUpperCase();
-            const qty = formData.get(`${item}-qty`);
-            const comments = formData.get(`${item}-comments`);
-            const subject = item === 'other' ? formData.get('other-subject') : '';
-            
-            reportHTML += `
-                <div class="item-report">
-                    <h4>${subject ? subject : itemName}</h4>
-                    ${qty ? `<p><strong>Quantity:</strong> ${qty}</p>` : ''}
-                    ${comments ? `<p><strong>Comments:</strong> ${comments}</p>` : ''}
-                </div>
-            `;
-        });
-        
-        reportHTML += '</div>';
-    }
-    
-    return reportHTML;
-}
-
-// Event listeners
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(form);
-    const reportHTML = generateReport(formData);
-    
-    reportContent.innerHTML = reportHTML;
-    reportOutput.style.display = 'block';
-    reportOutput.scrollIntoView({ behavior: 'smooth' });
-});
-
-clearFormBtn.addEventListener('click', function() {
-    form.reset();
-    reportOutput.style.display = 'none';
-    
-    // Hide all sections
-    document.getElementById('subTypeGroup').style.display = 'none';
-    document.getElementById('asbestosMessage').style.display = 'none';
-    document.getElementById('sectionGroup').style.display = 'none';
-    document.getElementById('overallConditionGroup').style.display = 'none';
-    document.getElementById('specificConcernsGroup').style.display = 'none';
-    document.getElementById('conditionPhotoGroup').style.display = 'none';
-    document.getElementById('concernDetailsSection').style.display = 'none';
-    document.getElementById('additionalItemsSection').style.display = 'none';
-    
-    // Hide all additional item details
-    document.querySelectorAll('.item-details').forEach(details => {
-        details.style.display = 'none';
-    });
-});
-
 printReportBtn.addEventListener('click', function() {
     window.print();
 });
@@ -1807,7 +1799,56 @@ function initializeRoofReportApp() {
     setupFormSubmission();
     setupSectionRestoration();
     setupSpoutingDownpipeDropdowns();
-    setupHealthSafetyDropdown();
+    setupGutterConcernsSection();
+}
+
+// Setup Gutter Concerns section interactivity
+function setupGutterConcernsSection() {
+    // Show/hide gutter details when Yes/No is selected
+    const gutterIssueYes = document.getElementById('gutterIssueYes');
+    const gutterIssueNo = document.getElementById('gutterIssueNo');
+    const gutterDetails = document.getElementById('gutterDetails');
+
+    if (gutterIssueYes) {
+        gutterIssueYes.addEventListener('change', function() {
+            if (this.checked) gutterDetails.style.display = 'block';
+        });
+    }
+    if (gutterIssueNo) {
+        gutterIssueNo.addEventListener('change', function() {
+            if (this.checked) gutterDetails.style.display = 'none';
+        });
+    }
+
+    // Wire each damage type checkbox to show/hide its detail fields
+    const damageCheckboxIds = [
+        'gutterDamage_leakingJoins',
+        'gutterDamage_alignmentIssues',
+        'gutterDamage_rustHoles',
+        'gutterDamage_crackedBroken',
+        'gutterDamage_missingSections',
+        'gutterDamage_brittle',
+        'gutterDamage_insufficientDownpipes'
+    ];
+
+    damageCheckboxIds.forEach(id => {
+        const checkbox = document.getElementById(id);
+        const details = document.getElementById(`${id}_details`);
+        if (checkbox && details) {
+            checkbox.addEventListener('change', function() {
+                details.style.display = this.checked ? 'block' : 'none';
+                if (!this.checked) {
+                    details.querySelectorAll('input, textarea').forEach(inp => {
+                        if (inp.type === 'radio' || inp.type === 'checkbox') {
+                            inp.checked = false;
+                        } else {
+                            inp.value = '';
+                        }
+                    });
+                }
+            });
+        }
+    });
 }
 
 // Setup roof type selection handler
@@ -1857,20 +1898,8 @@ function setupRoofTypeHandler() {
             // Show sections container
             sectionsContainer.style.display = 'block';
 
-            // Reset removed sections when changing roof types
-            removedSections = [];
-            updateRestoreOptions();
-
-            // Show only relevant sections for this roof type/subtype
-            showRelevantSections(selectedRoofType, selectedSubType);
-
-            // Populate section dropdowns
-            populateAllSectionDropdowns();
-
-            // Populate spouting type options based on roof type
-            if (window.populateSpoutingTypeOptions) {
-                window.populateSpoutingTypeOptions();
-            }
+            // Populate the single specific concerns section
+            populateSpecificConcernsSection(selectedRoofType, selectedSubType);
         } else {
             sectionsContainer.style.display = 'none';
         }
@@ -2427,83 +2456,230 @@ function populateSectionDropdowns(sectionKey, section) {
 }
 
 // Populate the Specific Concerns section with all concerns from all sections
+// Resolve which section's specificConcerns should be shown/read for a given roof type + subtype.
+// Mirrors the subtype fallback used when a subtype has no section data of its own (e.g. clay-tile -> concrete-tile/atlas).
+function resolvePrimaryConcernsSection(roofType, subType) {
+    const roofTypeData = roofData[roofType];
+    if (!roofTypeData || !roofTypeData.subTypes) return null;
+
+    let sections = roofTypeData.subTypes[subType]?.sections || {};
+
+    if (Object.keys(sections).length === 0) {
+        if (roofType === 'profiled-metal') {
+            sections = roofData['profiled-metal'].subTypes['corrugated-metal'].sections;
+        } else if (roofType === 'compressed-metal-tile') {
+            sections = roofData['compressed-metal-tile'].subTypes['decramastic'].sections;
+        } else if (roofType === 'concrete-tile' || roofType === 'clay-tile') {
+            sections = roofData['concrete-tile'].subTypes['atlas'].sections;
+        }
+    }
+
+    const sectionKey = Object.keys(sections)[0];
+    if (!sectionKey) return null;
+    const section = sections[sectionKey];
+    if (!section.specificConcerns) return null;
+
+    return { sectionKey, section };
+}
+
 function populateSpecificConcernsSection(roofType, subType) {
-    const specificConcernsSection = document.getElementById('specificConcernsSection');
     const allSpecificConcernsContainer = document.getElementById('allSpecificConcerns');
+    if (!allSpecificConcernsContainer) return;
 
-    if (!specificConcernsSection || !allSpecificConcernsContainer) return;
-
-    // Map roof types to their data structure equivalents
-    let dataRoofType = roofType;
-    if (roofType === 'concrete-tile' || roofType === 'clay-tile') {
-        dataRoofType = 'tile';
-    }
-
-    // Get the roof type data
-    const roofTypeData = roofData[dataRoofType];
-    if (!roofTypeData || !roofTypeData.subTypes[subType]) {
-        specificConcernsSection.style.display = 'none';
-        return;
-    }
-
-    // Get all sections for this subtype
-    const sections = roofTypeData.subTypes[subType].sections;
-
-    // Clear existing concerns
     allSpecificConcernsContainer.innerHTML = '';
-
-    // Collect all specific concerns from all sections
     let concernsCount = 0;
 
-    Object.keys(sections).forEach(sectionKey => {
-        const section = sections[sectionKey];
+    const resolved = resolvePrimaryConcernsSection(roofType, subType);
+    if (!resolved) return;
+    const { sectionKey: firstSectionKey, section: primarySection } = resolved;
 
-        if (section.specificConcerns && Object.keys(section.specificConcerns).length > 0) {
-            // Add section heading
-            const sectionHeading = document.createElement('div');
-            sectionHeading.style.marginTop = concernsCount > 0 ? '20px' : '0';
-            sectionHeading.style.marginBottom = '10px';
-            sectionHeading.innerHTML = `<strong>${section.title}</strong>`;
-            allSpecificConcernsContainer.appendChild(sectionHeading);
+    const singleSectionEntries = { [firstSectionKey]: primarySection };
 
-            // Add concerns for this section
-            Object.keys(section.specificConcerns).forEach(concernKey => {
-                const concern = section.specificConcerns[concernKey];
+    Object.keys(singleSectionEntries).forEach(sectionKey => {
+        const section = singleSectionEntries[sectionKey];
+        if (!section.specificConcerns || Object.keys(section.specificConcerns).length === 0) return;
 
-                const concernItem = document.createElement('div');
-                concernItem.className = 'concern-item';
-                concernItem.style.marginBottom = '8px';
+        Object.keys(section.specificConcerns).forEach(concernKey => {
+            const concern = section.specificConcerns[concernKey];
+            const uniqueId = `sc_${sectionKey}_${concernKey}`;
+            const namePrefix = `sc_${sectionKey}_${concernKey}`;
 
-                const label = document.createElement('label');
-                label.style.display = 'flex';
-                label.style.alignItems = 'flex-start';
-                label.style.cursor = 'pointer';
+            const concernItem = document.createElement('div');
+            concernItem.className = 'concern-item';
 
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.name = `specificConcern_${sectionKey}_${concernKey}`;
-                checkbox.value = concernKey;
-                checkbox.id = `specificConcern_${sectionKey}_${concernKey}`;
-                checkbox.style.marginRight = '8px';
-                checkbox.style.marginTop = '2px';
+            const label = document.createElement('label');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = uniqueId;
+            checkbox.value = concernKey;
+            checkbox.id = uniqueId;
 
-                label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(concern.title));
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(concern.title));
+            concernItem.appendChild(label);
 
-                concernItem.appendChild(label);
-                allSpecificConcernsContainer.appendChild(concernItem);
+            // Detail fields container (shown when checkbox is checked)
+            const detailsContainer = document.createElement('div');
+            detailsContainer.className = 'concern-details';
+            detailsContainer.id = `${uniqueId}_details`;
+            detailsContainer.style.display = 'none';
 
-                concernsCount++;
+            if (concern.fields && concern.fields.length > 0) {
+                concern.fields.forEach(field => {
+                    // Special handling for flashing cascade select — repeatable, so a technician can
+                    // log more than one distinct flashing issue (e.g. Valley + Barge) under one concern.
+                    if (field.type === 'flashing-select') {
+                        const entriesContainer = document.createElement('div');
+                        entriesContainer.className = 'flashing-entries';
+
+                        const countInput = document.createElement('input');
+                        countInput.type = 'hidden';
+                        countInput.name = `${namePrefix}_${field.name}_count`;
+
+                        let nextIndex = 0;
+
+                        const addFlashingEntry = () => {
+                            const entryIndex = nextIndex++;
+                            countInput.value = nextIndex;
+                            const entryPrefix = `${namePrefix}_flash${entryIndex}`;
+
+                            const entryCard = document.createElement('div');
+                            entryCard.className = 'flashing-entry-card';
+
+                            const entryHeader = document.createElement('div');
+                            entryHeader.className = 'flashing-entry-header';
+                            const lbl = document.createElement('label');
+                            lbl.textContent = entryIndex === 0 ? field.label : `${field.label} (additional)`;
+                            entryHeader.appendChild(lbl);
+                            if (entryIndex > 0) {
+                                const removeBtn = document.createElement('button');
+                                removeBtn.type = 'button';
+                                removeBtn.className = 'remove-flashing-entry';
+                                removeBtn.textContent = '×';
+                                removeBtn.title = 'Remove this flashing entry';
+                                removeBtn.addEventListener('click', () => entryCard.remove());
+                                entryHeader.appendChild(removeBtn);
+                            }
+
+                            const select = document.createElement('select');
+                            select.name = `${entryPrefix}_${field.name}`;
+                            const defaultOpt = document.createElement('option');
+                            defaultOpt.value = '';
+                            defaultOpt.textContent = 'Select flashing type...';
+                            select.appendChild(defaultOpt);
+                            (field.options || []).forEach(opt => {
+                                const option = document.createElement('option');
+                                option.value = opt.value;
+                                option.textContent = opt.label;
+                                select.appendChild(option);
+                            });
+
+                            const subContainer = document.createElement('div');
+                            subContainer.className = 'flashing-sub-fields';
+                            select.addEventListener('change', function() {
+                                if (this.value && concern.flashingFields && concern.flashingFields[this.value]) {
+                                    renderFlashingSubFields(subContainer, concern.flashingFields[this.value], `${entryPrefix}_${this.value}`);
+                                    subContainer.style.display = 'block';
+                                } else {
+                                    subContainer.innerHTML = '';
+                                    subContainer.style.display = 'none';
+                                }
+                            });
+
+                            entryCard.appendChild(entryHeader);
+                            entryCard.appendChild(select);
+                            entryCard.appendChild(subContainer);
+                            entriesContainer.appendChild(entryCard);
+                        };
+
+                        addFlashingEntry();
+
+                        const addMoreBtn = document.createElement('button');
+                        addMoreBtn.type = 'button';
+                        addMoreBtn.className = 'add-flashing-btn';
+                        addMoreBtn.textContent = '+ Add another flashing issue';
+                        addMoreBtn.addEventListener('click', addFlashingEntry);
+
+                        detailsContainer.appendChild(entriesContainer);
+                        detailsContainer.appendChild(countInput);
+                        detailsContainer.appendChild(addMoreBtn);
+                        return;
+                    }
+
+                    const fieldGroup = document.createElement('div');
+                    fieldGroup.className = 'field-group';
+
+                    if (field.dependsOn) {
+                        fieldGroup.style.display = 'none';
+                        fieldGroup.dataset.dependsOn = field.dependsOn;
+                        if (field.showWhen) fieldGroup.dataset.showWhen = field.showWhen;
+                    }
+
+                    if (field.type === 'checkbox') {
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'checkbox-wrapper';
+                        const input = renderFieldInput(field, namePrefix);
+                        const lbl = document.createElement('label');
+                        lbl.htmlFor = `${namePrefix}_${field.name}`;
+                        lbl.textContent = field.label;
+                        wrapper.appendChild(input);
+                        wrapper.appendChild(lbl);
+                        fieldGroup.appendChild(wrapper);
+                        input.addEventListener('change', function() {
+                            detailsContainer.querySelectorAll(`[data-depends-on="${field.name}"]`).forEach(dep => {
+                                dep.style.display = this.checked ? 'block' : 'none';
+                            });
+                        });
+                    } else {
+                        const lbl = document.createElement('label');
+                        lbl.textContent = field.label + (field.required ? ' *' : '');
+                        const input = renderFieldInput(field, namePrefix);
+                        if (field.type === 'yesno') {
+                            input.querySelectorAll('input[type="radio"]').forEach(radio => {
+                                radio.addEventListener('change', function() {
+                                    detailsContainer.querySelectorAll(`[data-depends-on="${field.name}"]`).forEach(dep => {
+                                        const showWhen = dep.dataset.showWhen;
+                                        dep.style.display = (!showWhen || showWhen === this.value) ? 'block' : 'none';
+                                    });
+                                });
+                            });
+                        }
+                        if (field.type === 'select') {
+                            input.addEventListener('change', function() {
+                                detailsContainer.querySelectorAll(`[data-depends-on="${field.name}"]`).forEach(dep => {
+                                    const showWhen = dep.dataset.showWhen;
+                                    dep.style.display = (!showWhen || showWhen === this.value) ? 'block' : 'none';
+                                });
+                            });
+                        }
+                        fieldGroup.appendChild(lbl);
+                        fieldGroup.appendChild(input);
+                    }
+
+                    detailsContainer.appendChild(fieldGroup);
+                });
+            }
+
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    detailsContainer.style.display = 'block';
+                } else {
+                    detailsContainer.style.display = 'none';
+                    detailsContainer.querySelectorAll('input, textarea').forEach(inp => {
+                        if (inp.type === 'checkbox' || inp.type === 'radio') {
+                            inp.checked = false;
+                        } else {
+                            inp.value = '';
+                        }
+                    });
+                }
             });
-        }
-    });
 
-    // Show the specific concerns section
-    if (concernsCount > 0) {
-        specificConcernsSection.style.display = 'block';
-    } else {
-        specificConcernsSection.style.display = 'none';
-    }
+            concernItem.appendChild(detailsContainer);
+            allSpecificConcernsContainer.appendChild(concernItem);
+            concernsCount++;
+        });
+    });
 }
 
 // Setup form submission
@@ -2517,6 +2693,10 @@ function setupFormSubmission() {
         generateReport();
         reportOutput.style.display = 'block';
         reportOutput.scrollIntoView({ behavior: 'smooth' });
+
+        if (typeof handleDraftSubmit === 'function') {
+            handleDraftSubmit(form);
+        }
     });
     
     // Clear form functionality
@@ -2525,33 +2705,18 @@ function setupFormSubmission() {
         clearBtn.addEventListener('click', function() {
             form.reset();
             reportOutput.style.display = 'none';
-            
-            // Hide all sections initially
-            document.querySelectorAll('.section-card').forEach(section => {
-                section.style.display = 'none';
-                section.setAttribute('data-disabled', 'false');
-            });
-            
-            // Reset applicable toggles
-            document.querySelectorAll('.applicable-toggle input[type="checkbox"]').forEach(toggle => {
-                toggle.checked = true;
-            });
-            
-            // Hide sub-type group and sections container
+
+            // Hide sub-type group, asbestos message, and sections container
             document.getElementById('subTypeGroup').style.display = 'none';
             document.getElementById('asbestosMessage').style.display = 'none';
             document.getElementById('roofSectionsContainer').style.display = 'none';
-            
+
+            // Clear specific concerns
+            const allSpecificConcerns = document.getElementById('allSpecificConcerns');
+            if (allSpecificConcerns) allSpecificConcerns.innerHTML = '';
+
             // Clear additional items
             clearAllAdditionalItems();
-            
-            // Reset removed sections tracking
-            removedSections = [];
-            updateRestoreOptions();
-            
-            // Reset spouting and downpipe dropdowns
-            document.getElementById('spoutingSubTypeGroup').style.display = 'none';
-            document.getElementById('downpipeSubTypeGroup').style.display = 'none';
         });
     }
 }
@@ -2560,71 +2725,350 @@ function setupFormSubmission() {
 function generateReport() {
     const formData = new FormData(document.getElementById('roofReportForm'));
     const reportContent = document.getElementById('reportContent');
-    
+
+    // Drop object URLs from any previous render before creating a new batch
+    reportObjectUrls.forEach(url => URL.revokeObjectURL(url));
+    reportObjectUrls = [];
+
+    const concerns = collectSelectedConcerns(formData);
+    if (typeof applyNarrativeOverrides === 'function') {
+        applyNarrativeOverrides(concerns);
+    }
+
     let reportHTML = '<div class="report-sections">';
-    
-    // Property Information
-    reportHTML += generatePropertySection(formData);
-    
-    // Roof Type Information
-    reportHTML += generateRoofTypeSection(formData);
-    
-    // Section Reports
-    reportHTML += generateSectionReports(formData);
-    
-    // Additional Items
+    reportHTML += generateCoverSection(formData);
+    reportHTML += generateCauseForConcernSummary(concerns);
+    reportHTML += generateRoofDetailsTable(formData);
+    reportHTML += generateCauseForConcernDetails(concerns);
     reportHTML += generateAdditionalItemsSection(formData);
-    
     reportHTML += '</div>';
-    
+
     reportContent.innerHTML = reportHTML;
 }
 
-// Generate property information section
-function generatePropertySection(formData) {
-    const pitch = formData.get('roofPitch');
-    const levels = formData.get('levels');
-    const geometry = formData.get('geometry');
-    
+// Turn a slug/word value (e.g. "dry-ridge") into a display label ("Dry Ridge")
+function slugToLabel(value) {
+    if (!value) return '';
+    const label = value.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    return label === 'Pvc' ? 'PVC' : label;
+}
+
+const NUMBER_WORDS = { '1': 'One', '2': 'Two', '3': 'Three', '4': 'Four', '5': 'Five' };
+function numberWord(value) {
+    return NUMBER_WORDS[value] || value || '';
+}
+
+const MONTH_ABBR = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function formatReportDate(date) {
+    return `${date.getDate()} ${MONTH_ABBR[date.getMonth()]} ${String(date.getFullYear()).slice(-2)}`;
+}
+
+// Object URLs created for report photo previews (specific-concern photos, gutter photos, cover photo).
+// Revoked and reset at the start of every generateReport() call so repeated submits don't leak memory.
+let reportObjectUrls = [];
+
+// Endeavour-branded letterhead + title + report meta (date/ref/address/prepared for) + cover photo
+function generateCoverSection(formData) {
+    const reportDate = formatReportDate(new Date());
+    const reportRef = formData.get('reportRef') || `#${Date.now().toString().slice(-10)}`;
+    const address = formData.get('propertyAddress') || 'Not specified';
+    const preparedFor = formData.get('preparedFor');
+
+    const coverPhotoFile = formData.getAll('additionalImages').find(f => f instanceof File && f.size > 0);
+    let coverPhotoHtml = '';
+    if (coverPhotoFile) {
+        const url = URL.createObjectURL(coverPhotoFile);
+        reportObjectUrls.push(url);
+        coverPhotoHtml = `<img class="cover-photo" src="${url}" alt="Property photo">`;
+    }
+
     return `
-        <div class="report-section">
-            <h3>Property Information</h3>
-            <p><strong>Roof Pitch:</strong> ${pitch}°</p>
-            <p><strong>Number of Levels:</strong> ${levels}</p>
-            <p><strong>Roof Geometry:</strong> ${geometry?.replace('-', ' ') || 'Not specified'}</p>
+        <div class="report-letterhead">
+            <span class="report-page-badge">Pg. 1</span>
+            <span class="report-letterhead-label">Roof Inspection</span>
+            <span class="eg-logo">
+                <span class="eg-logo-squares"><span></span><span></span><span></span></span>
+                <span class="eg-logo-word">ENDEAVOUR</span>
+            </span>
+        </div>
+        <h1 class="cover-title">Roof Inspection</h1>
+        <div class="cover-meta">
+            <div class="cover-meta-text">
+                <p><strong>Report Date:</strong> ${reportDate}</p>
+                <p><strong>Report Ref:</strong> ${reportRef}</p>
+                <p><strong>Address:</strong> ${address}</p>
+                ${preparedFor ? `<p><strong>Prepared For:</strong> ${preparedFor}</p>` : ''}
+            </div>
+            ${coverPhotoHtml}
         </div>
     `;
 }
 
-// Generate roof type section
-function generateRoofTypeSection(formData) {
+// "Cause for Concern Summary" — striped list of every checked concern's title, plus the standard intro copy
+function generateCauseForConcernSummary(concerns) {
+    const introHtml = `
+        <p>This report contains information in regards to your roof, guttering systems and any other miscellaneous conditions that may or may not be affecting your roof line's purpose.</p>
+        <p>We have simplified our layout and personalised it for a very direct understanding for our valued customers. If something doesn't look right, or you require further information regarding this report.</p>
+        <p>Please feel free to reply back to this email stating your query and we will look into it right away.</p>
+    `;
+
+    const summaryBody = concerns.length > 0
+        ? `
+            <p>During inspection we have identified the following cause's for concern.</p>
+            <div class="cfc-summary-list">${concerns.map(c => `<div class="cfc-summary-row">${c.title}</div>`).join('')}</div>
+        `
+        : `<p>During inspection our technician did not identify any causes for concern.</p>`;
+
+    return `
+        <div class="report-section">
+            <h2 class="section-heading">Cause for Concern Summary</h2>
+            ${summaryBody}
+            ${introHtml}
+        </div>
+    `;
+}
+
+// "Roof Details" table — direct label/value mapping from the top-level roof detail fields
+function generateRoofDetailsTable(formData) {
     const roofType = formData.get('roofType');
     const subType = formData.get('subType');
-    
     if (!roofType) return '';
-    
-    const roofTypeName = roofData[roofType]?.name || roofType;
-    const subTypeName = roofData[roofType]?.subTypes[subType]?.name || subType;
-    
+
+    const roofTypeName = roofData[roofType]?.name || slugToLabel(roofType);
+    const overallCondition = formData.get('overallCondition');
+
+    const rows = [['Roof Type', roofTypeName]];
+    if (subType) {
+        rows.push(['Tile Type', roofData[roofType]?.subTypes?.[subType]?.name || slugToLabel(subType)]);
+    }
+    rows.push(
+        ['Roof Geometry', formData.get('geometry') || 'Not specified'],
+        ['Roof Levels', numberWord(formData.get('levels')) || 'N/A'],
+        ['Roof Pitch', slugToLabel(formData.get('roofPitch')) || 'N/A'],
+        ['Ridge Type', slugToLabel(formData.get('ridgeType')) || 'N/A'],
+        ['Spouting Type', slugToLabel(formData.get('spoutingTypeMain')) || 'N/A'],
+        ['Nail Type', slugToLabel(formData.get('nailType')) || 'N/A'],
+        ['Overall Condition of Roof', overallCondition ? `<strong>${slugToLabel(overallCondition)}</strong>` : 'N/A']
+    );
+
+    const rowsHtml = rows.map(([label, value]) => `<tr><th>${label}</th><td>${value}</td></tr>`).join('');
+
     return `
         <div class="report-section">
-            <h3>Roof Type</h3>
-            <p><strong>Primary Type:</strong> ${roofTypeName}</p>
-            ${subType ? `<p><strong>Sub Type:</strong> ${subTypeName}</p>` : ''}
+            <table class="roof-details-table">
+                <caption>Roof Details</caption>
+                <tbody>${rowsHtml}</tbody>
+            </table>
         </div>
     `;
 }
 
-// Generate section reports
-function generateSectionReports(formData) {
-    // This would contain the logic to generate detailed reports for each section
-    // For now, returning a placeholder
-    return `
-        <div class="report-section">
-            <h3>Detailed Section Reports</h3>
-            <p>Detailed section reports will be generated based on the selected conditions and concerns.</p>
+// Render entered values for a fields[] array (from roofData or gutterConcernData) as labeled report lines.
+// flashingFieldsMap is the owning concern's `flashingFields` map (only relevant for 'flashing-select' fields,
+// which live on the concern rather than the field itself).
+function formatFieldValues(fields, formData, namePrefix, flashingFieldsMap) {
+    if (!fields || fields.length === 0) return '';
+
+    return fields.map(field => {
+        const fieldName = namePrefix ? `${namePrefix}_${field.name}` : field.name;
+
+        if (field.type === 'file') {
+            const count = formData.getAll(fieldName).filter(f => f instanceof File && f.size > 0).length;
+            return count > 0 ? `<p><strong>${field.label}:</strong> ${count} photo(s) attached</p>` : '';
+        }
+
+        if (field.type === 'flashing-select') {
+            // Repeatable: rendered as entries named `${namePrefix}_flash{N}_{field.name}`, with a
+            // `${fieldName}_count` hidden input tracking how many entries were added (see
+            // populateSpecificConcernsSection). Sub-field prefix is entryPrefix + chosenType (not
+            // fieldName) — matches renderFlashingSubFields' naming.
+            const entryCount = parseInt(formData.get(`${fieldName}_count`), 10) || 0;
+            const rows = [];
+            for (let i = 0; i < entryCount; i++) {
+                const entryPrefix = `${namePrefix}_flash${i}`;
+                const chosenType = formData.get(`${entryPrefix}_${field.name}`);
+                if (!chosenType) continue;
+                const chosenLabel = field.options?.find(o => o.value === chosenType)?.label || slugToLabel(chosenType);
+                const subFields = flashingFieldsMap?.[chosenType];
+                const subFieldsHtml = formatFieldValues(subFields, formData, `${entryPrefix}_${chosenType}`);
+                rows.push(`<p><strong>${field.label}:</strong> ${chosenLabel}</p>${subFieldsHtml}`);
+            }
+            return rows.join('');
+        }
+
+        const rawValue = formData.get(fieldName);
+
+        if (field.type === 'checkbox') {
+            return rawValue ? `<p><strong>${field.label}:</strong> Yes</p>` : '';
+        }
+
+        if (rawValue === null || rawValue === '') return '';
+
+        if (field.type === 'yesno') {
+            return `<p><strong>${field.label}:</strong> ${rawValue === 'yes' ? 'Yes' : 'No'}</p>`;
+        }
+
+        if (field.type === 'select') {
+            const opt = field.options?.find(o => (typeof o === 'object' ? o.value : o) === rawValue);
+            const label = opt ? (typeof opt === 'object' ? opt.label : opt) : slugToLabel(rawValue);
+            return `<p><strong>${field.label}:</strong> ${label}</p>`;
+        }
+
+        return `<p><strong>${field.label}:</strong> ${rawValue}</p>`;
+    }).join('');
+}
+
+// Gutter concern boilerplate — mirrors the tone of roofData's specificConcerns, but not sourced
+// from "Roof report re structure .txt" since these gutter checks were added after that doc was written.
+const gutterConcernData = {
+    leakingJoins: {
+        title: 'Leaking Joins',
+        description: 'We have identified leaking joins within the guttering system. This is allowing water to escape before it reaches the downpipes and is a potential source of water damage to the fascia and building envelope. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
+        fields: [
+            { name: 'gutterLeakingJoins_photos', type: 'file', label: 'Photos', multiple: true },
+            { name: 'gutterLeakingJoins_count', type: 'number', label: 'Number of leaking joins' },
+            { name: 'gutterLeakingJoins_recommendations', type: 'textarea', label: 'Further Recommendations' },
+            { name: 'gutterLeakingJoins_costEffective', type: 'yesno', label: 'Cost Effective Solution?' }
+        ]
+    },
+    alignmentIssues: {
+        title: 'Alignment Issues',
+        description: 'We have identified alignment issues with the guttering system. Misaligned guttering can hold water and disrupt the intended fall, reducing drainage efficiency. We recommend having this remedied to restore correct alignment and effective water flow.',
+        fields: [
+            { name: 'gutterAlignment_photos', type: 'file', label: 'Photos', multiple: true },
+            { name: 'gutterAlignment_description', type: 'textarea', label: 'Alignment Issue Description' },
+            { name: 'gutterAlignment_costEffective', type: 'yesno', label: 'Cost Effective Solution?' }
+        ]
+    },
+    rustHoles: {
+        title: 'Rust Holes Present',
+        description: 'We have identified rust holes present in the guttering system. This is a potential water entry/exit point and will continue to deteriorate over time. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
+        fields: [
+            { name: 'gutterRust_photos', type: 'file', label: 'Photos', multiple: true },
+            { name: 'gutterRust_holeCount', type: 'number', label: 'Number of holes' },
+            { name: 'gutterRust_patchPossible', type: 'yesno', label: 'Patch Repair Possible?' },
+            { name: 'gutterRust_replacementLengths', type: 'number', label: 'Lengths needing replacement (m)' },
+            { name: 'gutterRust_costEffective', type: 'yesno', label: 'Cost Effective Solution?' }
+        ]
+    },
+    crackedBroken: {
+        title: 'Cracked or Broken Components',
+        description: 'We have identified cracked or broken components within the guttering system. This is affecting the integrity of the rainwater collection system. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
+        fields: [
+            { name: 'gutterCracked_photos', type: 'file', label: 'Photos', multiple: true },
+            { name: 'gutterCracked_count', type: 'number', label: 'Number of components broken' },
+            { name: 'gutterCracked_list', type: 'textarea', label: 'List of components broken' },
+            { name: 'gutterCracked_costEffective', type: 'yesno', label: 'Cost Effective Solution?' }
+        ]
+    },
+    missingSections: {
+        title: 'Missing Sections',
+        description: 'We have identified missing sections of guttering. This is a gap in the rainwater collection system and is likely allowing water to discharge directly onto the building or foundations. We recommend a repair to be carried out for this concern. Please advise if you would like to pursue a recommendation for this repair.',
+        fields: [
+            { name: 'gutterMissing_photos', type: 'file', label: 'Photos', multiple: true },
+            { name: 'gutterMissing_details', type: 'textarea', label: 'Missing Sections Details' },
+            { name: 'gutterMissing_costEffective', type: 'yesno', label: 'Cost Effective Solution?' }
+        ]
+    },
+    brittle: {
+        title: 'Brittle / General Wear and Tear',
+        description: 'We have identified brittle guttering showing general wear and tear. This indicates the guttering material has begun to degrade and may become prone to further cracking or failure. Please advise if you would like to pursue a recommendation for this repair.',
+        fields: [
+            { name: 'gutterBrittle_photos', type: 'file', label: 'Photos', multiple: true },
+            { name: 'gutterBrittle_specifics', type: 'textarea', label: 'Specifics' },
+            { name: 'gutterBrittle_costEffective', type: 'yesno', label: 'Cost Effective Solution?' }
+        ]
+    },
+    insufficientDownpipes: {
+        title: 'Insufficient Amount of Downpipes',
+        description: 'We have identified an insufficient number of downpipes for the guttering system installed. This can lead to guttering overflow during heavy rainfall and place additional stress on the rainwater system. We recommend additional downpipes be installed to ensure adequate drainage.',
+        fields: [
+            { name: 'gutterDownpipes_photos', type: 'file', label: 'Photos', multiple: true },
+            { name: 'gutterDownpipes_needed', type: 'number', label: 'Amount of downpipes needed to be installed' },
+            { name: 'gutterDownpipes_compliant', type: 'yesno', label: 'Can suggested downpipes drain into compliant outlets or T-junction into existing downpipes?' },
+            { name: 'gutterDownpipes_costEffective', type: 'yesno', label: 'Cost Effective Solution?' }
+        ]
+    }
+};
+
+// Build a normalized { title, description, comments, detailsHtml, photos } entry for one checked concern.
+// Pulls the 'comments' field out separately (Damage/Comments split, matching roofreportv1.pdf), collects
+// attached photos as File objects, and routes everything else through formatFieldValues() as Details.
+function buildConcernEntry(concern, formData, namePrefix, flashingFieldsMap, overrideKey) {
+    const allFields = concern.fields || [];
+
+    const commentsField = allFields.find(f => f.name === 'comments');
+    const comments = commentsField ? formData.get(namePrefix ? `${namePrefix}_comments` : 'comments') : '';
+
+    const photos = allFields
+        .filter(f => f.type === 'file')
+        .flatMap(f => {
+            const fieldName = namePrefix ? `${namePrefix}_${f.name}` : f.name;
+            return formData.getAll(fieldName).filter(file => file instanceof File && file.size > 0);
+        });
+
+    const detailFields = allFields.filter(f => f.type !== 'file' && f.name !== 'comments');
+    const detailsHtml = formatFieldValues(detailFields, formData, namePrefix, flashingFieldsMap);
+
+    // overrideKey identifies this concern instance for narrative-text editing (see report-sync.js);
+    // falls back to namePrefix since that's already unique per tile/sheet concern.
+    return { title: concern.title, description: concern.description, comments, detailsHtml, photos, overrideKey: overrideKey || namePrefix };
+}
+
+// Collect every checked concern (tile/sheet specific concerns + gutter concerns) into one normalized list,
+// shared by both the "Cause for Concern Summary" list and the detailed cause-for-concern blocks below it.
+function collectSelectedConcerns(formData) {
+    const concerns = [];
+
+    const roofType = formData.get('roofType');
+    const subType = formData.get('subType');
+    const resolved = resolvePrimaryConcernsSection(roofType, subType);
+    if (resolved) {
+        const { sectionKey, section } = resolved;
+        Object.keys(section.specificConcerns).forEach(concernKey => {
+            const namePrefix = `sc_${sectionKey}_${concernKey}`;
+            if (!formData.get(namePrefix)) return;
+            const concern = section.specificConcerns[concernKey];
+            concerns.push(buildConcernEntry(concern, formData, namePrefix, concern.flashingFields));
+        });
+    }
+
+    if (formData.get('gutterIssue') === 'yes') {
+        Object.keys(gutterConcernData).forEach(concernKey => {
+            if (!formData.get(`gutterDamage_${concernKey}`)) return;
+            concerns.push(buildConcernEntry(gutterConcernData[concernKey], formData, '', undefined, `gutter_${concernKey}`));
+        });
+    }
+
+    return concerns;
+}
+
+// Render a dense photo mosaic from an array of File objects, matching roofreportv1.pdf's photo grid
+function renderPhotoGrid(files) {
+    if (!files || files.length === 0) return '';
+    const tiles = files.map(file => {
+        const url = URL.createObjectURL(file);
+        reportObjectUrls.push(url);
+        return `<img src="${url}" alt="${file.name}">`;
+    }).join('');
+    return `<div class="photo-grid">${tiles}</div>`;
+}
+
+// "Cause for Concern: {title}" blocks — Damage (boilerplate) / Comments (if entered) / Details / photo grid
+function generateCauseForConcernDetails(concerns) {
+    if (concerns.length === 0) return '';
+
+    const blocks = concerns.map(c => `
+        <div class="cause-block">
+            <h4 class="cause-title">Cause for Concern: <span>${c.title}</span></h4>
+            <p><strong>Damage:</strong> <span class="narrative-editable" contenteditable="true" data-override-key="${c.overrideKey}::description">${c.description}</span></p>
+            ${c.comments ? `<p><strong>Comments:</strong> <span class="narrative-editable" contenteditable="true" data-override-key="${c.overrideKey}::comments">${c.comments}</span></p>` : ''}
+            ${c.detailsHtml}
+            ${renderPhotoGrid(c.photos)}
         </div>
-    `;
+    `).join('');
+
+    return `<div class="report-section">${blocks}</div>`;
 }
 
 // Generate additional items section
@@ -2676,20 +3120,4 @@ function generateAdditionalItemsSection(formData) {
     
     html += '</div>';
     return html;
-}
-
-// Setup Health and Safety dropdown with conditional "Other" text field
-function setupHealthSafetyDropdown() {
-    const healthSafetySelect = document.getElementById('healthSafety');
-    const healthSafetyOtherGroup = document.getElementById('healthSafetyOtherGroup');
-
-    if (healthSafetySelect && healthSafetyOtherGroup) {
-        healthSafetySelect.addEventListener('change', function() {
-            if (this.value === 'other') {
-                healthSafetyOtherGroup.style.display = 'block';
-            } else {
-                healthSafetyOtherGroup.style.display = 'none';
-            }
-        });
-    }
 }

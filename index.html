@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roof Report Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,6 +15,10 @@
             <h1>Professional Roof Report Generator</h1>
             <p>Generate comprehensive roof inspection reports</p>
         </header>
+
+        <div id="reviewBanner" class="review-banner" style="display: none;">
+            Reviewing a submitted draft — edit any selection or report text below, then click "Save Changes".
+        </div>
 
         <form id="roofReportForm">
             <!-- Data Section: Roof Details -->
@@ -78,6 +85,18 @@
                                 <option value="steep-site">Steep Site</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="propertyAddress">Property Address</label>
+                            <input type="text" id="propertyAddress" name="propertyAddress" placeholder="e.g. 5a Victoria Road" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="preparedFor">Prepared For</label>
+                            <input type="text" id="preparedFor" name="preparedFor" placeholder="e.g. Harcourts - Cooper & Co">
+                        </div>
+                        <div class="form-group">
+                            <label for="reportRef">Report Reference <span style="font-weight: normal; color: var(--text-secondary);">(optional — auto-generated if left blank)</span></label>
+                            <input type="text" id="reportRef" name="reportRef" placeholder="e.g. 2000013419">
+                        </div>
                         <div class="form-group" id="subTypeGroup" style="display: none;">
                             <label for="subType">Tile Type</label>
                             <select id="subType" name="subType">
@@ -111,20 +130,6 @@
                                 <option value="swivel-nail">Swivel Nail</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="healthSafety">Health and Safety/Access Requirements</label>
-                            <select id="healthSafety" name="healthSafety">
-                                <option value="">Select requirement...</option>
-                                <option value="1-person-harness">1 Person Harness Use</option>
-                                <option value="2-person-harness">2 Person Harness Use</option>
-                                <option value="fixed-scaffold-metered">Fixed Scaffold Meterd</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="healthSafetyOtherGroup" style="display: none;">
-                            <label for="healthSafetyOther">Please specify:</label>
-                            <input type="text" id="healthSafetyOther" name="healthSafetyOther" placeholder="Enter other requirement...">
-                        </div>
                     </div>
                     <div class="form-group" style="margin-top: 15px;">
                         <label>Additional Images</label>
@@ -147,35 +152,19 @@
                 </div>
             </div>
 
-            <!-- All Roof Sections - Show based on roof type -->
+            <!-- Specific Concerns Section - populated based on roof type selection -->
             <div id="roofSectionsContainer" style="display: none;">
-
-                <!-- Section 1: Sheet/Tile Condition -->
-                <div class="eps-section section-card" id="section-sheet-condition">
+                <div class="eps-section" id="specificConcernsSection">
                     <div class="eps-section-header">
-                        <span>1. Sheet / Tile Condition</span>
+                        <svg class="eps-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M9,5V9H21V5M9,19H21V15H9M9,14H21V10H9M4,9H8V5H4M4,19H8V15H4M4,14H8V10H4Z" />
+                        </svg>
+                        <span>1. Specific Concerns</span>
                     </div>
                     <div class="eps-section-inputs">
-                        <div class="eps-grid-2col">
-                            <div class="form-group">
-                                <label for="sheetCondition">Overall Condition</label>
-                                <select id="sheetCondition" name="sheetCondition">
-                                    <option value="">Select condition...</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="sheetConditionPhoto">Photo</label>
-                                <input type="file" id="sheetConditionPhoto" name="sheetConditionPhoto" accept="image/*">
-                            </div>
+                        <div id="allSpecificConcerns" class="concerns-container">
+                            <!-- Populated by JavaScript based on roof type selection -->
                         </div>
-                        <div class="form-group" style="margin-top: 15px;">
-                            <label for="sheetSpecificConcerns">Specific Concerns</label>
-                            <div id="sheetSpecificConcerns" class="concerns-container">
-                                <!-- Concerns will be populated by JavaScript -->
-                            </div>
-                            <textarea name="sheetSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
-                        </div>
-                        <div id="sheetConcernDetails"></div>
                     </div>
                     <button type="button" class="eps-save-btn">
                         <svg viewBox="0 0 24 24" width="16" height="16">
@@ -185,297 +174,276 @@
                     </button>
                 </div>
 
-                <!-- Section 2: Hip and Ridging Condition -->
-                <div class="professional-card section-card" id="section-hip-ridging">
-                    <div class="card-header">
-                        <h3>2. Hip and Ridging Condition</h3>
-                        <div class="applicable-toggle">
-                            <label>
-                                <input type="checkbox" id="hipRidgingApplicable" name="hipRidgingApplicable" checked>
-                                Applicable
-                            </label>
-                        </div>
-                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
+                <!-- Gutter Concerns Section -->
+                <div class="eps-section" id="gutterConcernsSection">
+                    <div class="eps-section-header">
+                        <svg class="eps-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M17,12H7V10H17M19,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" />
+                        </svg>
+                        <span>2. Gutter Concerns</span>
                     </div>
-                    <div class="card-content">
-                        <div class="form-row side-by-side">
-                            <div class="form-group">
-                                <label for="hipRidgingCondition">Overall Condition:</label>
-                                <select id="hipRidgingCondition" name="hipRidgingCondition">
-                                    <option value="">Select condition...</option>
+                    <div class="eps-section-inputs">
+
+                        <!-- Step 1: Is there a gutter issue? -->
+                        <div class="form-group">
+                            <label>Gutter Issue Identified?</label>
+                            <div class="yesno-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gutterIssue" id="gutterIssueYes" value="yes">
+                                    Yes
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gutterIssue" id="gutterIssueNo" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Gutter details — shown when Yes -->
+                        <div id="gutterDetails" style="display: none;">
+
+                            <!-- Step 2: Type of Gutters -->
+                            <div class="form-group" style="margin-top: 15px;">
+                                <label for="gutterType">Type of Gutters</label>
+                                <select id="gutterType" name="gutterType">
+                                    <option value="">Select gutter type...</option>
+                                    <option value="pvc-storm-cloud">PVC Storm Cloud</option>
+                                    <option value="pvc-classic">PVC Classic</option>
+                                    <option value="pvc-other">PVC Other</option>
+                                    <option value="metal-quarter-round">Metal Quarter Round</option>
+                                    <option value="metal-half-round">Metal Half Round</option>
+                                    <option value="metal-box-125">Metal Box Cutter 125</option>
+                                    <option value="metal-box-custom">Metal Box Cutter Custom</option>
+                                    <option value="internal-gutters">Internal Gutters</option>
+                                    <option value="downpipe-issues">Downpipe Issues</option>
                                 </select>
-                                <label for="hipRidgingConditionPhoto">Photo:</label>
-                                <input type="file" id="hipRidgingConditionPhoto" name="hipRidgingConditionPhoto" accept="image/*">
                             </div>
-                            <div class="form-group">
-                                <label for="hipRidgingSpecificConcerns">Specific Concerns:</label>
-                                <div id="hipRidgingSpecificConcerns" class="concerns-container">
-                                    <!-- Concerns will be populated by JavaScript -->
+
+                            <!-- Step 3: Type of Damage Detected -->
+                            <div class="form-group" style="margin-top: 15px;">
+                                <label>Type of Damage Detected</label>
+                                <div class="concerns-container" id="gutterDamageList">
+
+                                    <!-- Leaking Joins -->
+                                    <div class="concern-item">
+                                        <label>
+                                            <input type="checkbox" name="gutterDamage_leakingJoins" id="gutterDamage_leakingJoins">
+                                            Leaking Joins
+                                        </label>
+                                        <div class="concern-details" id="gutterDamage_leakingJoins_details" style="display: none;">
+                                            <div class="field-group">
+                                                <label>Photos</label>
+                                                <input type="file" name="gutterLeakingJoins_photos" accept="image/*" multiple>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>How many joins leaking?</label>
+                                                <input type="number" name="gutterLeakingJoins_count" min="0" placeholder="Number of leaking joins">
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Further Recommendations</label>
+                                                <textarea name="gutterLeakingJoins_recommendations" rows="3" placeholder="Please describe cost effective and long term suggestions"></textarea>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Cost Effective Solution?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterLeakingJoins_costEffective" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterLeakingJoins_costEffective" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Alignment Issues -->
+                                    <div class="concern-item">
+                                        <label>
+                                            <input type="checkbox" name="gutterDamage_alignmentIssues" id="gutterDamage_alignmentIssues">
+                                            Alignment Issues
+                                        </label>
+                                        <div class="concern-details" id="gutterDamage_alignmentIssues_details" style="display: none;">
+                                            <div class="field-group">
+                                                <label>Photos</label>
+                                                <input type="file" name="gutterAlignment_photos" accept="image/*" multiple>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Alignment Issue Description</label>
+                                                <textarea name="gutterAlignment_description" rows="3" placeholder="Please describe in full detail the alignment issues"></textarea>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Cost Effective Solution?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterAlignment_costEffective" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterAlignment_costEffective" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Rust Holes Present -->
+                                    <div class="concern-item">
+                                        <label>
+                                            <input type="checkbox" name="gutterDamage_rustHoles" id="gutterDamage_rustHoles">
+                                            Rust Holes Present
+                                        </label>
+                                        <div class="concern-details" id="gutterDamage_rustHoles_details" style="display: none;">
+                                            <div class="field-group">
+                                                <label>Photos</label>
+                                                <input type="file" name="gutterRust_photos" accept="image/*" multiple>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Number of holes</label>
+                                                <input type="number" name="gutterRust_holeCount" min="0" placeholder="Number of rust holes">
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Patch Repair Possible?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterRust_patchPossible" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterRust_patchPossible" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>How many lengths need replacement (m)</label>
+                                                <input type="number" name="gutterRust_replacementLengths" min="0" placeholder="Lengths to replace">
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Cost Effective Solution?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterRust_costEffective" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterRust_costEffective" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cracked or Broken Components -->
+                                    <div class="concern-item">
+                                        <label>
+                                            <input type="checkbox" name="gutterDamage_crackedBroken" id="gutterDamage_crackedBroken">
+                                            Cracked or Broken Components
+                                        </label>
+                                        <div class="concern-details" id="gutterDamage_crackedBroken_details" style="display: none;">
+                                            <div class="field-group">
+                                                <label>Photos</label>
+                                                <input type="file" name="gutterCracked_photos" accept="image/*" multiple>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Number of components broken</label>
+                                                <input type="number" name="gutterCracked_count" min="0" placeholder="Number of broken components">
+                                            </div>
+                                            <div class="field-group">
+                                                <label>List of components broken</label>
+                                                <textarea name="gutterCracked_list" rows="3" placeholder="Describe broken components"></textarea>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Cost Effective Solution?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterCracked_costEffective" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterCracked_costEffective" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Missing Sections -->
+                                    <div class="concern-item">
+                                        <label>
+                                            <input type="checkbox" name="gutterDamage_missingSections" id="gutterDamage_missingSections">
+                                            Missing Sections
+                                        </label>
+                                        <div class="concern-details" id="gutterDamage_missingSections_details" style="display: none;">
+                                            <div class="field-group">
+                                                <label>Photos</label>
+                                                <input type="file" name="gutterMissing_photos" accept="image/*" multiple>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Missing Sections Details</label>
+                                                <textarea name="gutterMissing_details" rows="3" placeholder="Details of missing sections"></textarea>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Cost Effective Solution?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterMissing_costEffective" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterMissing_costEffective" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Brittle / General Wear and Tear -->
+                                    <div class="concern-item">
+                                        <label>
+                                            <input type="checkbox" name="gutterDamage_brittle" id="gutterDamage_brittle">
+                                            Brittle / General Wear and Tear
+                                        </label>
+                                        <div class="concern-details" id="gutterDamage_brittle_details" style="display: none;">
+                                            <div class="field-group">
+                                                <label>Photos</label>
+                                                <input type="file" name="gutterBrittle_photos" accept="image/*" multiple>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Specifics</label>
+                                                <textarea name="gutterBrittle_specifics" rows="3" placeholder="Please add specifics"></textarea>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Cost Effective Solution?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterBrittle_costEffective" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterBrittle_costEffective" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Insufficient Downpipes -->
+                                    <div class="concern-item">
+                                        <label>
+                                            <input type="checkbox" name="gutterDamage_insufficientDownpipes" id="gutterDamage_insufficientDownpipes">
+                                            Insufficient Amount of Downpipes
+                                        </label>
+                                        <div class="concern-details" id="gutterDamage_insufficientDownpipes_details" style="display: none;">
+                                            <div class="field-group">
+                                                <label>Photos</label>
+                                                <input type="file" name="gutterDownpipes_photos" accept="image/*" multiple>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Amount of downpipes needed to be installed</label>
+                                                <input type="number" name="gutterDownpipes_needed" min="0" placeholder="Number of downpipes">
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Can suggested downpipes drain into compliant outlets or T-junction into existing downpipes?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterDownpipes_compliant" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterDownpipes_compliant" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                            <div class="field-group">
+                                                <label>Cost Effective Solution?</label>
+                                                <div class="yesno-group">
+                                                    <label class="radio-label"><input type="radio" name="gutterDownpipes_costEffective" value="yes"> Yes</label>
+                                                    <label class="radio-label"><input type="radio" name="gutterDownpipes_costEffective" value="no"> No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <textarea name="hipRidgingSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
                             </div>
+
+                            <!-- Step 4: Optional Gutter Colour -->
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label for="gutterColour">Gutter Colour <span style="font-weight: normal; color: var(--text-secondary);">(optional — applies to all replacement recommendations)</span></label>
+                                <input type="text" id="gutterColour" name="gutterColour" placeholder="Enter colour e.g. Colorsteel Ironsand">
+                            </div>
+
                         </div>
-                        <div id="hipRidgingConcernDetails"></div>
                     </div>
+                    <button type="button" class="eps-save-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor" d="M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3M19,19H5V5H16.17L19,7.83V19M12,12C10.34,12 9,13.34 9,15C9,16.66 10.34,18 12,18C13.66,18 15,16.66 15,15C15,13.34 13.66,12 12,12M6,6H15V10H6V6Z" />
+                        </svg>
+                        Save Section
+                    </button>
                 </div>
 
-                <!-- Section 3: Gable Ends/Barge Capping (Tile Only) -->
-                <div class="professional-card section-card" id="section-gable-barge" style="display: none;">
-                    <div class="card-header">
-                        <h3>3. Gable Ends and/or Barge Capping</h3>
-                        <div class="applicable-toggle">
-                            <label>
-                                <input type="checkbox" id="gableBargeApplicable" name="gableBargeApplicable" checked>
-                                Applicable
-                            </label>
-                        </div>
-                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
-                    </div>
-                    <div class="card-content">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="gableBargeType">End Type:</label>
-                                <select id="gableBargeType" name="gableBargeType">
-                                    <option value="">Select end type...</option>
-                                    <option value="gable-end">Gable end</option>
-                                    <option value="barge-end">Barge end</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row side-by-side">
-                            <div class="form-group">
-                                <label for="gableBargeCondition">Overall Condition:</label>
-                                <select id="gableBargeCondition" name="gableBargeCondition">
-                                    <option value="">Select condition...</option>
-                                </select>
-                                <label for="gableBargeConditionPhoto">Photo:</label>
-                                <input type="file" id="gableBargeConditionPhoto" name="gableBargeConditionPhoto" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label for="gableBargeSpecificConcerns">Specific Concerns:</label>
-                                <div id="gableBargeSpecificConcerns" class="concerns-container">
-                                    <!-- Concerns will be populated by JavaScript -->
-                                </div>
-                                <textarea name="gableBargeSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div id="gableBargeConcernDetails"></div>
-                    </div>
-                </div>
-
-                <!-- Section 4: Roof Fixings Condition -->
-                <div class="professional-card section-card" id="section-roof-fixings">
-                    <div class="card-header">
-                        <h3>4. Roof Fixings Condition</h3>
-                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
-                    </div>
-                    <div class="card-content">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="fixingType">Fixing Type:</label>
-                                <select id="fixingType" name="fixingType">
-                                    <option value="">Select fixing type...</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row side-by-side">
-                            <div class="form-group">
-                                <label for="roofFixingsCondition">Overall Condition:</label>
-                                <select id="roofFixingsCondition" name="roofFixingsCondition">
-                                    <option value="">Select condition...</option>
-                                </select>
-                                <label for="roofFixingsConditionPhoto">Photo:</label>
-                                <input type="file" id="roofFixingsConditionPhoto" name="roofFixingsConditionPhoto" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label for="roofFixingsSpecificConcerns">Specific Concerns:</label>
-                                <div id="roofFixingsSpecificConcerns" class="concerns-container">
-                                    <!-- Concerns will be populated by JavaScript -->
-                                </div>
-                                <textarea name="roofFixingsSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div id="roofFixingsConcernDetails"></div>
-                    </div>
-                </div>
-
-                <!-- Section 5: Valleys Condition -->
-                <div class="professional-card section-card" id="section-valleys">
-                    <div class="card-header">
-                        <h3>5. Valley/s Condition</h3>
-                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
-                    </div>
-                    <div class="card-content">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="valleyCount">Number of Valleys:</label>
-                                <input type="number" id="valleyCount" name="valleyCount" min="0" max="20">
-                            </div>
-                        </div>
-                        <div class="form-row side-by-side">
-                            <div class="form-group">
-                                <label for="valleysCondition">Overall Condition:</label>
-                                <select id="valleysCondition" name="valleysCondition">
-                                    <option value="">Select condition...</option>
-                                </select>
-                                <label for="valleysConditionPhoto">Photo:</label>
-                                <input type="file" id="valleysConditionPhoto" name="valleysConditionPhoto" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label for="valleysSpecificConcerns">Specific Concerns:</label>
-                                <div id="valleysSpecificConcerns" class="concerns-container">
-                                    <!-- Concerns will be populated by JavaScript -->
-                                </div>
-                                <textarea name="valleysSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div id="valleysConcernDetails"></div>
-                    </div>
-                </div>
-
-                <!-- Section 6: Penetration Flashing Condition -->
-                <div class="professional-card section-card" id="section-penetration-flashing">
-                    <div class="card-header">
-                        <h3>6. Penetration Flashing/s Condition</h3>
-                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
-                    </div>
-                    <div class="card-content">
-                        <div class="form-row side-by-side">
-                            <div class="form-group">
-                                <label for="penetrationFlashingCondition">Overall Condition:</label>
-                                <select id="penetrationFlashingCondition" name="penetrationFlashingCondition">
-                                    <option value="">Select condition...</option>
-                                </select>
-                                <label for="penetrationFlashingConditionPhoto">Photo:</label>
-                                <input type="file" id="penetrationFlashingConditionPhoto" name="penetrationFlashingConditionPhoto" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label for="penetrationFlashingSpecificConcerns">Specific Concerns:</label>
-                                <div id="penetrationFlashingSpecificConcerns" class="concerns-container">
-                                    <!-- Concerns will be populated by JavaScript -->
-                                </div>
-                                <textarea name="penetrationFlashingSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div id="penetrationFlashingConcernDetails"></div>
-                    </div>
-                </div>
-
-                <!-- Section 7: Aerials/Antennas -->
-                <div class="professional-card section-card" id="section-aerials-antennas">
-                    <div class="card-header">
-                        <h3>7. Aerials/Antennas Above Roofing</h3>
-                        <div class="applicable-toggle">
-                            <label>
-                                <input type="checkbox" id="aerialsApplicable" name="aerialsApplicable" checked>
-                                Applicable
-                            </label>
-                        </div>
-                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
-                    </div>
-                    <div class="card-content">
-                        <div class="form-row side-by-side">
-                            <div class="form-group">
-                                <label for="aerialsCondition">Overall Condition:</label>
-                                <select id="aerialsCondition" name="aerialsCondition">
-                                    <option value="">Select condition...</option>
-                                </select>
-                                <label for="aerialsConditionPhoto">Photo:</label>
-                                <input type="file" id="aerialsConditionPhoto" name="aerialsConditionPhoto" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label for="aerialsSpecificConcerns">Specific Concerns:</label>
-                                <div id="aerialsSpecificConcerns" class="concerns-container">
-                                    <!-- Concerns will be populated by JavaScript -->
-                                </div>
-                                <textarea name="aerialsSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div id="aerialsConcernDetails"></div>
-                    </div>
-                </div>
-
-                <!-- Section 8: Spouting & Downpipe Condition -->
-                <div class="professional-card section-card" id="section-spouting-downpipe">
-                    <div class="card-header">
-                        <h3>8. Spouting & Downpipe Condition</h3>
-                        <button type="button" class="remove-section-btn" title="Remove this section if not applicable">×</button>
-                    </div>
-                    <div class="card-content">
-                        <!-- Spouting Type Section -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="spoutingType">Spouting Type:</label>
-                                <select id="spoutingType" name="spoutingType">
-                                    <option value="">Select spouting type...</option>
-                                    <!-- Options will be populated by JavaScript based on roof type -->
-                                </select>
-                            </div>
-                            <div class="form-group" id="spoutingSubTypeGroup" style="display: none;">
-                                <label for="spoutingSubType">Spouting Sub Type:</label>
-                                <select id="spoutingSubType" name="spoutingSubType">
-                                    <option value="">Select sub type...</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <!-- Downpipe Type Section -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="downpipeType">Downpipe Type:</label>
-                                <select id="downpipeType" name="downpipeType">
-                                    <option value="">Select downpipe type...</option>
-                                    <option value="pvc">PVC</option>
-                                    <option value="metal">Metal</option>
-                                </select>
-                            </div>
-                            <div class="form-group" id="downpipeSubTypeGroup" style="display: none;">
-                                <label for="downpipeSubType">Downpipe Sub Type:</label>
-                                <select id="downpipeSubType" name="downpipeSubType">
-                                    <option value="">Select sub type...</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <!-- Bracket Type Section -->
-                        <div class="form-row" id="bracketTypeRow" style="display: none;">
-                            <div class="form-group" id="spoutingBracketGroup" style="display: none;">
-                                <label for="spoutingBracketType">Spouting Bracket Type:</label>
-                                <select id="spoutingBracketType" name="spoutingBracketType">
-                                    <option value="">Select bracket type...</option>
-                                </select>
-                            </div>
-                            <div class="form-group" id="downpipeBracketGroup" style="display: none;">
-                                <label for="downpipeBracketType">Downpipe Bracket Type:</label>
-                                <select id="downpipeBracketType" name="downpipeBracketType">
-                                    <option value="">Select bracket type...</option>
-                                    <option value="flush-type">Flush Type</option>
-                                    <option value="adjustable-type">Adjustable Type</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <!-- Overall Condition and Specific Concerns -->
-                        <div class="form-row side-by-side">
-                            <div class="form-group">
-                                <label for="spoutingCondition">Overall Condition:</label>
-                                <select id="spoutingCondition" name="spoutingCondition">
-                                    <option value="">Select condition...</option>
-                                </select>
-                                <label for="spoutingConditionPhoto">Photo:</label>
-                                <input type="file" id="spoutingConditionPhoto" name="spoutingConditionPhoto" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label for="spoutingSpecificConcerns">Specific Concerns:</label>
-                                <div id="spoutingSpecificConcerns" class="concerns-container">
-                                    <!-- Concerns will be populated by JavaScript -->
-                                </div>
-                                <textarea name="spoutingSpecificConcernsText" class="concerns-textbox" placeholder="Check applicable concerns and add details here..." rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div id="spoutingConcernDetails"></div>
-                    </div>
-                </div>
             </div>
 
             <!-- Additional Roofing Items -->
@@ -511,5 +479,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="report-sync.js"></script>
 </body>
 </html>
