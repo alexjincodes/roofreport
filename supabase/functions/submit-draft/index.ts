@@ -1,5 +1,5 @@
 import { corsHeaders, handleOptions, jsonResponse } from '../_shared/cors.ts';
-import { supabaseAdmin, uploadPhotos } from '../_shared/supabaseAdmin.ts';
+import { supabaseAdmin, mergePhotoPaths } from '../_shared/supabaseAdmin.ts';
 import { generateToken } from '../_shared/token.ts';
 import { sendReviewEmail } from '../_shared/resend.ts';
 
@@ -14,21 +14,21 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { form_data, narrative_overrides, photos } = await req.json();
+    const { token: existingToken, form_data, narrative_overrides, photo_paths } = await req.json();
     if (!form_data || typeof form_data !== 'object') {
       return jsonResponse({ error: 'form_data is required' }, 400);
     }
 
     const admin = supabaseAdmin();
-    const token = generateToken();
-
-    const photoUrls = await uploadPhotos(admin, token, photos, {});
+    // A token is only pre-issued by create-upload-urls when the draft has
+    // photos attached; drafts with no photos never call that endpoint.
+    const token = existingToken || generateToken();
 
     const { error } = await admin.from('report_drafts').insert({
       token,
       form_data,
       narrative_overrides: narrative_overrides || {},
-      photo_urls: photoUrls,
+      photo_urls: mergePhotoPaths({}, photo_paths),
       admin_email: ADMIN_EMAIL,
     });
     if (error) throw error;

@@ -71,27 +71,16 @@ function serializeFormState(form) {
     return { data, files };
 }
 
-function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(String(reader.result).split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
-}
-
-async function encodePhotos(files) {
-    const encoded = [];
-    for (const { name, file } of files) {
-        const base64 = await fileToBase64(file);
-        encoded.push({
-            fieldName: name,
-            filename: file.name,
-            contentType: file.type || 'application/octet-stream',
-            base64,
-        });
+// Loaded lazily via dynamic import (not a <script type="module">, so the rest
+// of this file — and script.js — can keep relying on plain global functions).
+let _supabaseClientPromise = null;
+function getSupabaseClient() {
+    if (!_supabaseClientPromise) {
+        _supabaseClientPromise = import('https://esm.sh/@supabase/supabase-js@2').then(
+            ({ createClient }) => createClient(REPORT_SYNC_CONFIG.supabaseUrl, REPORT_SYNC_CONFIG.anonKey)
+        );
     }
-    return encoded;
+    return _supabaseClientPromise;
 }
 
 // ---- Edge Function calls ---------------------------------------------------
@@ -104,13 +93,47 @@ function edgeHeaders() {
     };
 }
 
+async function requestUploadUrls(token, photos) {
+    const res = await fetch(`${EDGE_FUNCTIONS_BASE}/create-upload-urls`, {
+        method: 'POST',
+        headers: edgeHeaders(),
+        body: JSON.stringify({ token, photos }),
+    });
+    if (!res.ok) throw new Error(`Could not prepare photo upload (${res.status})`);
+    return res.json();
+}
+
+// Uploads each file straight to Storage via a signed URL (no base64/JSON
+// round trip through the Edge Function, which is what let large photos blow
+// past request size limits). Returns the draft token (freshly issued if none
+// was passed in) and the uploaded paths grouped by form field name.
+async function uploadPhotosDirect(token, files) {
+    if (files.length === 0) return { token, photoPaths: {} };
+
+    const photos = files.map(({ name, file }) => ({ fieldName: name, filename: file.name }));
+    const { token: draftToken, uploads } = await requestUploadUrls(token, photos);
+
+    const supabase = await getSupabaseClient();
+    const photoPaths = {};
+    for (let i = 0; i < uploads.length; i++) {
+        const { fieldName, path, uploadToken } = uploads[i];
+        const { file } = files[i];
+        const { error } = await supabase.storage
+            .from('report-photos')
+            .uploadToSignedUrl(path, uploadToken, file);
+        if (error) throw new Error(`Photo upload failed (${fieldName}): ${error.message}`);
+        photoPaths[fieldName] = [...(photoPaths[fieldName] || []), path];
+    }
+    return { token: draftToken, photoPaths };
+}
+
 async function submitDraftToServer(form) {
     const { data, files } = serializeFormState(form);
-    const photos = await encodePhotos(files);
+    const { token, photoPaths } = await uploadPhotosDirect(null, files);
     const res = await fetch(`${EDGE_FUNCTIONS_BASE}/submit-draft`, {
         method: 'POST',
         headers: edgeHeaders(),
-        body: JSON.stringify({ form_data: data, narrative_overrides: window.__narrativeOverrides, photos }),
+        body: JSON.stringify({ token, form_data: data, narrative_overrides: window.__narrativeOverrides, photo_paths: photoPaths }),
     });
     if (!res.ok) throw new Error(`Submit failed (${res.status})`);
     return res.json();
@@ -118,11 +141,11 @@ async function submitDraftToServer(form) {
 
 async function updateDraftOnServer(form, token) {
     const { data, files } = serializeFormState(form);
-    const photos = await encodePhotos(files);
+    const { photoPaths } = await uploadPhotosDirect(token, files);
     const res = await fetch(`${EDGE_FUNCTIONS_BASE}/update-draft?token=${encodeURIComponent(token)}`, {
         method: 'POST',
         headers: edgeHeaders(),
-        body: JSON.stringify({ form_data: data, narrative_overrides: window.__narrativeOverrides, photos }),
+        body: JSON.stringify({ form_data: data, narrative_overrides: window.__narrativeOverrides, photo_paths: photoPaths }),
     });
     if (!res.ok) throw new Error(`Save failed (${res.status})`);
     return res.json();

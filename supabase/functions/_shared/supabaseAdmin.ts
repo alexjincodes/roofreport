@@ -14,34 +14,41 @@ export function supabaseAdmin() {
 
 const PHOTOS_BUCKET = 'report-photos';
 
-export type PendingPhoto = {
+export type RequestedPhoto = {
   fieldName: string;
   filename: string;
-  contentType: string;
-  base64: string;
 };
 
-// Uploads any pending photos for a draft and returns storage paths grouped by
-// field name, merged on top of any existing paths (used by update-draft to
-// append rather than overwrite).
-export async function uploadPhotos(
+// Creates a signed upload URL per requested photo (client uploads the raw
+// file bytes directly to Storage via supabase-js's uploadToSignedUrl — no
+// base64/JSON round trip through the Edge Function, which is what let large
+// iPhone photos blow past request limits).
+export async function createSignedUploadUrls(
   admin: ReturnType<typeof supabaseAdmin>,
   token: string,
-  photos: PendingPhoto[] | undefined,
-  existing: Record<string, string[]>,
-): Promise<Record<string, string[]>> {
-  if (!photos || photos.length === 0) return existing;
-
-  const merged: Record<string, string[]> = { ...existing };
+  photos: RequestedPhoto[],
+): Promise<Array<{ fieldName: string; path: string; uploadToken: string }>> {
+  const results = [];
   for (const photo of photos) {
-    const bytes = Uint8Array.from(atob(photo.base64), (c) => c.charCodeAt(0));
     const path = `${token}/${photo.fieldName}/${Date.now()}-${photo.filename}`;
-    const { error } = await admin.storage.from(PHOTOS_BUCKET).upload(path, bytes, {
-      contentType: photo.contentType,
-      upsert: false,
-    });
-    if (error) throw new Error(`Photo upload failed (${photo.fieldName}): ${error.message}`);
-    merged[photo.fieldName] = [...(merged[photo.fieldName] || []), path];
+    const { data, error } = await admin.storage.from(PHOTOS_BUCKET).createSignedUploadUrl(path);
+    if (error || !data) throw new Error(`Could not create upload URL (${photo.fieldName}): ${error?.message}`);
+    results.push({ fieldName: photo.fieldName, path, uploadToken: data.token });
+  }
+  return results;
+}
+
+// Merges freshly-uploaded photo paths (grouped by field name) on top of any
+// paths already stored for the draft (used by update-draft to append rather
+// than overwrite).
+export function mergePhotoPaths(
+  existing: Record<string, string[]>,
+  incoming: Record<string, string[]> | undefined,
+): Record<string, string[]> {
+  if (!incoming) return existing;
+  const merged: Record<string, string[]> = { ...existing };
+  for (const [fieldName, paths] of Object.entries(incoming)) {
+    merged[fieldName] = [...(merged[fieldName] || []), ...paths];
   }
   return merged;
 }

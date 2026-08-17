@@ -1787,7 +1787,43 @@ printReportBtn.addEventListener('click', function() {
 });
 
 exportPDFBtn.addEventListener('click', function() {
-    alert('PDF export functionality would be implemented here using a library like jsPDF or Puppeteer.');
+    const reportContent = document.getElementById('reportContent');
+    if (!reportContent) return;
+
+    const addressValue = document.getElementById('propertyAddress').value.trim();
+    const refValue = document.getElementById('reportRef').value.trim();
+    const safeAddress = (addressValue || 'Roof-Report').replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '');
+    const filename = `${safeAddress}${refValue ? '-' + refValue : ''}.pdf`;
+
+    const originalText = exportPDFBtn.textContent;
+    exportPDFBtn.disabled = true;
+    exportPDFBtn.textContent = 'Generating PDF…';
+
+    // html2canvas captures relative to the current scroll position and gets
+    // it wrong (blank output) unless the page is scrolled to the top first.
+    const scrollBefore = window.scrollY;
+    window.scrollTo(0, 0);
+
+    html2pdf()
+        .set({
+            margin: 10,
+            filename,
+            image: { type: 'jpeg', quality: 0.95 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['css', 'legacy'] },
+        })
+        .from(reportContent)
+        .save()
+        .catch(function(err) {
+            console.error(err);
+            alert('Could not generate the PDF. Please try again, or use Print Report instead.');
+        })
+        .finally(function() {
+            window.scrollTo(0, scrollBefore);
+            exportPDFBtn.disabled = false;
+            exportPDFBtn.textContent = originalText;
+        });
 });
 
 // Main application initialization function

@@ -1,5 +1,5 @@
 import { handleOptions, jsonResponse } from '../_shared/cors.ts';
-import { supabaseAdmin, uploadPhotos } from '../_shared/supabaseAdmin.ts';
+import { supabaseAdmin, mergePhotoPaths } from '../_shared/supabaseAdmin.ts';
 
 Deno.serve(async (req) => {
   const preflight = handleOptions(req);
@@ -22,12 +22,12 @@ Deno.serve(async (req) => {
       .maybeSingle();
     if (fetchError || !existing) return jsonResponse({ error: 'Not found' }, 404);
 
-    const { form_data, narrative_overrides, photos } = await req.json();
+    const { form_data, narrative_overrides, photo_paths } = await req.json();
     if (!form_data || typeof form_data !== 'object') {
       return jsonResponse({ error: 'form_data is required' }, 400);
     }
 
-    const photoUrls = await uploadPhotos(admin, token, photos, existing.photo_urls || {});
+    const photoUrls = mergePhotoPaths(existing.photo_urls || {}, photo_paths);
 
     const { error: updateError } = await admin
       .from('report_drafts')
