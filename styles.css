@@ -1770,6 +1770,23 @@ header p {
         gap: 8px;
         text-align: center;
     }
+
+    .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+    }
+
+    .roof-details-table th,
+    .roof-details-table td {
+        padding: 8px 10px;
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* ============================================================
