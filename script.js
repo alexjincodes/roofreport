@@ -2870,6 +2870,17 @@ const GUTTER_TYPE_LABELS = {
 // Revoked and reset at the start of every generateReport() call so repeated submits don't leak memory.
 let reportObjectUrls = [];
 
+// Combines any freshly-selected File objects for a field with already-uploaded
+// photo URLs restored from a saved draft (window.__storedPhotoUrls, populated
+// by report-sync.js in review mode) — a file input can't be refilled from a
+// URL, so without this a reopened review link would render with no photos at
+// all even though they're still saved.
+function getFieldPhotos(formData, fieldName) {
+    const freshFiles = formData.getAll(fieldName).filter(f => f instanceof File && f.size > 0);
+    const storedUrls = (window.__storedPhotoUrls && window.__storedPhotoUrls[fieldName]) || [];
+    return [...storedUrls, ...freshFiles];
+}
+
 // Endeavour-branded letterhead + title + report meta (date/ref/address/prepared for) + cover photo
 function generateCoverSection(formData, isGutterOnly) {
     const reportDate = formatReportDate(new Date());
@@ -2878,11 +2889,11 @@ function generateCoverSection(formData, isGutterOnly) {
     const preparedFor = formData.get(isGutterOnly ? 'gutterDetailsPreparedFor' : 'preparedFor');
     const inspectionTitle = isGutterOnly ? 'Gutter Inspection' : 'Roof Inspection';
 
-    const coverPhotoFile = formData.getAll(isGutterOnly ? 'gutterDetailsAdditionalImages' : 'additionalImages').find(f => f instanceof File && f.size > 0);
+    const coverPhotoSource = getFieldPhotos(formData, isGutterOnly ? 'gutterDetailsAdditionalImages' : 'additionalImages')[0];
     let coverPhotoHtml = '';
-    if (coverPhotoFile) {
-        const url = URL.createObjectURL(coverPhotoFile);
-        reportObjectUrls.push(url);
+    if (coverPhotoSource) {
+        const url = coverPhotoSource instanceof File ? URL.createObjectURL(coverPhotoSource) : coverPhotoSource;
+        if (coverPhotoSource instanceof File) reportObjectUrls.push(url);
         coverPhotoHtml = `<img class="cover-photo" src="${url}" alt="Property photo">`;
     }
 
@@ -3005,7 +3016,7 @@ function formatFieldValues(fields, formData, namePrefix, flashingFieldsMap) {
         const fieldName = namePrefix ? `${namePrefix}_${field.name}` : field.name;
 
         if (field.type === 'file') {
-            const count = formData.getAll(fieldName).filter(f => f instanceof File && f.size > 0).length;
+            const count = getFieldPhotos(formData, fieldName).length;
             return count > 0 ? `<p><strong>${field.label}:</strong> ${count} photo(s) attached</p>` : '';
         }
 
@@ -3134,10 +3145,7 @@ function buildConcernEntry(concern, formData, namePrefix, flashingFieldsMap, ove
 
     const photos = allFields
         .filter(f => f.type === 'file')
-        .flatMap(f => {
-            const fieldName = namePrefix ? `${namePrefix}_${f.name}` : f.name;
-            return formData.getAll(fieldName).filter(file => file instanceof File && file.size > 0);
-        });
+        .flatMap(f => getFieldPhotos(formData, namePrefix ? `${namePrefix}_${f.name}` : f.name));
 
     const detailFields = allFields.filter(f => f.type !== 'file' && f.name !== 'comments');
     const detailsHtml = formatFieldValues(detailFields, formData, namePrefix, flashingFieldsMap);
@@ -3175,13 +3183,18 @@ function collectSelectedConcerns(formData) {
     return concerns;
 }
 
-// Render a dense photo mosaic from an array of File objects, matching roofreportv1.pdf's photo grid
+// Render a dense photo mosaic, matching roofreportv1.pdf's photo grid. Entries
+// are either a fresh File object (from a file input on this page) or an
+// already-uploaded photo URL string (restored from a saved draft).
 function renderPhotoGrid(files) {
     if (!files || files.length === 0) return '';
     const tiles = files.map(file => {
-        const url = URL.createObjectURL(file);
-        reportObjectUrls.push(url);
-        return `<img src="${url}" alt="${file.name}">`;
+        if (file instanceof File) {
+            const url = URL.createObjectURL(file);
+            reportObjectUrls.push(url);
+            return `<img src="${url}" alt="${file.name}">`;
+        }
+        return `<img src="${file}" alt="Photo">`;
     }).join('');
     return `<div class="photo-grid">${tiles}</div>`;
 }
