@@ -177,11 +177,19 @@ function showDraftSyncStatus(message, type) {
 // the local report preview is generated.
 async function handleDraftSubmit(form) {
     const isReview = Boolean(window.__reviewToken);
-    showDraftSyncStatus(isReview ? 'Saving changes…' : 'Submitting for review…', 'pending');
+    // An assigned (address-only) draft being completed for the first time is
+    // really an initial submission, not an edit — the backend treats it that
+    // way too (sends the review email), so the status message should match.
+    const isFirstSubmission = !isReview || window.__isAssignedDraft;
+    showDraftSyncStatus(isFirstSubmission ? 'Submitting for review…' : 'Saving changes…', 'pending');
     try {
         if (isReview) {
             await updateDraftOnServer(form, window.__reviewToken);
-            showDraftSyncStatus('Changes saved.', 'success');
+            window.__isAssignedDraft = false;
+            showDraftSyncStatus(
+                isFirstSubmission ? 'Submitted for review — the admin has been notified by email.' : 'Changes saved.',
+                'success'
+            );
         } else {
             await submitDraftToServer(form);
             showDraftSyncStatus('Submitted for review — the admin has been notified by email.', 'success');
@@ -317,6 +325,7 @@ async function enterReviewMode(token) {
         // report — and there's nothing meaningful to preview yet, so skip the
         // automatic report generation until the technician actually submits.
         const isAssigned = draft.status === 'assigned';
+        window.__isAssignedDraft = isAssigned;
         if (banner) {
             banner.style.display = 'block';
             banner.textContent = isAssigned
