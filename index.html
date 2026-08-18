@@ -21,8 +21,19 @@
         </div>
 
         <form id="roofReportForm">
+            <!-- Gutter Only toggle: swaps Roof Details for Gutter Details below -->
+            <div class="gutter-only-toggle">
+                <label>
+                    <input type="checkbox" id="gutterOnlyToggle" name="gutterOnly" value="yes">
+                    <span class="gutter-only-toggle-text">
+                        <strong>Gutter Only Inspection</strong>
+                        <small>No roof inspection — only gutters are being assessed for this job.</small>
+                    </span>
+                </label>
+            </div>
+
             <!-- Data Section: Roof Details -->
-            <div class="eps-section">
+            <div class="eps-section" id="roofDetailsSection">
                 <div class="eps-section-header">
                     <svg class="eps-icon" viewBox="0 0 24 24" width="20" height="20">
                         <path fill="currentColor" d="M12,3C7.58,3 4,4.79 4,7V17C4,19.21 7.59,21 12,21C16.41,21 20,19.21 20,17V7C20,4.79 16.42,3 12,3M18,17C18,17.5 15.87,19 12,19C8.13,19 6,17.5 6,17V14.77C7.61,15.55 9.72,16 12,16C14.28,16 16.39,15.55 18,14.77V17M18,12.45C16.7,13.4 14.42,14 12,14C9.58,14 7.3,13.4 6,12.45V9.64C7.47,10.47 9.61,11 12,11C14.39,11 16.53,10.47 18,9.64V12.45M12,9C8.13,9 6,7.5 6,7C6,6.5 8.13,5 12,5C15.87,5 18,6.5 18,7C18,7.5 15.87,9 12,9Z" />
@@ -42,10 +53,6 @@
                                 <option value="asbestos">Asbestos</option>
                                 <option value="flat-roof">Flat Roof</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="geometry">Roof Geometry</label>
-                            <input type="text" id="geometry" name="geometry" placeholder="e.g. Gable to Gable roof" required>
                         </div>
                         <div class="form-group">
                             <label for="levels">Levels</label>
@@ -134,6 +141,122 @@
                     <div class="form-group" style="margin-top: 15px;">
                         <label>Additional Images</label>
                         <input type="file" id="additionalImages" name="additionalImages" accept="image/*" multiple>
+                    </div>
+                </div>
+                <button type="button" class="eps-save-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="currentColor" d="M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3M19,19H5V5H16.17L19,7.83V19M12,12C10.34,12 9,13.34 9,15C9,16.66 10.34,18 12,18C13.66,18 15,16.66 15,15C15,13.34 13.66,12 12,12M6,6H15V10H6V6Z" />
+                    </svg>
+                    Save Section
+                </button>
+            </div>
+
+            <!-- Data Section: Gutter Details (mirrors Roof Details, shown instead of it when Gutter Only is on) -->
+            <div class="eps-section" id="gutterDetailsSection" style="display: none;">
+                <div class="eps-section-header">
+                    <svg class="eps-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M17,12H7V10H17M19,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" />
+                    </svg>
+                    <span>Gutter Details</span>
+                </div>
+                <div class="eps-section-inputs">
+                    <div class="eps-grid-2col">
+                        <div class="form-group">
+                            <label for="gutterDetailsType">Gutter Type</label>
+                            <select id="gutterDetailsType" name="gutterDetailsType" required>
+                                <option value="">Select gutter type...</option>
+                                <option value="pvc-storm-cloud">PVC Storm Cloud</option>
+                                <option value="pvc-classic">PVC Classic</option>
+                                <option value="pvc-other">PVC Other</option>
+                                <option value="metal-quarter-round">Metal Quarter Round</option>
+                                <option value="metal-half-round">Metal Half Round</option>
+                                <option value="metal-box-125">Metal Box Cutter 125</option>
+                                <option value="metal-box-custom">Metal Box Cutter Custom</option>
+                                <option value="internal-gutters">Internal Gutters</option>
+                                <option value="downpipe-issues">Downpipe Issues</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsLevels">Levels</label>
+                            <select id="gutterDetailsLevels" name="gutterDetailsLevels" required>
+                                <option value="">Select levels...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsOverallCondition">Overall Condition of Gutter</label>
+                            <select id="gutterDetailsOverallCondition" name="gutterDetailsOverallCondition" required>
+                                <option value="">Select condition...</option>
+                                <option value="good">Good</option>
+                                <option value="fair">Fair</option>
+                                <option value="average">Average</option>
+                                <option value="poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsPitch">Gutter Pitch</label>
+                            <select id="gutterDetailsPitch" name="gutterDetailsPitch" required>
+                                <option value="">Select pitch...</option>
+                                <option value="flat">Flat</option>
+                                <option value="slightly-inclined">Slightly Inclined</option>
+                                <option value="heavily-inclined">Heavily Inclined</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsSiteAccess">Site Access</label>
+                            <select id="gutterDetailsSiteAccess" name="gutterDetailsSiteAccess" required>
+                                <option value="">Select access...</option>
+                                <option value="flat-site">Flat Site</option>
+                                <option value="steep-site">Steep Site</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsPropertyAddress">Property Address</label>
+                            <input type="text" id="gutterDetailsPropertyAddress" name="gutterDetailsPropertyAddress" placeholder="e.g. 5a Victoria Road" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsPreparedFor">Prepared For</label>
+                            <input type="text" id="gutterDetailsPreparedFor" name="gutterDetailsPreparedFor" placeholder="e.g. Harcourts - Cooper & Co">
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsReportRef">Report Reference <span style="font-weight: normal; color: var(--text-secondary);">(optional — auto-generated if left blank)</span></label>
+                            <input type="text" id="gutterDetailsReportRef" name="gutterDetailsReportRef" placeholder="e.g. 2000013419">
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsRidgeType">Ridge Type</label>
+                            <select id="gutterDetailsRidgeType" name="gutterDetailsRidgeType">
+                                <option value="">Select ridge type...</option>
+                                <option value="standard">Standard</option>
+                                <option value="ventilated">Ventilated</option>
+                                <option value="dry-ridge">Dry Ridge</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsSpoutingType">Spouting Type</label>
+                            <select id="gutterDetailsSpoutingType" name="gutterDetailsSpoutingType">
+                                <option value="">Select spouting type...</option>
+                                <option value="pvc">PVC</option>
+                                <option value="metal">Metal</option>
+                                <option value="internal">Internal Gutter</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gutterDetailsNailType">Nail Type</label>
+                            <select id="gutterDetailsNailType" name="gutterDetailsNailType">
+                                <option value="">Select nail type...</option>
+                                <option value="lead-nail-head">Lead Nail Head</option>
+                                <option value="screw">Screw</option>
+                                <option value="swivel-nail">Swivel Nail</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Additional Images</label>
+                        <input type="file" id="gutterDetailsAdditionalImages" name="gutterDetailsAdditionalImages" accept="image/*" multiple>
                     </div>
                 </div>
                 <button type="button" class="eps-save-btn">

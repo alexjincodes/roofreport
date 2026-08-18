@@ -1829,6 +1829,7 @@ exportPDFBtn.addEventListener('click', function() {
 // Main application initialization function
 function initializeRoofReportApp() {
     setupRoofTypeHandler();
+    setupGutterOnlyToggle();
     setupSectionRemovalButtons();
     setupApplicabilityToggles();
     setupAdditionalItems();
@@ -1940,6 +1941,49 @@ function setupRoofTypeHandler() {
             sectionsContainer.style.display = 'none';
         }
     });
+}
+
+// Setup Gutter Only toggle: swaps Roof Details (+ its roof-type-driven
+// Specific Concerns) for the mirrored Gutter Details section. The existing
+// Gutter Concerns section stays reachable either way.
+function setupGutterOnlyToggle() {
+    const toggle = document.getElementById('gutterOnlyToggle');
+    const roofDetailsSection = document.getElementById('roofDetailsSection');
+    const gutterDetailsSection = document.getElementById('gutterDetailsSection');
+    const specificConcernsSection = document.getElementById('specificConcernsSection');
+    const sectionsContainer = document.getElementById('roofSectionsContainer');
+    const asbestosMessage = document.getElementById('asbestosMessage');
+    const roofTypeSelect = document.getElementById('roofType');
+    const subTypeSelect = document.getElementById('subType');
+
+    const roofRequiredFields = Array.from(roofDetailsSection.querySelectorAll('[required]'));
+    const gutterRequiredFields = Array.from(gutterDetailsSection.querySelectorAll('[required]'));
+
+    function applyState(isGutterOnly) {
+        roofDetailsSection.style.display = isGutterOnly ? 'none' : '';
+        gutterDetailsSection.style.display = isGutterOnly ? '' : 'none';
+        specificConcernsSection.style.display = isGutterOnly ? 'none' : '';
+
+        roofRequiredFields.forEach(el => { el.required = !isGutterOnly; });
+        gutterRequiredFields.forEach(el => { el.required = isGutterOnly; });
+
+        if (isGutterOnly) {
+            asbestosMessage.style.display = 'none';
+            // Gutter Concerns lives in the same container as Specific Concerns
+            // and is normally only revealed by the roof type/subtype cascade —
+            // force it open here since there's no roof type to drive it.
+            sectionsContainer.style.display = 'block';
+        } else {
+            asbestosMessage.style.display = roofTypeSelect.value === 'asbestos' ? 'block' : 'none';
+            sectionsContainer.style.display = (roofTypeSelect.value && subTypeSelect.value) ? 'block' : 'none';
+        }
+    }
+
+    toggle.addEventListener('change', function() {
+        applyState(this.checked);
+    });
+
+    applyState(toggle.checked);
 }
 
 // Show only sections that are relevant to the selected roof type and subtype
@@ -2742,6 +2786,11 @@ function setupFormSubmission() {
             form.reset();
             reportOutput.style.display = 'none';
 
+            // form.reset() doesn't fire 'change', so the Gutter Only toggle's
+            // listener (which shows/hides Roof vs Gutter Details) won't run on
+            // its own — dispatch it explicitly to avoid stale section state.
+            document.getElementById('gutterOnlyToggle').dispatchEvent(new Event('change'));
+
             // Hide sub-type group, asbestos message, and sections container
             document.getElementById('subTypeGroup').style.display = 'none';
             document.getElementById('asbestosMessage').style.display = 'none';
@@ -2771,10 +2820,12 @@ function generateReport() {
         applyNarrativeOverrides(concerns);
     }
 
+    const isGutterOnly = document.getElementById('gutterOnlyToggle').checked;
+
     let reportHTML = '<div class="report-sections">';
-    reportHTML += generateCoverSection(formData);
+    reportHTML += generateCoverSection(formData, isGutterOnly);
     reportHTML += generateCauseForConcernSummary(concerns);
-    reportHTML += generateRoofDetailsTable(formData);
+    reportHTML += generateRoofDetailsTable(formData, isGutterOnly);
     reportHTML += generateCauseForConcernDetails(concerns);
     reportHTML += generateAdditionalItemsSection(formData);
     reportHTML += '</div>';
@@ -2799,18 +2850,35 @@ function formatReportDate(date) {
     return `${date.getDate()} ${MONTH_ABBR[date.getMonth()]} ${String(date.getFullYear()).slice(-2)}`;
 }
 
+// Display labels for the Gutter Details "Gutter Type" field — matches the
+// options list under Gutter Concerns' "Type of Gutters", but slugToLabel()
+// can't reverse-engineer these correctly (e.g. "metal-box-125" doesn't encode
+// "Cutter"), so they're spelled out explicitly here.
+const GUTTER_TYPE_LABELS = {
+    'pvc-storm-cloud': 'PVC Storm Cloud',
+    'pvc-classic': 'PVC Classic',
+    'pvc-other': 'PVC Other',
+    'metal-quarter-round': 'Metal Quarter Round',
+    'metal-half-round': 'Metal Half Round',
+    'metal-box-125': 'Metal Box Cutter 125',
+    'metal-box-custom': 'Metal Box Cutter Custom',
+    'internal-gutters': 'Internal Gutters',
+    'downpipe-issues': 'Downpipe Issues',
+};
+
 // Object URLs created for report photo previews (specific-concern photos, gutter photos, cover photo).
 // Revoked and reset at the start of every generateReport() call so repeated submits don't leak memory.
 let reportObjectUrls = [];
 
 // Endeavour-branded letterhead + title + report meta (date/ref/address/prepared for) + cover photo
-function generateCoverSection(formData) {
+function generateCoverSection(formData, isGutterOnly) {
     const reportDate = formatReportDate(new Date());
-    const reportRef = formData.get('reportRef') || `#${Date.now().toString().slice(-10)}`;
-    const address = formData.get('propertyAddress') || 'Not specified';
-    const preparedFor = formData.get('preparedFor');
+    const reportRef = formData.get(isGutterOnly ? 'gutterDetailsReportRef' : 'reportRef') || `#${Date.now().toString().slice(-10)}`;
+    const address = formData.get(isGutterOnly ? 'gutterDetailsPropertyAddress' : 'propertyAddress') || 'Not specified';
+    const preparedFor = formData.get(isGutterOnly ? 'gutterDetailsPreparedFor' : 'preparedFor');
+    const inspectionTitle = isGutterOnly ? 'Gutter Inspection' : 'Roof Inspection';
 
-    const coverPhotoFile = formData.getAll('additionalImages').find(f => f instanceof File && f.size > 0);
+    const coverPhotoFile = formData.getAll(isGutterOnly ? 'gutterDetailsAdditionalImages' : 'additionalImages').find(f => f instanceof File && f.size > 0);
     let coverPhotoHtml = '';
     if (coverPhotoFile) {
         const url = URL.createObjectURL(coverPhotoFile);
@@ -2821,13 +2889,13 @@ function generateCoverSection(formData) {
     return `
         <div class="report-letterhead">
             <span class="report-page-badge">Pg. 1</span>
-            <span class="report-letterhead-label">Roof Inspection</span>
+            <span class="report-letterhead-label">${inspectionTitle}</span>
             <span class="eg-logo">
                 <span class="eg-logo-squares"><span></span><span></span><span></span></span>
                 <span class="eg-logo-word">ENDEAVOUR</span>
             </span>
         </div>
-        <h1 class="cover-title">Roof Inspection</h1>
+        <h1 class="cover-title">${inspectionTitle}</h1>
         <div class="cover-meta">
             <div class="cover-meta-text">
                 <p><strong>Report Date:</strong> ${reportDate}</p>
@@ -2865,7 +2933,36 @@ function generateCauseForConcernSummary(concerns) {
 }
 
 // "Roof Details" table — direct label/value mapping from the top-level roof detail fields
-function generateRoofDetailsTable(formData) {
+function generateRoofDetailsTable(formData, isGutterOnly) {
+    if (isGutterOnly) {
+        const gutterType = formData.get('gutterDetailsType');
+        if (!gutterType) return '';
+
+        const gutterTypeName = GUTTER_TYPE_LABELS[gutterType] || slugToLabel(gutterType);
+        const overallCondition = formData.get('gutterDetailsOverallCondition');
+
+        const rows = [
+            ['Gutter Type', gutterTypeName],
+            ['Gutter Levels', numberWord(formData.get('gutterDetailsLevels')) || 'N/A'],
+            ['Gutter Pitch', slugToLabel(formData.get('gutterDetailsPitch')) || 'N/A'],
+            ['Ridge Type', slugToLabel(formData.get('gutterDetailsRidgeType')) || 'N/A'],
+            ['Spouting Type', slugToLabel(formData.get('gutterDetailsSpoutingType')) || 'N/A'],
+            ['Nail Type', slugToLabel(formData.get('gutterDetailsNailType')) || 'N/A'],
+            ['Overall Condition of Gutter', overallCondition ? `<strong>${slugToLabel(overallCondition)}</strong>` : 'N/A'],
+        ];
+
+        const rowsHtml = rows.map(([label, value]) => `<tr><th>${label}</th><td>${value}</td></tr>`).join('');
+
+        return `
+            <div class="report-section">
+                <table class="roof-details-table">
+                    <caption>Gutter Details</caption>
+                    <tbody>${rowsHtml}</tbody>
+                </table>
+            </div>
+        `;
+    }
+
     const roofType = formData.get('roofType');
     const subType = formData.get('subType');
     if (!roofType) return '';
@@ -2878,7 +2975,6 @@ function generateRoofDetailsTable(formData) {
         rows.push(['Tile Type', roofData[roofType]?.subTypes?.[subType]?.name || slugToLabel(subType)]);
     }
     rows.push(
-        ['Roof Geometry', formData.get('geometry') || 'Not specified'],
         ['Roof Levels', numberWord(formData.get('levels')) || 'N/A'],
         ['Roof Pitch', slugToLabel(formData.get('roofPitch')) || 'N/A'],
         ['Ridge Type', slugToLabel(formData.get('ridgeType')) || 'N/A'],
