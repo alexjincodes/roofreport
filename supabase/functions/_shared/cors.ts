@@ -1,6 +1,6 @@
 export const corsHeaders = {
   'Access-Control-Allow-Origin': 'https://roofreport.onrender.com',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-staff-password',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
 };
 

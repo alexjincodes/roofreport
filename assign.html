@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Job Link — Roof Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" style="max-width: 560px;">
+        <header>
+            <h1>Create Job Link</h1>
+            <p>Enter the property address to generate a link for a technician to fill in.</p>
+        </header>
+
+        <div class="eps-section">
+            <div class="eps-section-inputs" style="padding: 24px;">
+                <div class="form-group">
+                    <label for="jobAddress">Property Address</label>
+                    <input type="text" id="jobAddress" placeholder="e.g. 5a Victoria Road">
+                </div>
+                <button type="button" id="createLinkBtn" class="btn-primary">Create Link</button>
+
+                <div id="linkResult" style="display: none; margin-top: 20px;">
+                    <label>Shareable Link</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="linkOutput" readonly style="flex: 1;">
+                        <button type="button" id="copyLinkBtn" class="btn-secondary">Copy</button>
+                    </div>
+                    <p id="copyStatus" style="margin-top: 8px; font-size: 13px; color: var(--text-muted);"></p>
+                </div>
+
+                <p id="createStatus" style="margin-top: 12px; color: var(--danger);"></p>
+            </div>
+        </div>
+
+        <p style="text-align: center;"><a href="jobs.html">View all jobs &rarr;</a></p>
+    </div>
+
+    <script src="staff.js"></script>
+    <script>
+        document.getElementById('createLinkBtn').addEventListener('click', async function() {
+            const address = document.getElementById('jobAddress').value.trim();
+            const statusEl = document.getElementById('createStatus');
+            const resultEl = document.getElementById('linkResult');
+            statusEl.textContent = '';
+            resultEl.style.display = 'none';
+
+            if (!address) {
+                statusEl.textContent = 'Please enter a property address.';
+                return;
+            }
+
+            this.disabled = true;
+            this.textContent = 'Creating…';
+            try {
+                const res = await staffFetch('create-assignment', {
+                    method: 'POST',
+                    body: JSON.stringify({ address }),
+                });
+                if (!res.ok) {
+                    const body = await res.json().catch(() => ({}));
+                    throw new Error(body.error || `Failed (${res.status})`);
+                }
+                const { token } = await res.json();
+                const link = `${window.location.origin}/index.html?token=${token}`;
+                document.getElementById('linkOutput').value = link;
+                resultEl.style.display = 'block';
+                document.getElementById('jobAddress').value = '';
+            } catch (err) {
+                statusEl.textContent = err.message || 'Could not create the link. Please try again.';
+            } finally {
+                this.disabled = false;
+                this.textContent = 'Create Link';
+            }
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', async function() {
+            const input = document.getElementById('linkOutput');
+            input.select();
+            try {
+                await navigator.clipboard.writeText(input.value);
+                document.getElementById('copyStatus').textContent = 'Copied!';
+            } catch (err) {
+                document.getElementById('copyStatus').textContent = 'Could not copy — select and copy manually.';
+            }
+        });
+    </script>
+</body>
+</html>

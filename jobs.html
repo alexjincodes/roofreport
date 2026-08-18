@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs — Roof Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" style="max-width: 900px;">
+        <header>
+            <h1>Jobs</h1>
+            <p>Every report draft — assigned, submitted, or reviewed.</p>
+        </header>
+
+        <p style="text-align: center; margin-bottom: 20px;"><a href="assign.html">+ Create new job link</a></p>
+
+        <div id="jobsStatus" style="text-align: center; color: var(--text-muted); padding: 20px;">Loading…</div>
+
+        <div class="eps-section" id="jobsTableWrap" style="display: none;">
+            <div class="eps-section-inputs" style="padding: 0; overflow-x: auto;">
+                <table class="roof-details-table" style="width: 100%;">
+                    <thead>
+                        <tr><th>Address</th><th>Status</th><th>Created</th><th>Link</th></tr>
+                    </thead>
+                    <tbody id="jobsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="staff.js"></script>
+    <script>
+        const STATUS_LABELS = {
+            assigned: 'Assigned — awaiting technician',
+            submitted: 'Submitted — awaiting review',
+            reviewed: 'Reviewed',
+        };
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str == null ? '' : String(str);
+            return div.innerHTML;
+        }
+
+        async function loadJobs() {
+            const statusEl = document.getElementById('jobsStatus');
+            const wrap = document.getElementById('jobsTableWrap');
+            const tbody = document.getElementById('jobsTableBody');
+
+            try {
+                const res = await staffFetch('list-assignments', { method: 'GET' });
+                if (!res.ok) {
+                    const body = await res.json().catch(() => ({}));
+                    throw new Error(body.error || `Failed (${res.status})`);
+                }
+                const { drafts } = await res.json();
+
+                if (drafts.length === 0) {
+                    statusEl.textContent = 'No jobs yet.';
+                    return;
+                }
+
+                tbody.innerHTML = drafts.map(d => {
+                    const link = `${window.location.origin}/index.html?token=${d.token}`;
+                    const created = new Date(d.submittedAt).toLocaleDateString();
+                    return `
+                        <tr>
+                            <td>${escapeHtml(d.address)}</td>
+                            <td>${escapeHtml(STATUS_LABELS[d.status] || d.status)}</td>
+                            <td>${created}</td>
+                            <td><button type="button" class="btn-secondary copy-link-btn" data-link="${escapeHtml(link)}">Copy Link</button></td>
+                        </tr>
+                    `;
+                }).join('');
+
+                statusEl.style.display = 'none';
+                wrap.style.display = 'block';
+
+                tbody.querySelectorAll('.copy-link-btn').forEach(btn => {
+                    btn.addEventListener('click', async function() {
+                        try {
+                            await navigator.clipboard.writeText(this.dataset.link);
+                            const original = this.textContent;
+                            this.textContent = 'Copied!';
+                            setTimeout(() => { this.textContent = original; }, 1500);
+                        } catch (err) {
+                            alert('Could not copy — link:\n' + this.dataset.link);
+                        }
+                    });
+                });
+            } catch (err) {
+                statusEl.textContent = err.message || 'Could not load jobs.';
+            }
+        }
+
+        loadJobs();
+    </script>
+</body>
+</html>

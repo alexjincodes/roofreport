@@ -303,11 +303,7 @@ async function enterReviewMode(token) {
     window.__reviewToken = token;
 
     const banner = document.getElementById('reviewBanner');
-    if (banner) banner.style.display = 'block';
-
     const submitBtn = document.querySelector('#roofReportForm button[type="submit"]');
-    if (submitBtn) submitBtn.textContent = 'Save Changes';
-
     const clearBtn = document.getElementById('clearForm');
     if (clearBtn) clearBtn.style.display = 'none';
 
@@ -316,12 +312,27 @@ async function enterReviewMode(token) {
         window.__narrativeOverrides = draft.narrative_overrides || {};
         window.__storedPhotoUrls = draft.photo_urls || {};
 
+        // Staff-created assignments (address only, nothing submitted yet) get
+        // different messaging than an admin reviewing an already-submitted
+        // report — and there's nothing meaningful to preview yet, so skip the
+        // automatic report generation until the technician actually submits.
+        const isAssigned = draft.status === 'assigned';
+        if (banner) {
+            banner.style.display = 'block';
+            banner.textContent = isAssigned
+                ? 'Filling in an assigned inspection — complete the form below and click "Generate Report" when done.'
+                : 'Reviewing a submitted draft — edit any selection or report text below, then click "Save Changes".';
+        }
+        if (submitBtn) submitBtn.textContent = isAssigned ? 'Generate Report' : 'Save Changes';
+
         const form = document.getElementById('roofReportForm');
         restoreFormState(form, draft.form_data || {});
         renderStoredPhotoPreviews(window.__storedPhotoUrls);
 
-        generateReport();
-        document.getElementById('reportOutput').style.display = 'block';
+        if (!isAssigned) {
+            generateReport();
+            document.getElementById('reportOutput').style.display = 'block';
+        }
     } catch (err) {
         console.error(err);
         showDraftSyncStatus('Could not load this draft — the link may be invalid or expired.', 'error');
