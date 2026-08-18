@@ -9,6 +9,7 @@ export async function sendReviewEmail(token: string, address: string, adminEmail
   }
 
   const reviewLink = `${siteUrl}/index.html?token=${token}`;
+  console.log(`Sending review email with link: ${reviewLink}`);
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
